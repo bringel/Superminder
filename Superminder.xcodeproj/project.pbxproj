@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2F080FA81AF060C5008EAB4B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F080FA71AF060C5008EAB4B /* main.m */; };
+		2F080FAB1AF060C5008EAB4B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F080FAA1AF060C5008EAB4B /* AppDelegate.m */; };
+		2F080FB11AF060C5008EAB4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F080FAF1AF060C5008EAB4B /* Main.storyboard */; };
+		2F080FB31AF060C5008EAB4B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F080FB21AF060C5008EAB4B /* Images.xcassets */; };
+		2F080FC21AF060C5008EAB4B /* SuperminderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F080FC11AF060C5008EAB4B /* SuperminderTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2F080FBC1AF060C5008EAB4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F080F9A1AF060C5008EAB4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F080FA11AF060C5008EAB4B;
+			remoteInfo = Superminder;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2F080FA21AF060C5008EAB4B /* Superminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Superminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F080FA61AF060C5008EAB4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F080FA71AF060C5008EAB4B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2F080FA91AF060C5008EAB4B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2F080FAA1AF060C5008EAB4B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2F080FB01AF060C5008EAB4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2F080FB21AF060C5008EAB4B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2F080FBB1AF060C5008EAB4B /* SuperminderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperminderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F080FC01AF060C5008EAB4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F080FC11AF060C5008EAB4B /* SuperminderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperminderTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2F080F9F1AF060C5008EAB4B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F080FB81AF060C5008EAB4B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2F080F991AF060C5008EAB4B = {
+			isa = PBXGroup;
+			children = (
+				2F080FA41AF060C5008EAB4B /* Superminder */,
+				2F080FBE1AF060C5008EAB4B /* SuperminderTests */,
+				2F080FA31AF060C5008EAB4B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2F080FA31AF060C5008EAB4B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2F080FA21AF060C5008EAB4B /* Superminder.app */,
+				2F080FBB1AF060C5008EAB4B /* SuperminderTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2F080FA41AF060C5008EAB4B /* Superminder */ = {
+			isa = PBXGroup;
+			children = (
+				2F080FA91AF060C5008EAB4B /* AppDelegate.h */,
+				2F080FAA1AF060C5008EAB4B /* AppDelegate.m */,
+				2F080FAF1AF060C5008EAB4B /* Main.storyboard */,
+				2F080FB21AF060C5008EAB4B /* Images.xcassets */,
+				2F080FA51AF060C5008EAB4B /* Supporting Files */,
+			);
+			path = Superminder;
+			sourceTree = "<group>";
+		};
+		2F080FA51AF060C5008EAB4B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F080FA61AF060C5008EAB4B /* Info.plist */,
+				2F080FA71AF060C5008EAB4B /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2F080FBE1AF060C5008EAB4B /* SuperminderTests */ = {
+			isa = PBXGroup;
+			children = (
+				2F080FC11AF060C5008EAB4B /* SuperminderTests.m */,
+				2F080FBF1AF060C5008EAB4B /* Supporting Files */,
+			);
+			path = SuperminderTests;
+			sourceTree = "<group>";
+		};
+		2F080FBF1AF060C5008EAB4B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F080FC01AF060C5008EAB4B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2F080FA11AF060C5008EAB4B /* Superminder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F080FC51AF060C5008EAB4B /* Build configuration list for PBXNativeTarget "Superminder" */;
+			buildPhases = (
+				2F080F9E1AF060C5008EAB4B /* Sources */,
+				2F080F9F1AF060C5008EAB4B /* Frameworks */,
+				2F080FA01AF060C5008EAB4B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Superminder;
+			productName = Superminder;
+			productReference = 2F080FA21AF060C5008EAB4B /* Superminder.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2F080FBA1AF060C5008EAB4B /* SuperminderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F080FC81AF060C5008EAB4B /* Build configuration list for PBXNativeTarget "SuperminderTests" */;
+			buildPhases = (
+				2F080FB71AF060C5008EAB4B /* Sources */,
+				2F080FB81AF060C5008EAB4B /* Frameworks */,
+				2F080FB91AF060C5008EAB4B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2F080FBD1AF060C5008EAB4B /* PBXTargetDependency */,
+			);
+			name = SuperminderTests;
+			productName = SuperminderTests;
+			productReference = 2F080FBB1AF060C5008EAB4B /* SuperminderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2F080F9A1AF060C5008EAB4B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Bradley Ringel";
+				TargetAttributes = {
+					2F080FA11AF060C5008EAB4B = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					2F080FBA1AF060C5008EAB4B = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 2F080FA11AF060C5008EAB4B;
+					};
+				};
+			};
+			buildConfigurationList = 2F080F9D1AF060C5008EAB4B /* Build configuration list for PBXProject "Superminder" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2F080F991AF060C5008EAB4B;
+			productRefGroup = 2F080FA31AF060C5008EAB4B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2F080FA11AF060C5008EAB4B /* Superminder */,
+				2F080FBA1AF060C5008EAB4B /* SuperminderTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2F080FA01AF060C5008EAB4B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F080FB11AF060C5008EAB4B /* Main.storyboard in Resources */,
+				2F080FB31AF060C5008EAB4B /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F080FB91AF060C5008EAB4B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2F080F9E1AF060C5008EAB4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F080FAB1AF060C5008EAB4B /* AppDelegate.m in Sources */,
+				2F080FA81AF060C5008EAB4B /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F080FB71AF060C5008EAB4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F080FC21AF060C5008EAB4B /* SuperminderTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2F080FBD1AF060C5008EAB4B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F080FA11AF060C5008EAB4B /* Superminder */;
+			targetProxy = 2F080FBC1AF060C5008EAB4B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2F080FAF1AF060C5008EAB4B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F080FB01AF060C5008EAB4B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2F080FC31AF060C5008EAB4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2F080FC41AF060C5008EAB4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2F080FC61AF060C5008EAB4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Superminder/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2F080FC71AF060C5008EAB4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Superminder/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		2F080FC91AF060C5008EAB4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SuperminderTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Superminder.app/Superminder";
+			};
+			name = Debug;
+		};
+		2F080FCA1AF060C5008EAB4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SuperminderTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Superminder.app/Superminder";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2F080F9D1AF060C5008EAB4B /* Build configuration list for PBXProject "Superminder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F080FC31AF060C5008EAB4B /* Debug */,
+				2F080FC41AF060C5008EAB4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F080FC51AF060C5008EAB4B /* Build configuration list for PBXNativeTarget "Superminder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F080FC61AF060C5008EAB4B /* Debug */,
+				2F080FC71AF060C5008EAB4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F080FC81AF060C5008EAB4B /* Build configuration list for PBXNativeTarget "SuperminderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F080FC91AF060C5008EAB4B /* Debug */,
+				2F080FCA1AF060C5008EAB4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2F080F9A1AF060C5008EAB4B /* Project object */;
+}
