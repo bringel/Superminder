@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JNa-wj-1mp">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Collection View Controller-->
@@ -53,16 +54,36 @@
                     <view key="view" contentMode="scaleToFill" id="pBc-kP-Asr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8JG-jF-N41">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kqO-p7-YB3" firstAttribute="top" secondItem="8JG-jF-N41" secondAttribute="bottom" id="X4z-BD-asr"/>
+                            <constraint firstItem="8JG-jF-N41" firstAttribute="leading" secondItem="pBc-kP-Asr" secondAttribute="leadingMargin" constant="-16" id="eUi-Fe-eVU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8JG-jF-N41" secondAttribute="trailing" constant="-16" id="ifJ-3a-ReD"/>
+                            <constraint firstItem="8JG-jF-N41" firstAttribute="top" secondItem="pBc-kP-Asr" secondAttribute="topMargin" id="mG3-Uu-tjC"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uzJ-Zo-Z9z">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="EGn-Cy-QgR"/>
-                        <barButtonItem key="rightBarButtonItem" image="onepassword-toolbar" id="xyC-dz-rqj"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="EGn-Cy-QgR">
+                            <connections>
+                                <action selector="cancelLogin:" destination="be4-13-Qbw" id="Hi5-qn-crf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="onepassword-toolbar" id="xyC-dz-rqj">
+                            <connections>
+                                <action selector="activateOnePassword:" destination="be4-13-Qbw" id="JhV-NR-fso"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="cancelItem" destination="EGn-Cy-QgR" id="6Ud-F6-ZRh"/>
                         <outlet property="onePasswordItem" destination="xyC-dz-rqj" id="KYa-PT-nmx"/>
+                        <outlet property="webView" destination="8JG-jF-N41" id="NPr-Z7-XNW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BKZ-nT-SAh" userLabel="First Responder" sceneMemberID="firstResponder"/>

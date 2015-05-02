@@ -8,8 +8,9 @@
 
 #import "SMLoginViewController.h"
 #import "SMTrelloClient.h"
+#import "OnePasswordExtension.h"
 
-@interface SMLoginViewController ()
+@interface SMLoginViewController ()  <UIWebViewDelegate>
 
 @end
 
@@ -18,13 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.webView = [[WKWebView alloc] initWithFrame:self.view.frame];
-    [self.view addSubview:self.webView];
+
     NSString *key = [[SMTrelloClient sharedClient] apiKey];
-    NSString *trelloURL = [NSString stringWithFormat:@"https://trello.com/1/authorize?key=%@&name=Superminder&expiration=never&response_type=token&scope=read,write&callback_method=postMessage&return_url=superminder://token", key];
+    NSString *trelloURL = [NSString stringWithFormat:@"https://trello.com/1/authorize?key=%@&name=Superminder&expiration=never&response_type=token&scope=read,write&callback_method=fragment&return_url=superminder://token", key];
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:trelloURL]];
-    
+    self.webView.delegate = self;
     [self.webView loadRequest:urlRequest];
+    
+    [self.navigationController.navigationItem setHidesBackButton:YES];
+    if(![[OnePasswordExtension sharedExtension] isAppExtensionAvailable]){
+        self.navigationController.navigationItem.rightBarButtonItems = @[];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,14 +37,33 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+- (IBAction)activateOnePassword:(id)sender{
+    [[OnePasswordExtension sharedExtension] fillLoginIntoWebView:self.webView forViewController:self sender:sender completion:^(BOOL success, NSError *error) {
+        
+    }];
+}
+
+#pragma mark - UIWebViewDelegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    NSURL *requestURL = request.URL;
+    if([[requestURL scheme] isEqualToString:@"superminder"]){
+        //is this even necessary? cant we just store the token?
+        [[[UIApplication sharedApplication] delegate] application:[UIApplication sharedApplication] openURL:requestURL sourceApplication:@"Superminder" annotation:nil];
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - Navigation
 
+- (IBAction)cancelLogin:(id)sender{
+    
+}
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
 
 @end
