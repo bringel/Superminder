@@ -1,7 +1,112 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JNa-wj-1mp">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Collection View Controller-->
+        <scene sceneID="iue-Fi-nyn">
+            <objects>
+                <collectionViewController id="nwl-nQ-PKK" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="KNz-1r-Pf9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="H6Y-xf-iEb">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hyn-Ob-cnt">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="nwl-nQ-PKK" id="EDp-rR-YB0"/>
+                            <outlet property="delegate" destination="nwl-nQ-PKK" id="OsT-md-Aad"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="OLy-ZZ-gkz"/>
+                    <connections>
+                        <segue destination="JNa-wj-1mp" kind="presentation" identifier="showLoginScreen" id="hlq-K5-LAo"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JGm-UG-bih" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1264" y="426"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="WOW-fA-2mm">
+            <objects>
+                <viewController id="be4-13-Qbw" customClass="SMLoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="spM-cg-VJU"/>
+                        <viewControllerLayoutGuide type="bottom" id="kqO-p7-YB3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pBc-kP-Asr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uzJ-Zo-Z9z">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="EGn-Cy-QgR"/>
+                        <barButtonItem key="rightBarButtonItem" image="onepassword-toolbar" id="xyC-dz-rqj"/>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="cancelItem" destination="EGn-Cy-QgR" id="6Ud-F6-ZRh"/>
+                        <outlet property="onePasswordItem" destination="xyC-dz-rqj" id="KYa-PT-nmx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BKZ-nT-SAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2992" y="426"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="s37-op-5Cm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zN3-Ur-t1a" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kc3-oY-VVH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nwl-nQ-PKK" kind="relationship" relationship="rootViewController" id="hvl-0x-x19"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8pQ-aC-5BX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="452" y="426"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GDY-wy-Gw4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JNa-wj-1mp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PHi-hX-Tvb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="be4-13-Qbw" kind="relationship" relationship="rootViewController" id="daf-d3-Myp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gEq-Kf-4VK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2180" y="426"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="onepassword-toolbar" width="27" height="27"/>
+    </resources>
 </document>

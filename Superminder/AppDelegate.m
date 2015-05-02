@@ -17,6 +17,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+//    UINavigationController *root = (UINavigationController *)[self.window rootViewController];
+//    UIViewController *viewController = [root topViewController];
+    
     return YES;
 }
 
