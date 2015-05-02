@@ -14,7 +14,7 @@
 		2F080FC21AF060C5008EAB4B /* SuperminderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F080FC11AF060C5008EAB4B /* SuperminderTests.m */; };
 		2F9B870C1AF44EB0006430D2 /* SMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B870B1AF44EB0006430D2 /* SMLoginViewController.m */; };
 		2F9B870E1AF44F09006430D2 /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F9B870D1AF44F09006430D2 /* 1Password.xcassets */; };
-		2FA38C351AF0644200237A1C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FA38C341AF0644200237A1C /* CloudKit.framework */; };
+		2F9B87131AF45652006430D2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9B87121AF45652006430D2 /* CloudKit.framework */; };
 		2FA38C371AF1B16000237A1C /* Superminder-config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FA38C361AF1B16000237A1C /* Superminder-config.plist */; };
 		2FBE9E421AF43EE000405112 /* SMTrelloClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE9E411AF43EE000405112 /* SMTrelloClient.m */; };
 		56A88CB0C3876197066449D1 /* libPods-Superminder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB73437A73B1B0F767DEEED /* libPods-Superminder.a */; };
@@ -45,8 +45,8 @@
 		2F9B870A1AF44EB0006430D2 /* SMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMLoginViewController.h; sourceTree = "<group>"; };
 		2F9B870B1AF44EB0006430D2 /* SMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMLoginViewController.m; sourceTree = "<group>"; };
 		2F9B870D1AF44F09006430D2 /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
-		2FA38C331AF0643D00237A1C /* Superminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Superminder.entitlements; sourceTree = "<group>"; };
-		2FA38C341AF0644200237A1C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		2F9B87111AF45648006430D2 /* Superminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Superminder.entitlements; sourceTree = "<group>"; };
+		2F9B87121AF45652006430D2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2FA38C361AF1B16000237A1C /* Superminder-config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Superminder-config.plist"; sourceTree = SOURCE_ROOT; };
 		2FBE9E401AF43EE000405112 /* SMTrelloClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTrelloClient.h; sourceTree = "<group>"; };
 		2FBE9E411AF43EE000405112 /* SMTrelloClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTrelloClient.m; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56A88CB0C3876197066449D1 /* libPods-Superminder.a in Frameworks */,
-				2FA38C351AF0644200237A1C /* CloudKit.framework in Frameworks */,
+				2F9B87131AF45652006430D2 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +106,7 @@
 		2F080FA41AF060C5008EAB4B /* Superminder */ = {
 			isa = PBXGroup;
 			children = (
-				2FA38C331AF0643D00237A1C /* Superminder.entitlements */,
+				2F9B87111AF45648006430D2 /* Superminder.entitlements */,
 				2F080FA91AF060C5008EAB4B /* AppDelegate.h */,
 				2F080FAA1AF060C5008EAB4B /* AppDelegate.m */,
 				2F080FAF1AF060C5008EAB4B /* Main.storyboard */,
@@ -151,7 +151,7 @@
 		EB60CE04669C5C925895DA0E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2FA38C341AF0644200237A1C /* CloudKit.framework */,
+				2F9B87121AF45652006430D2 /* CloudKit.framework */,
 				3FB73437A73B1B0F767DEEED /* libPods-Superminder.a */,
 			);
 			name = Frameworks;
