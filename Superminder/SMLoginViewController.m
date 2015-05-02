@@ -9,6 +9,7 @@
 #import "SMLoginViewController.h"
 #import "SMTrelloClient.h"
 #import "OnePasswordExtension.h"
+#import "Lockbox.h"
 
 @interface SMLoginViewController ()  <UIWebViewDelegate>
 
@@ -48,8 +49,11 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSURL *requestURL = request.URL;
     if([[requestURL scheme] isEqualToString:@"superminder"]){
-        //is this even necessary? cant we just store the token?
-        [[[UIApplication sharedApplication] delegate] application:[UIApplication sharedApplication] openURL:requestURL sourceApplication:@"Superminder" annotation:nil];
+        NSArray *fragmentPieces = [requestURL.fragment componentsSeparatedByString:@"="];
+        if([[fragmentPieces objectAtIndex:0] isEqualToString:@"token"]){
+            [Lockbox setString:[fragmentPieces objectAtIndex:1] forKey:kTrelloUserKey];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
         return NO;
     }
     return YES;
@@ -58,7 +62,7 @@
 #pragma mark - Navigation
 
 - (IBAction)cancelLogin:(id)sender{
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
