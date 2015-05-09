@@ -29,10 +29,16 @@ static NSString * const reuseIdentifier = @"Cell";
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
+    [[NSNotificationCenter defaultCenter] addObserverForName:kNeedsReauthentication object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        [self performSegueWithIdentifier:@"showLoginScreen" sender:self];
+    }];
     // Do any additional setup after loading the view.
     self.trelloKey = [Lockbox stringForKey:kTrelloUserKey];
     if(!self.trelloKey){
         [self performSegueWithIdentifier:@"showLoginScreen" sender:self];
+    }
+    else{
+        [[SMTrelloClient sharedClient] getCurrentUserInfo];
     }
 }
 
@@ -41,7 +47,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -49,7 +55,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 #pragma mark <UICollectionViewDataSource>
 

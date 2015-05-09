@@ -12,7 +12,7 @@
 @interface SMLoginViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *onePasswordItem;
+@property (strong, nonatomic) UIBarButtonItem *onePasswordItem;
 
 - (IBAction)activateOnePassword:(id)sender;
 - (IBAction)cancelLogin:(id)sender;

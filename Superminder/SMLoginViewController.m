@@ -27,9 +27,11 @@
     self.webView.delegate = self;
     [self.webView loadRequest:urlRequest];
     
+    self.onePasswordItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"onepassword-toolbar"] style:UIBarButtonItemStylePlain target:self action:@selector(activateOnePassword:)];
+    
     [self.navigationController.navigationItem setHidesBackButton:YES];
-    if(![[OnePasswordExtension sharedExtension] isAppExtensionAvailable]){
-        self.navigationController.navigationItem.rightBarButtonItems = @[];
+    if([[OnePasswordExtension sharedExtension] isAppExtensionAvailable]){
+        self.navigationController.navigationItem.rightBarButtonItem = self.onePasswordItem;
     }
 }
 
