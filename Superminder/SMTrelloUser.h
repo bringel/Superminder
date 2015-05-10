@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class SMTrelloBoard;
 
 @interface SMTrelloUser : NSObject
 
@@ -17,5 +18,6 @@
 @property (strong, nonatomic) NSArray *boards;
 
 - (instancetype)initWithJSONData:(NSDictionary *)data;
+- (void)addBoard:(SMTrelloBoard *)board;
 
 @end
