@@ -22,5 +22,7 @@ static NSString * const kNeedsReauthentication = @"SuperminderNeedsReauthenticat
 
 - (void)getCurrentUserInfo;
 - (void)getAlBoardDataForUser:(SMTrelloUser *)user;
+- (void)getDataForBoardIDs:(NSArray *)boardIDs;
+- (void)getDataForBoard:(NSString *)boardID;
 
 @end

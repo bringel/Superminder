@@ -7,6 +7,7 @@
 //
 
 #import "SMTrelloUser.h"
+#import "SMTrelloBoard.h"
 
 @implementation SMTrelloUser
 
@@ -23,6 +24,12 @@
         self.boards = @[];
     }
     return self;
+}
+
+- (void)addBoard:(SMTrelloBoard *)board{
+    NSMutableArray *mutableBoards = [self.boards mutableCopy];
+    [mutableBoards addObject:board];
+    self.boards = [mutableBoards copy];
 }
 
 @end

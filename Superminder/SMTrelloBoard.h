@@ -10,4 +10,10 @@
 
 @interface SMTrelloBoard : NSObject
 
+@property (strong, nonatomic) NSString *boardID;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSArray *lists;
+
+- (instancetype)initWithJSONData:(NSDictionary *)data;
+
 @end
