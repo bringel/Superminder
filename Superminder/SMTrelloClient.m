@@ -59,6 +59,7 @@
 - (NSURLSession *)session{
     if(_session == nil){
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        config.requestCachePolicy = NSURLRequestReloadRevalidatingCacheData;
         _session = [NSURLSession sessionWithConfiguration:config];
     }
     return _session;
@@ -80,6 +81,15 @@
                                   }];
 
     [task resume];
+}
+
+- (void)getAlBoardDataForUser:(SMTrelloUser *)user{
+    
+
+}
+
+- (void)loadDataForBoardsWithIDs:(NSArray *)boardIDs{
+    
 }
 
 @end

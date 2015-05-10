@@ -21,5 +21,6 @@ static NSString * const kNeedsReauthentication = @"SuperminderNeedsReauthenticat
 + (instancetype)sharedClient;
 
 - (void)getCurrentUserInfo;
+- (void)getAlBoardDataForUser:(SMTrelloUser *)user;
 
 @end
