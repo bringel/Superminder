@@ -15,6 +15,9 @@
 		2F32EA991AF531E9003C5774 /* SMRemindersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EA981AF531E9003C5774 /* SMRemindersViewController.m */; };
 		2F32EA9E1AF58F0C003C5774 /* SMTrelloUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EA9D1AF58F0C003C5774 /* SMTrelloUser.m */; };
 		2F32EAA11AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EAA01AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.m */; };
+		2F32EAA41AFFDF0D003C5774 /* SMTrelloBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EAA31AFFDF0D003C5774 /* SMTrelloBoard.m */; };
+		2F32EAA71AFFDF19003C5774 /* SMTrelloList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EAA61AFFDF19003C5774 /* SMTrelloList.m */; };
+		2F32EAAA1AFFDF20003C5774 /* SMTrelloCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EAA91AFFDF20003C5774 /* SMTrelloCard.m */; };
 		2F9B870C1AF44EB0006430D2 /* SMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B870B1AF44EB0006430D2 /* SMLoginViewController.m */; };
 		2F9B87131AF45652006430D2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9B87121AF45652006430D2 /* CloudKit.framework */; };
 		2FA38C371AF1B16000237A1C /* Superminder-config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FA38C361AF1B16000237A1C /* Superminder-config.plist */; };
@@ -50,6 +53,12 @@
 		2F32EA9D1AF58F0C003C5774 /* SMTrelloUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTrelloUser.m; sourceTree = "<group>"; };
 		2F32EA9F1AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+SMRequestBuilding.h"; sourceTree = "<group>"; };
 		2F32EAA01AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+SMRequestBuilding.m"; sourceTree = "<group>"; };
+		2F32EAA21AFFDF0D003C5774 /* SMTrelloBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTrelloBoard.h; sourceTree = "<group>"; };
+		2F32EAA31AFFDF0D003C5774 /* SMTrelloBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTrelloBoard.m; sourceTree = "<group>"; };
+		2F32EAA51AFFDF19003C5774 /* SMTrelloList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTrelloList.h; sourceTree = "<group>"; };
+		2F32EAA61AFFDF19003C5774 /* SMTrelloList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTrelloList.m; sourceTree = "<group>"; };
+		2F32EAA81AFFDF20003C5774 /* SMTrelloCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTrelloCard.h; sourceTree = "<group>"; };
+		2F32EAA91AFFDF20003C5774 /* SMTrelloCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTrelloCard.m; sourceTree = "<group>"; };
 		2F9B870A1AF44EB0006430D2 /* SMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMLoginViewController.h; sourceTree = "<group>"; };
 		2F9B870B1AF44EB0006430D2 /* SMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMLoginViewController.m; sourceTree = "<group>"; };
 		2F9B87111AF45648006430D2 /* Superminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Superminder.entitlements; sourceTree = "<group>"; };
@@ -172,6 +181,12 @@
 			children = (
 				2F32EA9C1AF58F0C003C5774 /* SMTrelloUser.h */,
 				2F32EA9D1AF58F0C003C5774 /* SMTrelloUser.m */,
+				2F32EAA21AFFDF0D003C5774 /* SMTrelloBoard.h */,
+				2F32EAA31AFFDF0D003C5774 /* SMTrelloBoard.m */,
+				2F32EAA51AFFDF19003C5774 /* SMTrelloList.h */,
+				2F32EAA61AFFDF19003C5774 /* SMTrelloList.m */,
+				2F32EAA81AFFDF20003C5774 /* SMTrelloCard.h */,
+				2F32EAA91AFFDF20003C5774 /* SMTrelloCard.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -327,9 +342,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F32EAA11AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.m in Sources */,
+				2F32EAAA1AFFDF20003C5774 /* SMTrelloCard.m in Sources */,
 				2F080FAB1AF060C5008EAB4B /* AppDelegate.m in Sources */,
 				2F080FA81AF060C5008EAB4B /* main.m in Sources */,
 				2F9B870C1AF44EB0006430D2 /* SMLoginViewController.m in Sources */,
+				2F32EAA41AFFDF0D003C5774 /* SMTrelloBoard.m in Sources */,
+				2F32EAA71AFFDF19003C5774 /* SMTrelloList.m in Sources */,
 				2FBE9E421AF43EE000405112 /* SMTrelloClient.m in Sources */,
 				2F32EA9E1AF58F0C003C5774 /* SMTrelloUser.m in Sources */,
 				2F32EA991AF531E9003C5774 /* SMRemindersViewController.m in Sources */,
