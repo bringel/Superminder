@@ -7,6 +7,8 @@
 //
 
 #import "SMTrelloBoard.h"
+#import "SMTrelloList.h"
+
 @interface SMTrelloBoard()
 
 @property (strong, nonatomic) NSMutableDictionary *listIndex;
@@ -29,6 +31,13 @@
     }
     
     return self;
+}
+
+- (void)addList:(SMTrelloList *)list{
+    NSMutableArray *mutableLists = [self.lists mutableCopy];
+    [mutableLists addObject:list];
+    self.listIndex[list.listID] = @(mutableLists.count -1);
+    self.lists = [mutableLists copy];
 }
 
 @end

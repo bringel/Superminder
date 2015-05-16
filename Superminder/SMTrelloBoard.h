@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class SMTrelloList;
+
 @interface SMTrelloBoard : NSObject
 
 @property (strong, nonatomic) NSString *boardID;
@@ -15,5 +17,6 @@
 @property (strong, nonatomic) NSArray *lists;
 
 - (instancetype)initWithJSONData:(NSDictionary *)data;
+- (void)addList:(SMTrelloList *)list;
 
 @end
