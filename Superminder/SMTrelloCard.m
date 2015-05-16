@@ -10,4 +10,15 @@
 
 @implementation SMTrelloCard
 
+- (instancetype)initWithJSONData:(NSDictionary *)data{
+    self = [super init];
+    if(self){
+        self.cardID = data[@"id"];
+        self.name = data[@"name"];
+        self.cardDescription = data[@"desc"];
+        self.dueDate = data[@"due"];
+    }
+    return self;
+}
+
 @end
