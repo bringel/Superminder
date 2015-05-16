@@ -10,6 +10,8 @@
 #import "Lockbox.h"
 #import "NSURLRequest+SMRequestBuilding.h"
 #import "SMTrelloBoard.h"
+#import "SMTrelloList.h"
+#import "SMTrelloCard.h"
 
 @interface SMTrelloClient ()
 
@@ -134,7 +136,10 @@
                                                NSDictionary *boardData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
                                                SMTrelloBoard *newBoard = [[SMTrelloBoard alloc] initWithJSONData:boardData];
                                                [self.currentUser addBoard:newBoard];
-                                               
+                                               for(NSDictionary *listData in boardData[@"lists"]){
+                                                   SMTrelloList *newList = [[SMTrelloList alloc] initWithJSONData:listData];
+                                                   [newBoard addList:newList];
+                                               }
                                            }
                                        }];
     
