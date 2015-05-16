@@ -18,7 +18,7 @@
 
 @implementation SMRemindersViewController
 
-static NSString * const reuseIdentifier = @"Cell";
+static NSString * const reuseIdentifier = @"cardCollectionViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
