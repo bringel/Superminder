@@ -18,5 +18,6 @@
 
 - (instancetype)initWithJSONData:(NSDictionary *)data;
 - (void)addList:(SMTrelloList *)list;
+- (SMTrelloList *)listWithID:(NSString *)listID;
 
 @end

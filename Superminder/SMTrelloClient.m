@@ -140,6 +140,12 @@
                                                    SMTrelloList *newList = [[SMTrelloList alloc] initWithJSONData:listData];
                                                    [newBoard addList:newList];
                                                }
+                                               for(NSDictionary *cardData in boardData[@"cards"]){
+                                                   SMTrelloCard *newCard = [[SMTrelloCard alloc] initWithJSONData:cardData];
+                                                   SMTrelloList *cardList = [newBoard listWithID:cardData[@"idList"]];
+                                                   [cardList addCard:newCard];
+                                               }
+                                               
                                            }
                                        }];
     

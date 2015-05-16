@@ -38,7 +38,9 @@ static NSString * const reuseIdentifier = @"Cell";
         [self performSegueWithIdentifier:@"showLoginScreen" sender:self];
     }
     else{
-        [[SMTrelloClient sharedClient] getCurrentUserInfo];
+        SMTrelloClient *client = [SMTrelloClient sharedClient];
+        [client getCurrentUserInfo];
+        [client getAlBoardDataForUser: client.currentUser];
     }
 }
 

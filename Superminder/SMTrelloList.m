@@ -31,4 +31,11 @@
     return self;
 }
 
+- (void)addCard:(SMTrelloCard *)card{
+    NSMutableArray *mutableCards = [self.cards mutableCopy];
+    [mutableCards addObject:card];
+    self.cardsIndex[card.cardID] = @(mutableCards.count - 1);
+    self.cards = [mutableCards copy];
+}
+
 @end

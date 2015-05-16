@@ -40,4 +40,9 @@
     self.lists = [mutableLists copy];
 }
 
+- (SMTrelloList *)listWithID:(NSString *)listID{
+    NSNumber *listPosition = self.listIndex[listID];
+    return self.lists[listPosition.intValue];
+}
+
 @end
