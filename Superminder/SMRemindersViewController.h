@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMRemindersViewController : UICollectionViewController
+@interface SMRemindersViewController : UITableViewController
 
 @end

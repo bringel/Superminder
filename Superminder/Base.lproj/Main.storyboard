@@ -1,37 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zN3-Ur-t1a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E36b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zN3-Ur-t1a">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Reminders View Controller-->
-        <scene sceneID="iue-Fi-nyn">
+        <!--Table View Controller-->
+        <scene sceneID="5gj-fU-dsG">
             <objects>
-                <collectionViewController id="nwl-nQ-PKK" customClass="SMRemindersViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="KNz-1r-Pf9">
+                <tableViewController id="FH0-ci-iQE" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2eA-33-H0E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="H6Y-xf-iEb">
-                            <size key="itemSize" width="320" height="60"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Xfi-in-0GK">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xfi-in-0GK" id="CIw-3z-E6I">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="nwl-nQ-PKK" id="EDp-rR-YB0"/>
-                            <outlet property="delegate" destination="nwl-nQ-PKK" id="OsT-md-Aad"/>
+                            <outlet property="dataSource" destination="FH0-ci-iQE" id="wKK-n4-9N3"/>
+                            <outlet property="delegate" destination="FH0-ci-iQE" id="M7g-L3-oX6"/>
                         </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" id="OLy-ZZ-gkz"/>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="LnM-aV-eok"/>
                     <connections>
-                        <segue destination="JNa-wj-1mp" kind="modal" identifier="showLoginScreen" id="hlq-K5-LAo"/>
+                        <segue destination="JNa-wj-1mp" kind="modal" identifier="showLoginScreen" id="wrh-bJ-R3c"/>
                     </connections>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JGm-UG-bih" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bhk-da-Yy9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="769" y="940"/>
+            <point key="canvasLocation" x="762" y="940"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="WOW-fA-2mm">
@@ -85,7 +87,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="nwl-nQ-PKK" kind="relationship" relationship="rootViewController" id="hvl-0x-x19"/>
+                        <segue destination="FH0-ci-iQE" kind="relationship" relationship="rootViewController" id="j8b-jX-JNd"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pQ-aC-5BX" userLabel="First Responder" sceneMemberID="firstResponder"/>
