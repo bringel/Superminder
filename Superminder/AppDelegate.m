@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "SMRemindersViewController.h"
+#import "SMTrelloClient.h"
+#import "Lockbox.h"
 
 @interface AppDelegate ()
 
@@ -18,9 +21,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-//    UINavigationController *root = (UINavigationController *)[self.window rootViewController];
-//    UIViewController *viewController = [root topViewController];
-    
+    UINavigationController *root = (UINavigationController *)[self.window rootViewController];
+    SMRemindersViewController *remindersVC = [root topViewController];
+    SMTrelloClient *trelloClient = [SMTrelloClient sharedClient];
+
+    if([Lockbox stringForKey:kTrelloUserKey]){
+        [trelloClient getCurrentUserInfo];
+        [trelloClient getAlBoardDataForUser:trelloClient.currentUser];
+    }
     return YES;
 }
 

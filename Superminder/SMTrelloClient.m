@@ -13,6 +13,10 @@
 #import "SMTrelloList.h"
 #import "SMTrelloCard.h"
 
+NSString * const kTrelloUserKey  = @"trello-user-key";
+NSString * const kNeedsReauthentication  = @"SuperminderNeedsReauthentication";
+NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
+
 @interface SMTrelloClient ()
 
 @property (strong, nonatomic) NSURLSession *session;
@@ -97,6 +101,7 @@
 }
 
 - (void)getAlBoardDataForUser:(SMTrelloUser *)user{
+    //TODO: actually make this deal with the user that is passed in
     
     NSURLRequest *idRequest = [NSURLRequest buildRequestForPath:@"members/me" withParameters:@{ @"fields" : @"idBoards", @"key" : self.apiKey, @"token" : self.userToken } relativeToURL:self.trelloBaseURL usingMethod:@"GET"];
     
@@ -145,13 +150,26 @@
                                                    SMTrelloList *cardList = [newBoard listWithID:cardData[@"idList"]];
                                                    [cardList addCard:newCard];
                                                }
-                                               
+                                               [self boardTaskFinished:boardID];
                                            }
                                        }];
-    
-    boardTask.taskDescription = [NSString stringWithFormat:@"Fetch board - %@", boardID];
-    [self.currentDataTasks addObject:boardTask];
-    [boardTask resume];
+    NSString *taskDesc = [NSString stringWithFormat:@"Fetch board - %@", boardID];
+    boardTask.taskDescription = taskDesc;
+    NSPredicate *descriptionPredicate = [NSPredicate predicateWithFormat:@"%K == %@", @"taskDescription", taskDesc];
+    if([[self.currentDataTasks filteredArrayUsingPredicate:descriptionPredicate] count] == 0){
+        [self.currentDataTasks addObject:boardTask];
+        [boardTask resume];
+    }
 }
 
+- (void)boardTaskFinished:(NSString *)boardID{
+    NSMutableArray *dataTasks = [self.currentDataTasks copy];
+    NSString *taskDescription = [NSString stringWithFormat:@"Fetch board - %@", boardID];
+    NSPredicate *descriptionPredicate = [NSPredicate predicateWithFormat:@"%K != %@",@"taskDescription", taskDescription];
+    [dataTasks filterUsingPredicate:descriptionPredicate];
+    if(dataTasks.count == 0){
+        [[NSNotificationCenter defaultCenter] postNotificationName:kAllBoardsLoadFinished object:nil];
+    }
+    self.currentDataTasks = [dataTasks copy];
+}
 @end

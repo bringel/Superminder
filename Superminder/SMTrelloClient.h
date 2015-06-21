@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "SMTrelloUser.h"
 
-static NSString * const kTrelloUserKey = @"trello-user-key";
-static NSString * const kNeedsReauthentication = @"SuperminderNeedsReauthentication";
+extern NSString * const kTrelloUserKey;
+extern NSString * const kNeedsReauthentication;
+extern NSString * const kAllBoardsLoadFinished;
 
 @interface SMTrelloClient : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 
