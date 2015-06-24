@@ -163,13 +163,13 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
 }
 
 - (void)boardTaskFinished:(NSString *)boardID{
-    NSMutableArray *dataTasks = [self.currentDataTasks copy];
+    NSMutableArray *dataTasks = [self.currentDataTasks mutableCopy];
     NSString *taskDescription = [NSString stringWithFormat:@"Fetch board - %@", boardID];
     NSPredicate *descriptionPredicate = [NSPredicate predicateWithFormat:@"%K != %@",@"taskDescription", taskDescription];
     [dataTasks filterUsingPredicate:descriptionPredicate];
     if(dataTasks.count == 0){
         [[NSNotificationCenter defaultCenter] postNotificationName:kAllBoardsLoadFinished object:nil];
     }
-    self.currentDataTasks = [dataTasks copy];
+    self.currentDataTasks = [dataTasks mutableCopy];
 }
 @end

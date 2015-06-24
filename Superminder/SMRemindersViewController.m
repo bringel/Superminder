@@ -9,6 +9,9 @@
 #import "SMRemindersViewController.h"
 #import "Lockbox.h"
 #import "SMTrelloClient.h"
+#import "SMTrelloBoard.h"
+#import "SMTrelloList.h"
+#import "SMTrelloCard.h"
 
 @interface SMRemindersViewController ()
 
@@ -29,13 +32,19 @@ static NSString * const reuseIdentifier = @"Cell";
     // Register cell classes
     
     [[NSNotificationCenter defaultCenter] addObserverForName:kNeedsReauthentication object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-        [self performSegueWithIdentifier:@"showLoginScreen" sender:self];
+        __weak typeof(self) weakSelf = self;
+        [weakSelf performSegueWithIdentifier:@"showLoginScreen" sender:weakSelf];
     }];
     // Do any additional setup after loading the view.
     self.trelloKey = [Lockbox stringForKey:kTrelloUserKey];
     if(!self.trelloKey){
         [self performSegueWithIdentifier:@"showLoginScreen" sender:self];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:kAllBoardsLoadFinished object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        __weak typeof(self) weakSelf = self;
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,13 +74,19 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    int count = 0;
+    for (SMTrelloBoard *board in [[[SMTrelloClient sharedClient] currentUser] boards]) {
+        for (SMTrelloList *list in board.lists){
+            count += list.cards.count;
+        }
+    }
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld,%ld",indexPath.section, (long)indexPath.row];
     return cell;
 }
 #pragma mark - <UITableViewDelegate>
