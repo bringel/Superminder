@@ -16,6 +16,8 @@
 @interface SMRemindersViewController ()
 
 @property (strong, nonatomic) NSString *trelloKey;
+@property (strong, nonatomic) NSDictionary *sectionReminderMap;
+@property (strong, nonatomic) SMTrelloClient *trelloClient;
 
 @end
 
@@ -43,6 +45,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [[NSNotificationCenter defaultCenter] addObserverForName:kAllBoardsLoadFinished object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         __weak typeof(self) weakSelf = self;
+        [weakSelf buildSectionReminderMap];
         [weakSelf.tableView reloadData];
     }];
 }
@@ -51,7 +54,6 @@ static NSString * const reuseIdentifier = @"Cell";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark - Navigation
 
@@ -91,4 +93,58 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 #pragma mark - <UITableViewDelegate>
 
+#pragma mark - 
+
+- (void)buildSectionReminderMap{
+    NSMutableDictionary *mutableMap = [[NSMutableDictionary alloc] init];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:@"Today"];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:@"Tomorrow"];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:@"This Week"];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:@"Next Week"];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:@"This Month"];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:@"Later"];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:@"No Due Date"];
+    
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *thisWeekComponents = [cal components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
+    thisWeekComponents.day += 7;
+    NSDateComponents *nextWeekComponents = [cal components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
+    nextWeekComponents.day += 14;
+    NSDateComponents *thisMonthComponents = [cal components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
+    thisMonthComponents.month += 1;
+    
+    NSComparisonResult thisWeekResult, nextWeekResult, thisMonthResult;
+    for(SMTrelloBoard *board in self.trelloClient.currentUser.boards){
+        for(SMTrelloList *list in board.lists){
+            for(SMTrelloCard *card in list.cards){
+                thisWeekResult = [cal compareDate:card.dueDate toDate:[cal dateFromComponents:thisWeekComponents] toUnitGranularity:NSCalendarUnitDay];
+                nextWeekResult = [cal compareDate:card.dueDate toDate:[cal dateFromComponents:nextWeekComponents] toUnitGranularity:NSCalendarUnitDay];
+                thisMonthResult = [cal compareDate:card.dueDate toDate:[cal dateFromComponents:thisMonthComponents] toUnitGranularity:NSCalendarUnitDay];
+                if(card.dueDate == nil){
+                    [[mutableMap objectForKey:@"No Due Date"] addObject:card];
+                }
+                else if([cal isDateInToday:card.dueDate]){
+                    [[mutableMap objectForKey:@"Today"] addObject:card];
+                }
+                else if([cal isDateInTomorrow:card.dueDate]){
+                    [[mutableMap objectForKey:@"Tomorrow"] addObject:card];
+                }
+                else if(thisWeekResult == NSOrderedSame || thisWeekResult == NSOrderedDescending){
+                    [[mutableMap objectForKey:@"This Week"] addObject:card];
+                }
+                else if(nextWeekResult == NSOrderedSame || nextWeekResult == NSOrderedDescending){
+                    [[mutableMap objectForKey:@"Next Week"] addObject:card];
+                }
+                else if(thisMonthResult == NSOrderedSame || thisMonthResult == NSOrderedDescending){
+                    [[mutableMap objectForKey:@"This Month"] addObject:card];
+                }
+                else{
+                    [[mutableMap objectForKey:@"Later"] addObject:card];
+                }
+            }
+        }
+    }
+    
+    self.sectionReminderMap = [mutableMap copy];
+}
 @end
