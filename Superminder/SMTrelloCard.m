@@ -16,7 +16,11 @@
         self.cardID = data[@"id"];
         self.name = data[@"name"];
         self.cardDescription = data[@"desc"];
-        self.dueDate = data[@"due"];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSSz"];
+        if(data[@"due"] != [NSNull null]){
+            self.dueDate = [formatter dateFromString:data[@"due"]];
+        }
     }
     return self;
 }

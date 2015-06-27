@@ -21,6 +21,14 @@
 
 @end
 
+static NSString *kNoDateCards = @"No Due Date";
+static NSString *kTodayCards = @"Today";
+static NSString *kTomorrowCards = @"Tomorrow";
+static NSString *kThisWeekCards = @"This Week";
+static NSString *kNextWeekCards = @"Next Week";
+static NSString *kThisMonthCards = @"This Month";
+static NSString *kLaterCards = @"Later";
+
 @implementation SMRemindersViewController
 
 static NSString * const reuseIdentifier = @"Cell";
@@ -32,6 +40,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
+    self.trelloClient = [SMTrelloClient sharedClient];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:kNeedsReauthentication object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         __weak typeof(self) weakSelf = self;
@@ -67,28 +76,85 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 1;
+    return self.sectionReminderMap.count;
 }
 
 //- (NSArray *) sectionIndexTitlesForTableView:(UITableView *)tableView{
 //    
 //}
 
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    int count = 0;
-    for (SMTrelloBoard *board in [[[SMTrelloClient sharedClient] currentUser] boards]) {
-        for (SMTrelloList *list in board.lists){
-            count += list.cards.count;
-        }
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    switch (section) {
+        case 0:
+            return kTodayCards;
+        case 1:
+            return kTomorrowCards;
+        case 2:
+            return kThisWeekCards;
+        case 3:
+            return kNextWeekCards;
+        case 4:
+            return kThisMonthCards;
+        case 5:
+            return kLaterCards;
+        case 6:
+            return kNoDateCards;
+        default:
+            return @"";
     }
-    return count;
+}
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    switch (section) {
+        case 0:
+            return [[self.sectionReminderMap objectForKey:kTodayCards] count];
+        case 1:
+            return [[self.sectionReminderMap objectForKey:kTomorrowCards] count];
+        case 2:
+            return [[self.sectionReminderMap objectForKey:kThisWeekCards] count];
+        case 3:
+            return [[self.sectionReminderMap objectForKey:kNextWeekCards] count];
+        case 4:
+            return [[self.sectionReminderMap objectForKey:kThisMonthCards] count];
+        case 5:
+            return [[self.sectionReminderMap objectForKey:kLaterCards] count];
+        case 6:
+            return [[self.sectionReminderMap objectForKey:kNoDateCards] count];
+        default:
+            return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld,%ld",indexPath.section, (long)indexPath.row];
+    SMTrelloCard *currentCard;
+    switch (indexPath.section) {
+        case 0:
+            currentCard = [[self.sectionReminderMap objectForKey:kTodayCards] objectAtIndex:indexPath.row];
+            break;
+        case 1:
+            currentCard = [[self.sectionReminderMap objectForKey:kTomorrowCards] objectAtIndex:indexPath.row];
+            break;
+        case 2:
+            currentCard = [[self.sectionReminderMap objectForKey:kThisWeekCards] objectAtIndex:indexPath.row];
+            break;
+        case 3:
+            currentCard = [[self.sectionReminderMap objectForKey:kNextWeekCards] objectAtIndex:indexPath.row];
+            break;
+        case 4:
+            currentCard = [[self.sectionReminderMap objectForKey:kThisMonthCards] objectAtIndex:indexPath.row];
+            break;
+        case 5:
+            currentCard = [[self.sectionReminderMap objectForKey:kLaterCards] objectAtIndex:indexPath.row];
+            break;
+        case 6:
+            currentCard = [[self.sectionReminderMap objectForKey:kNoDateCards] objectAtIndex:indexPath.row];
+            break;
+        default:
+            break;
+    }
+    cell.textLabel.text = currentCard.name;
     return cell;
 }
 #pragma mark - <UITableViewDelegate>
@@ -97,13 +163,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)buildSectionReminderMap{
     NSMutableDictionary *mutableMap = [[NSMutableDictionary alloc] init];
-    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:@"Today"];
-    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:@"Tomorrow"];
-    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:@"This Week"];
-    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:@"Next Week"];
-    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:@"This Month"];
-    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:@"Later"];
-    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:@"No Due Date"];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:kTodayCards];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:kTomorrowCards];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:kThisWeekCards];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:kNextWeekCards];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:kThisMonthCards];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:kLaterCards];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKey:kNoDateCards];
     
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *thisWeekComponents = [cal components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
@@ -113,33 +179,38 @@ static NSString * const reuseIdentifier = @"Cell";
     NSDateComponents *thisMonthComponents = [cal components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
     thisMonthComponents.month += 1;
     
-    NSComparisonResult thisWeekResult, nextWeekResult, thisMonthResult;
+    NSComparisonResult thisWeekResult, nextWeekResult, thisMonthResult, pastResult;
     for(SMTrelloBoard *board in self.trelloClient.currentUser.boards){
         for(SMTrelloList *list in board.lists){
             for(SMTrelloCard *card in list.cards){
-                thisWeekResult = [cal compareDate:card.dueDate toDate:[cal dateFromComponents:thisWeekComponents] toUnitGranularity:NSCalendarUnitDay];
-                nextWeekResult = [cal compareDate:card.dueDate toDate:[cal dateFromComponents:nextWeekComponents] toUnitGranularity:NSCalendarUnitDay];
-                thisMonthResult = [cal compareDate:card.dueDate toDate:[cal dateFromComponents:thisMonthComponents] toUnitGranularity:NSCalendarUnitDay];
-                if(card.dueDate == nil){
-                    [[mutableMap objectForKey:@"No Due Date"] addObject:card];
+                if(card.dueDate == nil || card.dueDate == [NSNull null]){
+                    [[mutableMap objectForKey:kNoDateCards] addObject:card];
+                    break;
                 }
-                else if([cal isDateInToday:card.dueDate]){
-                    [[mutableMap objectForKey:@"Today"] addObject:card];
+                pastResult = [cal compareDate:[NSDate date] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
+                if(pastResult == NSOrderedDescending){
+                    break; //skip dates in the past for now
+                }
+                thisWeekResult = [cal compareDate:[cal dateFromComponents:thisWeekComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
+                nextWeekResult = [cal compareDate:[cal dateFromComponents:nextWeekComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
+                thisMonthResult = [cal compareDate:[cal dateFromComponents:thisMonthComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
+                if([cal isDateInToday:card.dueDate]){
+                    [[mutableMap objectForKey:kTodayCards] addObject:card];
                 }
                 else if([cal isDateInTomorrow:card.dueDate]){
-                    [[mutableMap objectForKey:@"Tomorrow"] addObject:card];
+                    [[mutableMap objectForKey:kTomorrowCards] addObject:card];
                 }
                 else if(thisWeekResult == NSOrderedSame || thisWeekResult == NSOrderedDescending){
-                    [[mutableMap objectForKey:@"This Week"] addObject:card];
+                    [[mutableMap objectForKey:kThisWeekCards] addObject:card];
                 }
                 else if(nextWeekResult == NSOrderedSame || nextWeekResult == NSOrderedDescending){
-                    [[mutableMap objectForKey:@"Next Week"] addObject:card];
+                    [[mutableMap objectForKey:kNextWeekCards] addObject:card];
                 }
                 else if(thisMonthResult == NSOrderedSame || thisMonthResult == NSOrderedDescending){
-                    [[mutableMap objectForKey:@"This Month"] addObject:card];
+                    [[mutableMap objectForKey:kThisMonthCards] addObject:card];
                 }
                 else{
-                    [[mutableMap objectForKey:@"Later"] addObject:card];
+                    [[mutableMap objectForKey:kLaterCards] addObject:card];
                 }
             }
         }
