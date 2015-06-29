@@ -130,6 +130,7 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
 
 - (void)getDataForBoard:(NSString *)boardID{
 
+    
     NSString *requestPath = [NSString stringWithFormat:@"boards/%@", boardID];
     NSURLRequest *boardRequest = [NSURLRequest buildRequestForPath:requestPath withParameters:@{ @"key" : self.apiKey, @"token" : self.userToken, @"lists" : @"all", @"cards" : @"all" } relativeToURL:self.trelloBaseURL usingMethod:@"GET"];
     

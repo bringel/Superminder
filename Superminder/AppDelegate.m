@@ -25,10 +25,7 @@
     SMRemindersViewController *remindersVC = [root topViewController];
     SMTrelloClient *trelloClient = [SMTrelloClient sharedClient];
 
-    if([Lockbox stringForKey:kTrelloUserKey]){
-        [trelloClient getCurrentUserInfo];
-        [trelloClient getAlBoardDataForUser:trelloClient.currentUser];
-    }
+    
     return YES;
 }
 

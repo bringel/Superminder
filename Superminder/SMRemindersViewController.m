@@ -12,6 +12,7 @@
 #import "SMTrelloBoard.h"
 #import "SMTrelloList.h"
 #import "SMTrelloCard.h"
+#import "SVProgressHUD.h"
 
 @interface SMRemindersViewController ()
 
@@ -51,11 +52,17 @@ static NSString * const reuseIdentifier = @"Cell";
     if(!self.trelloKey){
         [self performSegueWithIdentifier:@"showLoginScreen" sender:self];
     }
-    
+    else{
+        [SVProgressHUD setForegroundColor:[UIColor colorWithRed:(56/256.0f) green:(167/256.0f) blue:(114/256.0f) alpha:1]];
+        [SVProgressHUD showWithStatus:@"Loading Reminders..."];
+        [self.trelloClient getCurrentUserInfo];
+        [self.trelloClient getAlBoardDataForUser:self.trelloClient.currentUser];
+    }
     [[NSNotificationCenter defaultCenter] addObserverForName:kAllBoardsLoadFinished object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         __weak typeof(self) weakSelf = self;
         [weakSelf buildSectionReminderMap];
         [weakSelf.tableView reloadData];
+        [SVProgressHUD showSuccessWithStatus:@"Loaded"];
     }];
 }
 
@@ -189,7 +196,8 @@ static NSString * const reuseIdentifier = @"Cell";
                 }
                 pastResult = [cal compareDate:[NSDate date] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
                 if(pastResult == NSOrderedDescending){
-                    break; //skip dates in the past for now
+                    //TODO: in the board fetch request, switch to cards=open to get rid of archived cards, and then we can also have a "past due" section
+                    break; //skip dates in the past for now.
                 }
                 thisWeekResult = [cal compareDate:[cal dateFromComponents:thisWeekComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
                 nextWeekResult = [cal compareDate:[cal dateFromComponents:nextWeekComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];

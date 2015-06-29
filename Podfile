@@ -4,6 +4,7 @@
 target 'Superminder' do
   pod '1PasswordExtension', '~> 1.2'
   pod 'Lockbox', '~> 2.1'
+  pod 'SVProgressHUD', '~> 1.1'
 end
 
 target 'SuperminderTests' do
