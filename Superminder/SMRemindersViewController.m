@@ -192,12 +192,12 @@ static NSString * const reuseIdentifier = @"Cell";
             for(SMTrelloCard *card in list.cards){
                 if(card.dueDate == nil || card.dueDate == [NSNull null]){
                     [[mutableMap objectForKey:kNoDateCards] addObject:card];
-                    break;
+                    continue;
                 }
                 pastResult = [cal compareDate:[NSDate date] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
                 if(pastResult == NSOrderedDescending){
                     //TODO: in the board fetch request, switch to cards=open to get rid of archived cards, and then we can also have a "past due" section
-                    break; //skip dates in the past for now.
+                    continue; //skip dates in the past for now.
                 }
                 thisWeekResult = [cal compareDate:[cal dateFromComponents:thisWeekComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
                 nextWeekResult = [cal compareDate:[cal dateFromComponents:nextWeekComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];

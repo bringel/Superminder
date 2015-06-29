@@ -132,7 +132,7 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
 
     
     NSString *requestPath = [NSString stringWithFormat:@"boards/%@", boardID];
-    NSURLRequest *boardRequest = [NSURLRequest buildRequestForPath:requestPath withParameters:@{ @"key" : self.apiKey, @"token" : self.userToken, @"lists" : @"all", @"cards" : @"all" } relativeToURL:self.trelloBaseURL usingMethod:@"GET"];
+    NSURLRequest *boardRequest = [NSURLRequest buildRequestForPath:requestPath withParameters:@{ @"key" : self.apiKey, @"token" : self.userToken, @"lists" : @"open", @"cards" : @"open" } relativeToURL:self.trelloBaseURL usingMethod:@"GET"];
     
     NSURLSessionDataTask *boardTask = [self.session dataTaskWithRequest:boardRequest completionHandler:
                                        ^(NSData *data, NSURLResponse *response, NSError *error) {
