@@ -49,6 +49,10 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
         self.trelloBaseURL = [NSURL URLWithString:@"https://api.trello.com/1/"];
         
         self.userToken = [Lockbox stringForKey:kTrelloUserKey];
+        if(self.userToken == nil){
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNeedsReauthentication object:self];
+            return self;
+        }
         
         NSURLRequest *urlRequest = [NSURLRequest buildRequestForPath:@"members/me" withParameters:@{ @"key" : self.apiKey, @"token" : self.userToken} relativeToURL:self.trelloBaseURL usingMethod:@"HEAD"];
         
