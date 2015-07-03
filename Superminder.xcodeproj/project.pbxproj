@@ -12,6 +12,7 @@
 		2F080FB11AF060C5008EAB4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F080FAF1AF060C5008EAB4B /* Main.storyboard */; };
 		2F080FB31AF060C5008EAB4B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F080FB21AF060C5008EAB4B /* Images.xcassets */; };
 		2F080FC21AF060C5008EAB4B /* SuperminderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F080FC11AF060C5008EAB4B /* SuperminderTests.m */; };
+		2F2313A21B46136F00CB8B36 /* SMNewReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2313A11B46136F00CB8B36 /* SMNewReminderViewController.m */; };
 		2F32EA991AF531E9003C5774 /* SMRemindersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EA981AF531E9003C5774 /* SMRemindersViewController.m */; };
 		2F32EA9E1AF58F0C003C5774 /* SMTrelloUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EA9D1AF58F0C003C5774 /* SMTrelloUser.m */; };
 		2F32EAA11AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EAA01AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.m */; };
@@ -47,6 +48,8 @@
 		2F080FBB1AF060C5008EAB4B /* SuperminderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperminderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F080FC01AF060C5008EAB4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F080FC11AF060C5008EAB4B /* SuperminderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperminderTests.m; sourceTree = "<group>"; };
+		2F2313A01B46136F00CB8B36 /* SMNewReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNewReminderViewController.h; sourceTree = "<group>"; };
+		2F2313A11B46136F00CB8B36 /* SMNewReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNewReminderViewController.m; sourceTree = "<group>"; };
 		2F32EA971AF531E9003C5774 /* SMRemindersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRemindersViewController.h; sourceTree = "<group>"; };
 		2F32EA981AF531E9003C5774 /* SMRemindersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRemindersViewController.m; sourceTree = "<group>"; };
 		2F32EA9C1AF58F0C003C5774 /* SMTrelloUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTrelloUser.h; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 				2F9B870B1AF44EB0006430D2 /* SMLoginViewController.m */,
 				2F32EA971AF531E9003C5774 /* SMRemindersViewController.h */,
 				2F32EA981AF531E9003C5774 /* SMRemindersViewController.m */,
+				2F2313A01B46136F00CB8B36 /* SMNewReminderViewController.h */,
+				2F2313A11B46136F00CB8B36 /* SMNewReminderViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -356,6 +361,7 @@
 				2F9B870C1AF44EB0006430D2 /* SMLoginViewController.m in Sources */,
 				2F32EAA41AFFDF0D003C5774 /* SMTrelloBoard.m in Sources */,
 				2F32EAA71AFFDF19003C5774 /* SMTrelloList.m in Sources */,
+				2F2313A21B46136F00CB8B36 /* SMNewReminderViewController.m in Sources */,
 				2FBE9E421AF43EE000405112 /* SMTrelloClient.m in Sources */,
 				2F32EA9E1AF58F0C003C5774 /* SMTrelloUser.m in Sources */,
 				2F32EA991AF531E9003C5774 /* SMRemindersViewController.m in Sources */,
