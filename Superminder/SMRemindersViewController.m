@@ -13,6 +13,7 @@
 #import "SMTrelloList.h"
 #import "SMTrelloCard.h"
 #import "SVProgressHUD.h"
+#import "SMNewReminderViewController.h"
 
 @interface SMRemindersViewController ()
 
@@ -77,6 +78,12 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"addNewReminderFromCard"]){
+        NSIndexPath *selectedRow = [self.tableView indexPathForSelectedRow];
+        SMTrelloCard *selectedCard = [[self.sectionReminderMap objectForKey:[self tableView:nil titleForHeaderInSection:selectedRow.section]] objectAtIndex:selectedRow.row];
+        SMNewReminderViewController *newReminderController = (SMNewReminderViewController *)segue.destinationViewController;
+        newReminderController.card = selectedCard;
+    }
 }
 
 #pragma mark - <UITableViewDataSource>
@@ -165,6 +172,11 @@ static NSString * const reuseIdentifier = @"Cell";
     return cell;
 }
 #pragma mark - <UITableViewDelegate>
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [self performSegueWithIdentifier:@"addNewReminderFromCard" sender:self.tableView];
+}
 
 #pragma mark - 
 
