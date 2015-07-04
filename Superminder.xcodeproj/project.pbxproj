@@ -20,6 +20,12 @@
 		2F32EAA41AFFDF0D003C5774 /* SMTrelloBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EAA31AFFDF0D003C5774 /* SMTrelloBoard.m */; };
 		2F32EAA71AFFDF19003C5774 /* SMTrelloList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EAA61AFFDF19003C5774 /* SMTrelloList.m */; };
 		2F32EAAA1AFFDF20003C5774 /* SMTrelloCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EAA91AFFDF20003C5774 /* SMTrelloCard.m */; };
+		2F612F101B482A1A00CD2292 /* SMNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F0F1B482A1A00CD2292 /* SMNumberCell.m */; };
+		2F612F131B482A3200CD2292 /* SMDualLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F121B482A3200CD2292 /* SMDualLabelCell.m */; };
+		2F612F161B482A4500CD2292 /* SMDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F151B482A4500CD2292 /* SMDatePickerCell.m */; };
+		2F612F191B482A5000CD2292 /* SMTimePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F181B482A5000CD2292 /* SMTimePickerCell.m */; };
+		2F612F1C1B482CA200CD2292 /* SMSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F1B1B482CA200CD2292 /* SMSwitchCell.m */; };
+		2F612F1F1B482CAB00CD2292 /* SMSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F1E1B482CAB00CD2292 /* SMSegmentedCell.m */; };
 		2F9B870C1AF44EB0006430D2 /* SMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B870B1AF44EB0006430D2 /* SMLoginViewController.m */; };
 		2F9B87131AF45652006430D2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9B87121AF45652006430D2 /* CloudKit.framework */; };
 		2FA38C371AF1B16000237A1C /* Superminder-config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FA38C361AF1B16000237A1C /* Superminder-config.plist */; };
@@ -65,6 +71,18 @@
 		2F32EAA61AFFDF19003C5774 /* SMTrelloList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTrelloList.m; sourceTree = "<group>"; };
 		2F32EAA81AFFDF20003C5774 /* SMTrelloCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTrelloCard.h; sourceTree = "<group>"; };
 		2F32EAA91AFFDF20003C5774 /* SMTrelloCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTrelloCard.m; sourceTree = "<group>"; };
+		2F612F0E1B482A1A00CD2292 /* SMNumberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNumberCell.h; sourceTree = "<group>"; };
+		2F612F0F1B482A1A00CD2292 /* SMNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNumberCell.m; sourceTree = "<group>"; };
+		2F612F111B482A3200CD2292 /* SMDualLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDualLabelCell.h; sourceTree = "<group>"; };
+		2F612F121B482A3200CD2292 /* SMDualLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDualLabelCell.m; sourceTree = "<group>"; };
+		2F612F141B482A4500CD2292 /* SMDatePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDatePickerCell.h; sourceTree = "<group>"; };
+		2F612F151B482A4500CD2292 /* SMDatePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDatePickerCell.m; sourceTree = "<group>"; };
+		2F612F171B482A5000CD2292 /* SMTimePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTimePickerCell.h; sourceTree = "<group>"; };
+		2F612F181B482A5000CD2292 /* SMTimePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTimePickerCell.m; sourceTree = "<group>"; };
+		2F612F1A1B482CA200CD2292 /* SMSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSwitchCell.h; sourceTree = "<group>"; };
+		2F612F1B1B482CA200CD2292 /* SMSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSwitchCell.m; sourceTree = "<group>"; };
+		2F612F1D1B482CAB00CD2292 /* SMSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSegmentedCell.h; sourceTree = "<group>"; };
+		2F612F1E1B482CAB00CD2292 /* SMSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSegmentedCell.m; sourceTree = "<group>"; };
 		2F9B870A1AF44EB0006430D2 /* SMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMLoginViewController.h; sourceTree = "<group>"; };
 		2F9B870B1AF44EB0006430D2 /* SMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMLoginViewController.m; sourceTree = "<group>"; };
 		2F9B87111AF45648006430D2 /* Superminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Superminder.entitlements; sourceTree = "<group>"; };
@@ -175,6 +193,18 @@
 		2F2929591B06E56B006423C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2F612F141B482A4500CD2292 /* SMDatePickerCell.h */,
+				2F612F151B482A4500CD2292 /* SMDatePickerCell.m */,
+				2F612F171B482A5000CD2292 /* SMTimePickerCell.h */,
+				2F612F181B482A5000CD2292 /* SMTimePickerCell.m */,
+				2F612F111B482A3200CD2292 /* SMDualLabelCell.h */,
+				2F612F121B482A3200CD2292 /* SMDualLabelCell.m */,
+				2F612F0E1B482A1A00CD2292 /* SMNumberCell.h */,
+				2F612F0F1B482A1A00CD2292 /* SMNumberCell.m */,
+				2F612F1A1B482CA200CD2292 /* SMSwitchCell.h */,
+				2F612F1B1B482CA200CD2292 /* SMSwitchCell.m */,
+				2F612F1D1B482CAB00CD2292 /* SMSegmentedCell.h */,
+				2F612F1E1B482CAB00CD2292 /* SMSegmentedCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -360,12 +390,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F32EAA11AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.m in Sources */,
+				2F612F131B482A3200CD2292 /* SMDualLabelCell.m in Sources */,
 				2F32EAAA1AFFDF20003C5774 /* SMTrelloCard.m in Sources */,
 				2F080FAB1AF060C5008EAB4B /* AppDelegate.m in Sources */,
 				2F080FA81AF060C5008EAB4B /* main.m in Sources */,
 				2F9B870C1AF44EB0006430D2 /* SMLoginViewController.m in Sources */,
 				2F2313A51B461FFB00CB8B36 /* SMReminder.m in Sources */,
 				2F32EAA41AFFDF0D003C5774 /* SMTrelloBoard.m in Sources */,
+				2F612F161B482A4500CD2292 /* SMDatePickerCell.m in Sources */,
+				2F612F101B482A1A00CD2292 /* SMNumberCell.m in Sources */,
+				2F612F1C1B482CA200CD2292 /* SMSwitchCell.m in Sources */,
+				2F612F191B482A5000CD2292 /* SMTimePickerCell.m in Sources */,
+				2F612F1F1B482CAB00CD2292 /* SMSegmentedCell.m in Sources */,
 				2F32EAA71AFFDF19003C5774 /* SMTrelloList.m in Sources */,
 				2F2313A21B46136F00CB8B36 /* SMNewReminderViewController.m in Sources */,
 				2FBE9E421AF43EE000405112 /* SMTrelloClient.m in Sources */,

@@ -67,7 +67,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMNumberCell" id="ZUL-7T-lSy">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMNumberCell" id="ZUL-7T-lSy" customClass="SMNumberCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZUL-7T-lSy" id="jkr-FO-eSc">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -101,7 +101,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMDualLabelCell" id="7wg-p4-pkH">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMDualLabelCell" id="7wg-p4-pkH" customClass="SMDualLabelCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7wg-p4-pkH" id="1y7-IE-djO">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -115,8 +115,8 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bn1-Kv-yu8">
-                                            <rect key="frame" x="270" y="0.0" width="42" height="43.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bn1-Kv-yu8">
+                                            <rect key="frame" x="272" y="0.0" width="40" height="43.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="UjZ-M2-myC"/>
                                             </constraints>
@@ -135,27 +135,53 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="700" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="162" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMTimePickerCell" rowHeight="162" id="6Xl-1f-WMK">
+                            <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="700" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMSegmentedCell" id="x99-uq-eUu" customClass="SMSegmentedCell">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Xl-1f-WMK" id="8yU-m9-FGn">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x99-uq-eUu" id="G1g-1g-05G">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="LbD-u1-3Md">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
-                                            <date key="date" timeIntervalSinceReferenceDate="457713990.13652903">
-                                                <!--2015-07-04 14:46:30 +0000-->
-                                            </date>
-                                        </datePicker>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="48d-kB-aFN">
+                                            <rect key="frame" x="98.5" y="8" width="123" height="29"/>
+                                            <segments>
+                                                <segment title="First"/>
+                                                <segment title="Second"/>
+                                            </segments>
+                                        </segmentedControl>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="LbD-u1-3Md" firstAttribute="top" secondItem="8yU-m9-FGn" secondAttribute="top" id="AXn-bQ-F48"/>
-                                        <constraint firstAttribute="bottom" secondItem="LbD-u1-3Md" secondAttribute="bottom" id="Hjf-Pv-qfR"/>
-                                        <constraint firstAttribute="trailing" secondItem="LbD-u1-3Md" secondAttribute="trailing" id="IIc-eK-gBs"/>
-                                        <constraint firstItem="LbD-u1-3Md" firstAttribute="leading" secondItem="8yU-m9-FGn" secondAttribute="leading" id="zfj-5c-fyr"/>
+                                        <constraint firstAttribute="centerY" secondItem="48d-kB-aFN" secondAttribute="centerY" id="Kpb-46-Cef"/>
+                                        <constraint firstAttribute="centerX" secondItem="48d-kB-aFN" secondAttribute="centerX" id="QoZ-YW-nSw"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="700" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="162" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMDatePickerCell" rowHeight="162" id="cJT-9q-l24">
+                            <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="700" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMSwitchCell" id="NeO-de-mos" customClass="SMSwitchCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NeO-de-mos" id="SQ4-hD-J5M">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5G-gg-VPe">
+                                            <rect key="frame" x="15" y="0.0" width="42" height="43.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="oGL-ks-ji2"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fo7-fp-cEJ">
+                                            <rect key="frame" x="263" y="6" width="51" height="31"/>
+                                        </switch>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="V5G-gg-VPe" secondAttribute="bottom" id="Hg9-je-Xf4"/>
+                                        <constraint firstItem="V5G-gg-VPe" firstAttribute="leading" secondItem="SQ4-hD-J5M" secondAttribute="leading" constant="15" id="LPL-nm-zvD"/>
+                                        <constraint firstAttribute="centerY" secondItem="Fo7-fp-cEJ" secondAttribute="centerY" id="eUV-YF-EDx"/>
+                                        <constraint firstAttribute="trailing" secondItem="Fo7-fp-cEJ" secondAttribute="trailing" constant="8" id="iYy-Nr-IS7"/>
+                                        <constraint firstItem="V5G-gg-VPe" firstAttribute="top" secondItem="SQ4-hD-J5M" secondAttribute="top" id="kOM-T5-p68"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="700" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="162" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMDatePickerCell" rowHeight="162" id="cJT-9q-l24" customClass="SMDatePickerCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cJT-9q-l24" id="gpC-oK-TtX">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -172,6 +198,26 @@
                                         <constraint firstItem="p8p-0o-aFF" firstAttribute="top" secondItem="gpC-oK-TtX" secondAttribute="top" id="XAW-GX-Opb"/>
                                         <constraint firstAttribute="bottom" secondItem="p8p-0o-aFF" secondAttribute="bottom" id="ZiQ-ry-FrQ"/>
                                         <constraint firstAttribute="trailing" secondItem="p8p-0o-aFF" secondAttribute="trailing" id="aUY-nI-35n"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="700" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="162" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMTimePickerCell" rowHeight="162" id="6Xl-1f-WMK" customClass="SMTimePickerCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Xl-1f-WMK" id="8yU-m9-FGn">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="LbD-u1-3Md">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                                            <date key="date" timeIntervalSinceReferenceDate="457713990.13652903">
+                                                <!--2015-07-04 14:46:30 +0000-->
+                                            </date>
+                                        </datePicker>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="LbD-u1-3Md" firstAttribute="top" secondItem="8yU-m9-FGn" secondAttribute="top" id="AXn-bQ-F48"/>
+                                        <constraint firstAttribute="bottom" secondItem="LbD-u1-3Md" secondAttribute="bottom" id="Hjf-Pv-qfR"/>
+                                        <constraint firstAttribute="trailing" secondItem="LbD-u1-3Md" secondAttribute="trailing" id="IIc-eK-gBs"/>
+                                        <constraint firstItem="LbD-u1-3Md" firstAttribute="leading" secondItem="8yU-m9-FGn" secondAttribute="leading" id="zfj-5c-fyr"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
