@@ -23,6 +23,7 @@
                          @{@"label" : @"Reminder", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"date"},
                          @{@"label" : @"Reminder Time", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"time"},
                          @{@"label" : @"Recurring", @"property" : @"reminder.recurring", @"cellIdentifier" : @"switch"},
+                         @{@"label" : @"Every", @"property" : @"reminder.recurringValue", @"cellIdentifier" : @"number"},
                          @{@"label" : @"", @"property" : @"reminder.recurringUnit", @"cellIdentifier" : @"selection"},
                          @{@"label" : @"Stop Recurring", @"property" : @"reminder.endRecurranceDate", @"cellIdentifier" : @"date"}
                          ];
