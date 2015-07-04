@@ -7,6 +7,12 @@
 //
 
 #import "SMNewReminderViewController.h"
+#import "SMDualLabelCell.h"
+#import "SMSwitchCell.h"
+#import "SMNumberCell.h"
+#import "SMSegmentedCell.h"
+#import "SMDatePickerCell.h"
+#import "SMTimePickerCell.h"
 
 @interface SMNewReminderViewController ()
 
@@ -18,14 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.formDetails = @[@{@"label" : @"", @"property" : @"card.name", @"cellIdentifier" : @"label"},
-                         @{@"label" : @"", @"property" : @"card.dueDate", @"cellIdendifier" : @"label"},
-                         @{@"label" : @"Reminder", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"date"},
-                         @{@"label" : @"Reminder Time", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"time"},
-                         @{@"label" : @"Recurring", @"property" : @"reminder.recurring", @"cellIdentifier" : @"switch"},
-                         @{@"label" : @"Every", @"property" : @"reminder.recurringValue", @"cellIdentifier" : @"number"},
-                         @{@"label" : @"", @"property" : @"reminder.recurringUnit", @"cellIdentifier" : @"selection"},
-                         @{@"label" : @"Stop Recurring", @"property" : @"reminder.endRecurranceDate", @"cellIdentifier" : @"date"}
+    self.formDetails = @[@{@"label" : @"", @"property" : @"card.name", @"cellIdentifier" : @"SMBasicCell"},
+                         @{@"label" : @"", @"property" : @"card.dueDate", @"cellIdentifier" : @"SMBasicCell"},
+                         @{@"label" : @"Reminder", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDualLabelCell"},
+                         @{@"label" : @"Reminder Time", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDualLabelCell"},
+                         @{@"label" : @"Recurring", @"property" : @"reminder.recurring", @"cellIdentifier" : @"SMSwitchCell"},
+                         @{@"label" : @"Every", @"property" : @"reminder.recurringValue", @"cellIdentifier" : @"SMNumberCell"},
+                         @{@"label" : @"", @"property" : @"reminder.recurringUnit", @"cellIdentifier" : @"SMSegmentedCell"},
+                         @{@"label" : @"Stop Recurring", @"property" : @"reminder.endRecurranceDate", @"cellIdentifier" : @"SMDualLabelCell"}
                          ];
 }
 
@@ -37,26 +43,89 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 2; //start with two, first section has card name and due date, everything else in the second
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    if(section == 0){
+        return 2;
+    }
+    else{
+        return 6;
+    }
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    NSDictionary *rowInfo;
+    if(indexPath.section == 0) {
+        rowInfo = self.formDetails[indexPath.row];
+    }
+    else{
+        rowInfo = self.formDetails[indexPath.row + 2];
+    }
+    NSString *identifier = rowInfo[@"cellIdentifier"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
     // Configure the cell...
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+    dateFormatter.timeStyle = NSDateFormatterNoStyle;
+    
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    timeFormatter.timeStyle = NSDateFormatterShortStyle;
+    timeFormatter.dateStyle = NSDateFormatterNoStyle;
+
+    if(indexPath.section == 0){
+        switch(indexPath.row){
+            case 0:
+                //card name row
+                cell.textLabel.text = self.card.name;
+                break;
+            case 1:
+                //card due date row
+                cell.textLabel.text = [dateFormatter stringFromDate:self.card.dueDate];
+                break;
+            default:
+                break;
+        }
+    }
+    else{
+        SMDualLabelCell *dualCell;
+        SMSwitchCell *switchCell;
+        switch(indexPath.row){
+            case 0:
+                //reminder date row
+                dualCell = (SMDualLabelCell *)cell;
+                dualCell.label.text = rowInfo[@"label"];
+                dualCell.valueLabel.text = [dateFormatter stringFromDate:self.reminder.reminderDate];
+                break;
+            case 1:
+                //reminder time row
+                dualCell = (SMDualLabelCell *)cell;
+                dualCell.label.text = rowInfo[@"label"];
+                dualCell.valueLabel.text = [timeFormatter stringFromDate:self.reminder.reminderDate];
+                break;
+            case 2:
+                //recurring switch row
+                switchCell = (SMSwitchCell *)cell;
+                switchCell.label.text = rowInfo[@"label"];
+                switchCell.toggleSwitch.on = self.reminder.recurring;
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default:
+                break;
+        }
+    }
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.
