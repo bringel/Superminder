@@ -10,4 +10,7 @@
 
 @interface SMNumberCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UITextField *numberField;
+
 @end

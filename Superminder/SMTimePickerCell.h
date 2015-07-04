@@ -10,4 +10,6 @@
 
 @interface SMTimePickerCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
+
 @end

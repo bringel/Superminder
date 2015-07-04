@@ -10,4 +10,6 @@
 
 @interface SMSegmentedCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *options;
+
 @end

@@ -10,4 +10,6 @@
 
 @interface SMDualLabelCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 @end
