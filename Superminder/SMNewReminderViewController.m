@@ -10,12 +10,22 @@
 
 @interface SMNewReminderViewController ()
 
+@property (strong, nonatomic) NSArray *formDetails;
 @end
 
 @implementation SMNewReminderViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.formDetails = @[@{@"label" : @"", @"property" : @"card.name", @"cellIdentifier" : @"label"},
+                         @{@"label" : @"", @"property" : @"card.dueDate", @"cellIdendifier" : @"label"},
+                         @{@"label" : @"Reminder", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"date"},
+                         @{@"label" : @"Reminder Time", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"time"},
+                         @{@"label" : @"Recurring", @"property" : @"reminder.recurring", @"cellIdentifier" : @"switch"},
+                         @{@"label" : @"", @"property" : @"reminder.recurringUnit", @"cellIdentifier" : @"selection"},
+                         @{@"label" : @"Stop Recurring", @"property" : @"reminder.endRecurranceDate", @"cellIdentifier" : @"date"}
+                         ];
     
     self.cardTitleLabel.text = self.card.name;
     
