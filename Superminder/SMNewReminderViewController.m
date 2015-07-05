@@ -17,6 +17,11 @@
 @interface SMNewReminderViewController ()
 
 @property (strong, nonatomic) NSArray *formDetails;
+@property (nonatomic) BOOL editingReminderDate;
+@property (nonatomic) BOOL editingReminderTime;
+@property (nonatomic) BOOL editingEndRecurrenceDate;
+@property (nonatomic, getter=isFlexibleRemindersOn) BOOL flexibleRemindersOn;
+@property (nonatomic, getter=isRecurringOn) BOOL recurringOn;
 @end
 
 @implementation SMNewReminderViewController
@@ -64,6 +69,14 @@
     timeFormatter.timeStyle = NSDateFormatterShortStyle;
     timeFormatter.dateStyle = NSDateFormatterNoStyle;
 
+    SMDualLabelCell *dualCell;
+    SMSwitchCell *switchCell;
+    if([identifier isEqualToString:@"SMDualLabelCell"]){
+        dualCell = (SMDualLabelCell *)cell;
+    }
+    else if([identifier isEqualToString:@"SMSwitchCell"]){
+        switchCell = (SMSwitchCell *)cell;
+    }
     if(indexPath.section == 0){
         switch(indexPath.row){
             case 0:
@@ -82,17 +95,15 @@
         switch(indexPath.row){
             case 0:
                 switchCell.label.text = rowInfo[@"label"];
-                switchCell.toggleSwitch.on = NO;
+                switchCell.toggleSwitch.on = self.reminder.flexibleReminder;
                 break;
             case 1:
                 //reminder date row
-                dualCell = (SMDualLabelCell *)cell;
                 dualCell.label.text = rowInfo[@"label"];
                 dualCell.valueLabel.text = [dateFormatter stringFromDate:self.reminder.reminderDate];
                 break;
             case 2:
                 //reminder time row
-                dualCell = (SMDualLabelCell *)cell;
                 dualCell.label.text = rowInfo[@"label"];
                 dualCell.valueLabel.text = [timeFormatter stringFromDate:self.reminder.reminderDate];
                 break;

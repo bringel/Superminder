@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, SMRecurringUnit) {
 @property (strong, nonatomic) NSString *trelloCardID;
 @property (strong, nonatomic) NSDate *reminderDate;
 @property (nonatomic, getter=isCompleted) BOOL completed;
+@property (nonatomic, getter=isFlexibleReminder) BOOL flexibleReminder;
 @property (nonatomic, getter=isRecurring) BOOL recurring;
 @property (nonatomic) int recurringValue;
 @property (nonatomic) SMRecurringUnit recurringUnit;
