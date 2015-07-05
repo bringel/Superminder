@@ -15,7 +15,4 @@
 @property (strong, nonatomic) SMReminder *reminder;
 @property (strong, nonatomic) SMTrelloCard *card;
 
-@property (weak, nonatomic) IBOutlet UILabel *cardTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *cardDueDateLabel;
-
 @end
