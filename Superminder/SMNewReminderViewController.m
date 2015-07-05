@@ -24,14 +24,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.formDetails = @[@{@"label" : @"", @"property" : @"card.name", @"cellIdentifier" : @"SMBasicCell"},
-                         @{@"label" : @"", @"property" : @"card.dueDate", @"cellIdentifier" : @"SMBasicCell"},
+    self.formDetails = @[@[@{@"label" : @"", @"property" : @"card.name", @"cellIdentifier" : @"SMBasicCell"},
+                         @{@"label" : @"", @"property" : @"card.dueDate", @"cellIdentifier" : @"SMBasicCell"}],
+                         @[@{@"label" : @"Flexible Reminder", @"property" : @"reminder.flexibleReminder", @"cellIdentifier" : @"SMSwitchCell"},
                          @{@"label" : @"Reminder", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDualLabelCell"},
-                         @{@"label" : @"Reminder Time", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDualLabelCell"},
-                         @{@"label" : @"Recurring", @"property" : @"reminder.recurring", @"cellIdentifier" : @"SMSwitchCell"},
-                         @{@"label" : @"Every", @"property" : @"reminder.recurringValue", @"cellIdentifier" : @"SMNumberCell"},
-                         @{@"label" : @"", @"property" : @"reminder.recurringUnit", @"cellIdentifier" : @"SMSegmentedCell"},
-                         @{@"label" : @"Stop Recurring", @"property" : @"reminder.endRecurranceDate", @"cellIdentifier" : @"SMDualLabelCell"}
+                         @{@"label" : @"Reminder Time", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDualLabelCell"}],
+                         @[@{@"label" : @"Recurring", @"property" : @"reminder.recurring", @"cellIdentifier" : @"SMSwitchCell"}]
                          ];
 }
 
@@ -44,27 +42,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 2; //start with two, first section has card name and due date, everything else in the second
+    return self.formDetails.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    if(section == 0){
-        return 2;
-    }
-    else{
-        return 6;
-    }
+    return [self.formDetails[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *rowInfo;
-    if(indexPath.section == 0) {
-        rowInfo = self.formDetails[indexPath.row];
-    }
-    else{
-        rowInfo = self.formDetails[indexPath.row + 2];
-    }
+    NSDictionary *rowInfo = self.formDetails[indexPath.section][indexPath.row];
     NSString *identifier = rowInfo[@"cellIdentifier"];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     
@@ -91,33 +78,41 @@
                 break;
         }
     }
-    else{
-        SMDualLabelCell *dualCell;
-        SMSwitchCell *switchCell;
+    else if(indexPath.section == 1){
         switch(indexPath.row){
             case 0:
+                switchCell.label.text = rowInfo[@"label"];
+                switchCell.toggleSwitch.on = NO;
+                break;
+            case 1:
                 //reminder date row
                 dualCell = (SMDualLabelCell *)cell;
                 dualCell.label.text = rowInfo[@"label"];
                 dualCell.valueLabel.text = [dateFormatter stringFromDate:self.reminder.reminderDate];
                 break;
-            case 1:
+            case 2:
                 //reminder time row
                 dualCell = (SMDualLabelCell *)cell;
                 dualCell.label.text = rowInfo[@"label"];
                 dualCell.valueLabel.text = [timeFormatter stringFromDate:self.reminder.reminderDate];
                 break;
-            case 2:
-                //recurring switch row
-                switchCell = (SMSwitchCell *)cell;
-                switchCell.label.text = rowInfo[@"label"];
-                switchCell.toggleSwitch.on = self.reminder.recurring;
-                break;
             case 3:
-                break;
             case 4:
                 break;
             case 5:
+                break;
+            case 6:
+                break;
+            default:
+                break;
+        }
+    }
+    else{
+        switch(indexPath.row){
+            case 0:
+                //recurring switch row
+                switchCell.label.text = rowInfo[@"label"];
+                switchCell.toggleSwitch.on = self.reminder.recurring;
                 break;
             default:
                 break;
