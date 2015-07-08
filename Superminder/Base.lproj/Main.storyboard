@@ -189,7 +189,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cJT-9q-l24" id="gpC-oK-TtX">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="p8p-0o-aFF">
+                                        <datePicker contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="p8p-0o-aFF">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
                                             <date key="date" timeIntervalSinceReferenceDate="457713668.16864997">
                                                 <!--2015-07-04 14:41:08 +0000-->
@@ -212,7 +212,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Xl-1f-WMK" id="8yU-m9-FGn">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="LbD-u1-3Md">
+                                        <datePicker contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="LbD-u1-3Md">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
                                             <date key="date" timeIntervalSinceReferenceDate="457713990.13652903">
                                                 <!--2015-07-04 14:46:30 +0000-->

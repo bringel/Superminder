@@ -36,6 +36,7 @@
                          @{@"label" : @"Reminder Time", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDualLabelCell"}],
                          @[@{@"label" : @"Recurring", @"property" : @"reminder.recurring", @"cellIdentifier" : @"SMSwitchCell"}]
                          ];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,11 +72,15 @@
 
     SMDualLabelCell *dualCell;
     SMSwitchCell *switchCell;
+    SMDatePickerCell *datePickerCell;
     if([identifier isEqualToString:@"SMDualLabelCell"]){
         dualCell = (SMDualLabelCell *)cell;
     }
     else if([identifier isEqualToString:@"SMSwitchCell"]){
         switchCell = (SMSwitchCell *)cell;
+    }
+    else if([identifier isEqualToString:@"SMDatePickerCell"]){
+        datePickerCell = (SMDatePickerCell *)cell;
     }
     if(indexPath.section == 0){
         switch(indexPath.row){
@@ -103,17 +108,40 @@
                 dualCell.valueLabel.text = [dateFormatter stringFromDate:self.reminder.reminderDate];
                 break;
             case 2:
-                //reminder time row
-                dualCell.label.text = rowInfo[@"label"];
-                dualCell.valueLabel.text = [timeFormatter stringFromDate:self.reminder.reminderDate];
+                if(self.editingReminderDate){
+                    if(self.reminder.reminderDate != nil){
+                        datePickerCell.datePicker.date = self.reminder.reminderDate;
+                    }
+                    else if(self.card.dueDate != nil){
+                        datePickerCell.datePicker.date = self.card.dueDate;
+                    }
+                    else{
+                        datePickerCell.datePicker.date = [NSDate date];
+                    }
+                }
+                else{
+                    //reminder time row
+                    dualCell.label.text = rowInfo[@"label"];
+                    dualCell.valueLabel.text = [timeFormatter stringFromDate:self.reminder.reminderDate];
+                }
                 break;
             case 3:
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
+                if(self.editingReminderDate){
+                    //reminder time row
+                    dualCell.label.text = rowInfo[@"label"];
+                    dualCell.valueLabel.text = [timeFormatter stringFromDate:self.reminder.reminderDate];
+                }
+                else if(self.editingReminderTime){
+                    if(self.reminder.reminderDate != nil){
+                        datePickerCell.datePicker.date = self.reminder.reminderDate;
+                    }
+                    else if(self.card.dueDate != nil){
+                        datePickerCell.datePicker.date = self.card.dueDate;
+                    }
+                    else{
+                        datePickerCell.datePicker.date = [NSDate date];
+                    }
+                }
             default:
                 break;
         }
@@ -131,6 +159,47 @@
     }
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(self.editingReminderDate && indexPath.section == 1 && indexPath.row == 2){
+        return 162.0f;
+    }
+    else if(self.editingReminderTime && indexPath.section == 1 && indexPath.row == 3){
+        return 162.0f;
+    }
+    else{
+        return tableView.rowHeight;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(!self.editingReminderDate && indexPath.section == 1 && indexPath.row == 1){
+        self.editingReminderDate = YES;
+        NSMutableArray *mutableDetails = [self.formDetails mutableCopy];
+        NSMutableArray *mutableSection = [mutableDetails[1] mutableCopy];
+        [mutableSection insertObject:@{@"label" : @"", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDatePickerCell"} atIndex:2];
+        mutableDetails[1] = [mutableSection copy];
+        self.formDetails = [mutableDetails copy];
+        [tableView beginUpdates];
+        [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView endUpdates];
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    }
+    else if(!self.editingReminderTime && indexPath.section == 1 && (indexPath.row == 2 || indexPath.row == 3)){
+        self.editingReminderTime = YES;
+        NSMutableArray *mutableDetails = [self.formDetails mutableCopy];
+        NSMutableArray *mutableSection = [mutableDetails[1] mutableCopy];
+        [mutableSection insertObject:@{@"label" : @"", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDatePickerCell"} atIndex:3];
+        mutableDetails[1] = [mutableSection copy];
+        self.formDetails = [mutableDetails copy];
+        [tableView beginUpdates];
+        [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView endUpdates];
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    }
 }
 
 /*
