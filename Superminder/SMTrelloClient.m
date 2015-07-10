@@ -46,7 +46,7 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
         NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:configPath];
         self.apiKey = config[@"trello-api-key"];
         
-        self.trelloBaseURL = [NSURL URLWithString:@"https://api.trello.com/1/"];
+        self.trelloBaseURL = [NSURL URLWithString:@"https://api.trello.com"];
         
         self.userToken = [Lockbox stringForKey:kTrelloUserKey];
         if(self.userToken == nil){
@@ -54,7 +54,7 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
             return self;
         }
         
-        NSURLRequest *urlRequest = [NSURLRequest buildRequestForPath:@"members/me" withParameters:@{ @"key" : self.apiKey, @"token" : self.userToken} relativeToURL:self.trelloBaseURL usingMethod:@"HEAD"];
+        NSURLRequest *urlRequest = [NSURLRequest buildRequestForPath:@"/1/members/me" withParameters:@{ @"key" : self.apiKey, @"token" : self.userToken} relativeToURL:self.trelloBaseURL usingMethod:@"HEAD"];
         
         NSURLSessionDataTask *task = [self.session dataTaskWithRequest:urlRequest completionHandler:
                                       ^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -88,7 +88,7 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
 
 - (void)getCurrentUserInfo{
     
-    NSURLRequest *urlRequest = [NSURLRequest buildRequestForPath:@"members/me" withParameters:@{ @"key" : self.apiKey, @"token" : self.userToken} relativeToURL:self.trelloBaseURL usingMethod:@"GET"];
+    NSURLRequest *urlRequest = [NSURLRequest buildRequestForPath:@"/1/members/me" withParameters:@{ @"key" : self.apiKey, @"token" : self.userToken} relativeToURL:self.trelloBaseURL usingMethod:@"GET"];
     
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:urlRequest completionHandler:
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -107,7 +107,7 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
 - (void)getAlBoardDataForUser:(SMTrelloUser *)user{
     //TODO: actually make this deal with the user that is passed in
     
-    NSURLRequest *idRequest = [NSURLRequest buildRequestForPath:@"members/me" withParameters:@{ @"fields" : @"idBoards", @"key" : self.apiKey, @"token" : self.userToken } relativeToURL:self.trelloBaseURL usingMethod:@"GET"];
+    NSURLRequest *idRequest = [NSURLRequest buildRequestForPath:@"/1/members/me" withParameters:@{ @"fields" : @"idBoards", @"key" : self.apiKey, @"token" : self.userToken } relativeToURL:self.trelloBaseURL usingMethod:@"GET"];
     
     NSURLSessionDataTask *idTask = [self.session dataTaskWithRequest:idRequest completionHandler:
                                     ^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -135,7 +135,7 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
 - (void)getDataForBoard:(NSString *)boardID{
 
     
-    NSString *requestPath = [NSString stringWithFormat:@"boards/%@", boardID];
+    NSString *requestPath = [NSString stringWithFormat:@"/1/boards/%@", boardID];
     NSURLRequest *boardRequest = [NSURLRequest buildRequestForPath:requestPath withParameters:@{ @"key" : self.apiKey, @"token" : self.userToken, @"lists" : @"open", @"cards" : @"open" } relativeToURL:self.trelloBaseURL usingMethod:@"GET"];
     
     NSURLSessionDataTask *boardTask = [self.session dataTaskWithRequest:boardRequest completionHandler:

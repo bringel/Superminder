@@ -148,6 +148,7 @@
     }
     else{
         switch(indexPath.row){
+            //TODO: acutally implement the recurring rows and functionality.
             case 0:
                 //recurring switch row
                 switchCell.label.text = rowInfo[@"label"];
@@ -171,7 +172,7 @@
         return 162.0f;
     }
     else{
-        return tableView.rowHeight;
+        return 44.0f;
     }
 }
 
@@ -192,7 +193,7 @@
         self.editingReminderTime = YES;
         NSMutableArray *mutableDetails = [self.formDetails mutableCopy];
         NSMutableArray *mutableSection = [mutableDetails[1] mutableCopy];
-        [mutableSection insertObject:@{@"label" : @"", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDatePickerCell"} atIndex:3];
+        [mutableSection insertObject:@{@"label" : @"", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMTimePickerCell"} atIndex:3];
         mutableDetails[1] = [mutableSection copy];
         self.formDetails = [mutableDetails copy];
         [tableView beginUpdates];
@@ -246,4 +247,34 @@
 }
 */
 
+#pragma mark - Value Changed handling
+
+- (IBAction)datePickerValueChanged:(id)sender {
+    if(self.editingReminderDate){
+        NSDateComponents *currentComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:self.reminder.reminderDate];
+        UIDatePicker *picker = (UIDatePicker *)sender;
+        NSDateComponents *pickerComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:picker.date];
+        currentComponents.year = pickerComponents.year;
+        currentComponents.month = pickerComponents.month;
+        currentComponents.day = pickerComponents.day;
+        self.reminder.reminderDate = [[NSCalendar currentCalendar] dateFromComponents:currentComponents]; //this should update the date but not wipe out the time
+    }
+}
+
+- (IBAction)timePickerValueChanged:(id)sender {
+    if(self.editingReminderTime){
+        NSDateComponents *currentComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:self.reminder.reminderDate];
+        UIDatePicker *picker = (UIDatePicker *)sender;
+        NSDateComponents *pickerComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:picker.date];
+        currentComponents.hour = pickerComponents.hour;
+        currentComponents.minute = pickerComponents.minute;
+        self.reminder.reminderDate = [[NSCalendar currentCalendar] dateFromComponents:currentComponents]; //this should update the time but not wipe out the date
+    }
+}
+
+- (IBAction)switchValueChanged:(id)sender {
+}
+
+- (IBAction)segmentedValueChanged:(id)sender {
+}
 @end
