@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Bradley Ringel. All rights reserved.
 //
 @import Foundation;
+#import "AppDelegate.h"
 #import "SMTrelloClient.h"
 #import "Lockbox.h"
 #import "NSURLRequest+SMRequestBuilding.h"
@@ -49,8 +50,14 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
         self.trelloBaseURL = [NSURL URLWithString:@"https://api.trello.com"];
         
         self.userToken = [Lockbox stringForKey:kTrelloUserKey];
-        if(self.userToken == nil){
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNeedsReauthentication object:self];
+        BOOL hasLaunched = [[NSUserDefaults standardUserDefaults] boolForKey:@"SuperminderHasLaunched"];
+        if(!hasLaunched){
+            AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+            [delegate showAuthenticationAlertWithCompletion:^{
+                NSString *key = self.apiKey;
+                NSString *trelloURL = [NSString stringWithFormat:@"https://trello.com/1/authorize?key=%@&name=Superminder&expiration=never&response_type=token&scope=read,write&callback_method=fragment&return_url=superminder://token", key];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:trelloURL]];
+            } client:self];
             return self;
         }
         
@@ -61,7 +68,6 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
                                           NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
                                           if(httpResponse.statusCode == 401){
                                               self.needsReauthentication = YES;
-                                              [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:kNeedsReauthentication object:self]];
                                           }
                                       }];
  

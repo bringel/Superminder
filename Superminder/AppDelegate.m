@@ -21,11 +21,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    UINavigationController *root = (UINavigationController *)[self.window rootViewController];
-    SMRemindersViewController *remindersVC = [root topViewController];
-    SMTrelloClient *trelloClient = [SMTrelloClient sharedClient];
-
-    
     return YES;
 }
 
@@ -52,7 +47,26 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    NSString *tokenFragment = url.fragment;
+    NSArray *fragmentPieces = [tokenFragment componentsSeparatedByString:@"="];
+    if([fragmentPieces[0] isEqualToString:@"token"]){
+        [Lockbox setString:fragmentPieces[1] forKey:kTrelloUserKey];
+        [[SMTrelloClient sharedClient] setNeedsReauthentication:NO];
+    }
     return YES;
+}
+
+- (void)showAuthenticationAlertWithCompletion:(void (^)())handler client:(SMTrelloClient *)client{
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Authenticate" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        handler();
+    }];
+    
+    UINavigationController *rootNavigation = (UINavigationController *)self.window.rootViewController;
+    UIViewController *top = [rootNavigation visibleViewController];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Superminder" message:@"The application needs to authenticate with Trello" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:action];
+    [top presentViewController:alertController animated:YES completion:nil];
+    
 }
 
 @end

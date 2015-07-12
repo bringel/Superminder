@@ -36,7 +36,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="LnM-aV-eok"/>
                     <connections>
-                        <segue destination="JNa-wj-1mp" kind="modal" identifier="showLoginScreen" id="wrh-bJ-R3c"/>
                         <segue destination="5SB-Hn-j03" kind="push" identifier="addNewReminderFromCard" id="nOm-wP-5cj"/>
                     </connections>
                 </tableViewController>
@@ -277,48 +276,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCe-a9-4bz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1318" y="940"/>
-        </scene>
-        <!--Login View Controller-->
-        <scene sceneID="WOW-fA-2mm">
-            <objects>
-                <viewController id="be4-13-Qbw" customClass="SMLoginViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="spM-cg-VJU"/>
-                        <viewControllerLayoutGuide type="bottom" id="kqO-p7-YB3"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pBc-kP-Asr">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8JG-jF-N41">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="kqO-p7-YB3" firstAttribute="top" secondItem="8JG-jF-N41" secondAttribute="bottom" id="X4z-BD-asr"/>
-                            <constraint firstItem="8JG-jF-N41" firstAttribute="leading" secondItem="pBc-kP-Asr" secondAttribute="leadingMargin" constant="-16" id="eUi-Fe-eVU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8JG-jF-N41" secondAttribute="trailing" constant="-16" id="ifJ-3a-ReD"/>
-                            <constraint firstItem="8JG-jF-N41" firstAttribute="top" secondItem="pBc-kP-Asr" secondAttribute="topMargin" id="mG3-Uu-tjC"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="uzJ-Zo-Z9z">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="EGn-Cy-QgR">
-                            <connections>
-                                <action selector="cancelLogin:" destination="be4-13-Qbw" id="Hi5-qn-crf"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="webView" destination="8JG-jF-N41" id="NPr-Z7-XNW"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BKZ-nT-SAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1623" y="223"/>
+            <point key="canvasLocation" x="1250" y="940"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="s37-op-5Cm">
@@ -337,24 +295,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pQ-aC-5BX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="336" y="940.98666666666668"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="GDY-wy-Gw4">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JNa-wj-1mp" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PHi-hX-Tvb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="be4-13-Qbw" kind="relationship" relationship="rootViewController" id="daf-d3-Myp"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gEq-Kf-4VK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1190" y="223"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

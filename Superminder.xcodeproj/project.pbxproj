@@ -26,7 +26,6 @@
 		2F612F191B482A5000CD2292 /* SMTimePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F181B482A5000CD2292 /* SMTimePickerCell.m */; };
 		2F612F1C1B482CA200CD2292 /* SMSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F1B1B482CA200CD2292 /* SMSwitchCell.m */; };
 		2F612F1F1B482CAB00CD2292 /* SMSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F1E1B482CAB00CD2292 /* SMSegmentedCell.m */; };
-		2F9B870C1AF44EB0006430D2 /* SMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9B870B1AF44EB0006430D2 /* SMLoginViewController.m */; };
 		2F9B87131AF45652006430D2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9B87121AF45652006430D2 /* CloudKit.framework */; };
 		2FA38C371AF1B16000237A1C /* Superminder-config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FA38C361AF1B16000237A1C /* Superminder-config.plist */; };
 		2FBE9E421AF43EE000405112 /* SMTrelloClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE9E411AF43EE000405112 /* SMTrelloClient.m */; };
@@ -83,8 +82,6 @@
 		2F612F1B1B482CA200CD2292 /* SMSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSwitchCell.m; sourceTree = "<group>"; };
 		2F612F1D1B482CAB00CD2292 /* SMSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSegmentedCell.h; sourceTree = "<group>"; };
 		2F612F1E1B482CAB00CD2292 /* SMSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSegmentedCell.m; sourceTree = "<group>"; };
-		2F9B870A1AF44EB0006430D2 /* SMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMLoginViewController.h; sourceTree = "<group>"; };
-		2F9B870B1AF44EB0006430D2 /* SMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMLoginViewController.m; sourceTree = "<group>"; };
 		2F9B87111AF45648006430D2 /* Superminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Superminder.entitlements; sourceTree = "<group>"; };
 		2F9B87121AF45652006430D2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2FA38C361AF1B16000237A1C /* Superminder-config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Superminder-config.plist"; sourceTree = SOURCE_ROOT; };
@@ -212,8 +209,6 @@
 		2F32EA9A1AF58EF0003C5774 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2F9B870A1AF44EB0006430D2 /* SMLoginViewController.h */,
-				2F9B870B1AF44EB0006430D2 /* SMLoginViewController.m */,
 				2F32EA971AF531E9003C5774 /* SMRemindersViewController.h */,
 				2F32EA981AF531E9003C5774 /* SMRemindersViewController.m */,
 				2F2313A01B46136F00CB8B36 /* SMNewReminderViewController.h */,
@@ -301,6 +296,9 @@
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = HK7854N4SL;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
@@ -394,7 +392,6 @@
 				2F32EAAA1AFFDF20003C5774 /* SMTrelloCard.m in Sources */,
 				2F080FAB1AF060C5008EAB4B /* AppDelegate.m in Sources */,
 				2F080FA81AF060C5008EAB4B /* main.m in Sources */,
-				2F9B870C1AF44EB0006430D2 /* SMLoginViewController.m in Sources */,
 				2F2313A51B461FFB00CB8B36 /* SMReminder.m in Sources */,
 				2F32EAA41AFFDF0D003C5774 /* SMTrelloBoard.m in Sources */,
 				2F612F161B482A4500CD2292 /* SMDatePickerCell.m in Sources */,
@@ -525,9 +522,11 @@
 			baseConfigurationReference = F8CFA0D78BAA686450FEF820 /* Pods-Superminder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = Superminder/Superminder.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = Superminder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -540,9 +539,11 @@
 			baseConfigurationReference = 24DD8AC168D291FFAB61B0C8 /* Pods-Superminder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = Superminder/Superminder.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = Superminder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class SMTrelloClient;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (void)showAuthenticationAlertWithCompletion:(void (^)())handler client:(SMTrelloClient *)client;
 
 @end
 

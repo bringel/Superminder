@@ -43,28 +43,18 @@ static NSString * const reuseIdentifier = @"Cell";
     
     // Register cell classes
     self.trelloClient = [SMTrelloClient sharedClient];
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:kNeedsReauthentication object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-        __weak typeof(self) weakSelf = self;
-        [weakSelf performSegueWithIdentifier:@"showLoginScreen" sender:weakSelf];
-    }];
     // Do any additional setup after loading the view.
-    self.trelloKey = [Lockbox stringForKey:kTrelloUserKey];
-    if(!self.trelloKey){
-        [self performSegueWithIdentifier:@"showLoginScreen" sender:self];
-    }
-    else{
-        [SVProgressHUD setForegroundColor:[UIColor colorWithRed:(56/256.0f) green:(167/256.0f) blue:(114/256.0f) alpha:1]];
-        [SVProgressHUD showWithStatus:@"Loading Reminders..."];
-        [self.trelloClient getCurrentUserInfo];
-        [self.trelloClient getAlBoardDataForUser:self.trelloClient.currentUser];
-    }
     [[NSNotificationCenter defaultCenter] addObserverForName:kAllBoardsLoadFinished object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         __weak typeof(self) weakSelf = self;
         [weakSelf buildSectionReminderMap];
         [weakSelf.tableView reloadData];
         [SVProgressHUD showSuccessWithStatus:@"Loaded"];
     }];
+    
+    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:(56/256.0f) green:(167/256.0f) blue:(114/256.0f) alpha:1]];
+    [SVProgressHUD showWithStatus:@"Loading Reminders..."];
+    [self.trelloClient getCurrentUserInfo];
+    [self.trelloClient getAlBoardDataForUser:self.trelloClient.currentUser];
 }
 
 - (void)didReceiveMemoryWarning {
