@@ -51,10 +51,11 @@ static NSString * const reuseIdentifier = @"Cell";
         [SVProgressHUD showSuccessWithStatus:@"Loaded"];
     }];
     
-    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:(56/256.0f) green:(167/256.0f) blue:(114/256.0f) alpha:1]];
-    [SVProgressHUD showWithStatus:@"Loading Reminders..."];
     [self.trelloClient getCurrentUserInfo];
-    [self.trelloClient getAlBoardDataForUser:self.trelloClient.currentUser];
+    [self.trelloClient getAllBoardDataForUser:self.trelloClient.currentUser];
+    
+//    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:(56/256.0f) green:(167/256.0f) blue:(114/256.0f) alpha:1]];
+//    [SVProgressHUD showWithStatus:@"Loading Reminders..."];
 }
 
 - (void)didReceiveMemoryWarning {

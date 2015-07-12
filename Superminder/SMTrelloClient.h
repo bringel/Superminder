@@ -22,7 +22,7 @@ extern NSString * const kAllBoardsLoadFinished;
 + (instancetype)sharedClient;
 
 - (void)getCurrentUserInfo;
-- (void)getAlBoardDataForUser:(SMTrelloUser *)user;
+- (void)getAllBoardDataForUser:(SMTrelloUser *)user;
 - (void)getDataForBoardIDs:(NSArray *)boardIDs;
 - (void)getDataForBoard:(NSString *)boardID;
 

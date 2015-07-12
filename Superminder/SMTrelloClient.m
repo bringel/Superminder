@@ -26,6 +26,8 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
 
 @property (strong, nonatomic) NSMutableArray *currentDataTasks;
 
+@property (strong, nonatomic) NSOperationQueue *operationQueue;
+
 @end
 
 @implementation SMTrelloClient
@@ -52,6 +54,7 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
         self.userToken = [Lockbox stringForKey:kTrelloUserKey];
         BOOL hasLaunched = [[NSUserDefaults standardUserDefaults] boolForKey:@"SuperminderHasLaunched"];
         if(!hasLaunched){
+            self.needsReauthentication = YES;
             AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
             [delegate showAuthenticationAlertWithCompletion:^{
                 NSString *key = self.apiKey;
@@ -92,7 +95,26 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
     return _currentDataTasks;
 }
 
+- (NSOperationQueue *)operationQueue{
+    if(_operationQueue == nil){
+        _operationQueue = [[NSOperationQueue alloc] init];
+    }
+    return _operationQueue;
+}
+
+- (void)setNeedsReauthentication:(BOOL)needsReauthentication{
+    self.operationQueue.suspended = needsReauthentication;
+    _needsReauthentication = needsReauthentication;
+}
+
 - (void)getCurrentUserInfo{
+    
+    if(self.needsReauthentication){
+        [self.operationQueue addOperationWithBlock:^{
+            [self getCurrentUserInfo];
+            return;
+        }];
+    }
     
     NSURLRequest *urlRequest = [NSURLRequest buildRequestForPath:@"/1/members/me" withParameters:@{ @"key" : self.apiKey, @"token" : self.userToken} relativeToURL:self.trelloBaseURL usingMethod:@"GET"];
     
@@ -110,8 +132,15 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
     [task resume];
 }
 
-- (void)getAlBoardDataForUser:(SMTrelloUser *)user{
+- (void)getAllBoardDataForUser:(SMTrelloUser *)user{
     //TODO: actually make this deal with the user that is passed in
+    
+    if(self.needsReauthentication){
+        [self.operationQueue addOperationWithBlock:^{
+            [self getAllBoardDataForUser:user];
+        }];
+        return;
+    }
     
     NSURLRequest *idRequest = [NSURLRequest buildRequestForPath:@"/1/members/me" withParameters:@{ @"fields" : @"idBoards", @"key" : self.apiKey, @"token" : self.userToken } relativeToURL:self.trelloBaseURL usingMethod:@"GET"];
     
