@@ -74,6 +74,7 @@ static NSString * const reuseIdentifier = @"Cell";
         SMTrelloCard *selectedCard = [[self.sectionReminderMap objectForKey:[self tableView:nil titleForHeaderInSection:selectedRow.section]] objectAtIndex:selectedRow.row];
         SMNewReminderViewController *newReminderController = (SMNewReminderViewController *)segue.destinationViewController;
         newReminderController.card = selectedCard;
+        newReminderController.reminder = selectedCard.linkedReminder;
     }
 }
 

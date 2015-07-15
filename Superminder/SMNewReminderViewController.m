@@ -37,6 +37,13 @@
                          @[@{@"label" : @"Recurring", @"property" : @"reminder.recurring", @"cellIdentifier" : @"SMSwitchCell"}]
                          ];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    if(self.reminder == nil){
+        //there was no reminder linked to the card yet, create a new one now
+        self.reminder = [[SMReminder alloc] init];
+        self.reminder.trelloCardID = self.card.cardID;
+        self.reminder.reminderDate = [NSDate date];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -307,8 +314,12 @@
 
 - (IBAction)datePickerValueChanged:(id)sender {
     if(self.editingReminderDate){
-        NSDateComponents *currentComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:self.reminder.reminderDate];
         UIDatePicker *picker = (UIDatePicker *)sender;
+        if(self.reminder.reminderDate == nil){
+            self.reminder.reminderDate = picker.date;
+            return;
+        }
+        NSDateComponents *currentComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:self.reminder.reminderDate];
         NSDateComponents *pickerComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:picker.date];
         currentComponents.year = pickerComponents.year;
         currentComponents.month = pickerComponents.month;
@@ -319,8 +330,11 @@
 
 - (IBAction)timePickerValueChanged:(id)sender {
     if(self.editingReminderTime){
-        NSDateComponents *currentComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:self.reminder.reminderDate];
         UIDatePicker *picker = (UIDatePicker *)sender;
+        if(self.reminder.reminderDate == nil){
+            self.reminder.reminderDate = picker.date;
+        }
+        NSDateComponents *currentComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:self.reminder.reminderDate];
         NSDateComponents *pickerComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:picker.date];
         currentComponents.hour = pickerComponents.hour;
         currentComponents.minute = pickerComponents.minute;

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class SMTrelloList;
+@class SMReminder;
 
 @interface SMTrelloCard : NSObject
 
@@ -19,6 +20,7 @@
 @property (strong, nonatomic) NSArray *comments;
 @property (strong, nonatomic) NSArray *labels;
 @property (weak, nonatomic) SMTrelloList *list;
+@property (strong, nonatomic) SMReminder *linkedReminder;
 
 - (instancetype)initWithJSONData:(NSDictionary *)data;
 
