@@ -177,51 +177,85 @@
 }
 
 - (void)expandDatePickerInTableView:(UITableView *)tableView {
+    if(self.editingReminderDate){
+        return;
+    }
     self.editingReminderDate = YES;
     NSMutableArray *mutableDetails = [self.formDetails mutableCopy];
-    NSMutableArray *mutableSection = [mutableDetails[1] mutableCopy];
-    [mutableSection insertObject:@{@"label" : @"", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDatePickerCell"} atIndex:2];
-    mutableDetails[1] = [mutableSection copy];
+    NSMutableArray *mutableSectionDetails = [self.formDetails[1] mutableCopy];
+    [mutableSectionDetails insertObject:@{@"label" : @"", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDatePickerCell"} atIndex:2];
+    mutableDetails[1] = [mutableSectionDetails copy];
     self.formDetails = [mutableDetails copy];
     [tableView beginUpdates];
     [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
     [tableView endUpdates];
 }
 
+- (void)collapseDatePickerInTableView:(UITableView *)tableView{
+    if(!self.editingReminderDate){
+        return;
+    }
+    self.editingReminderDate = NO;
+    NSMutableArray *mutableDetails = [self.formDetails mutableCopy];
+    NSMutableArray *mutableSectionDetails = [self.formDetails[1] mutableCopy];
+    [mutableSectionDetails removeObjectAtIndex:2];
+    mutableDetails[1] = [mutableSectionDetails copy];
+    self.formDetails = [mutableDetails copy];
+    [tableView beginUpdates];
+    [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
+    [tableView endUpdates];
+}
+
 - (void)expandTimePickerInTableView:(UITableView *)tableView {
+    if(self.editingReminderTime){
+        return;
+    }
     self.editingReminderTime = YES;
     NSMutableArray *mutableDetails = [self.formDetails mutableCopy];
-    NSMutableArray *mutableSection = [mutableDetails[1] mutableCopy];
-    [mutableSection insertObject:@{@"label" : @"", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMTimePickerCell"} atIndex:3];
-    mutableDetails[1] = [mutableSection copy];
+    NSMutableArray *mutableSectionDetails = [self.formDetails[1] mutableCopy];
+    [mutableSectionDetails insertObject:@{@"label" : @"", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMTimePickerCell"} atIndex:3];
+    mutableDetails[1] = [mutableSectionDetails copy];
     self.formDetails = [mutableDetails copy];
     [tableView beginUpdates];
     [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
     [tableView endUpdates];
 }
 
+- (void)collapseTimePickerInTableView:(UITableView *)tableView{
+    if(!self.editingReminderTime){
+        return;
+    }
+    self.editingReminderTime = NO;
+    NSMutableArray *mutableDetails = [self.formDetails mutableCopy];
+    NSMutableArray *mutableSectionDetails = [self.formDetails[1] mutableCopy];
+    [mutableSectionDetails removeObjectAtIndex:3];
+    mutableDetails[1] = [mutableSectionDetails copy];
+    self.formDetails = [mutableDetails copy];
+    [tableView beginUpdates];
+    [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
+    [tableView endUpdates];
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(!self.editingReminderDate && indexPath.section == 1 && indexPath.row == 1){
-        [self expandDatePickerInTableView:tableView];
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if(indexPath.section == 1 && indexPath.row == 1){
+        if(!self.editingReminderDate){
+            [self collapseTimePickerInTableView:tableView];
+            [self expandDatePickerInTableView:tableView];
+        }
+        else{
+            [self collapseDatePickerInTableView:tableView];
+        }
     }
-    else if(self.editingReminderDate && indexPath.section == 1 && indexPath.row == 1){
-        [self.formDetails[1] removeObjectAtIndex:2];
-        [tableView beginUpdates];
-        [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [tableView endUpdates];
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    }
-    else if(!self.editingReminderTime && indexPath.section == 1 && (indexPath.row == 2 || indexPath.row == 3)){
-        [self expandTimePickerInTableView:tableView];
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    }
-    else if(self.editingReminderTime && indexPath.section == 1 && (indexPath.row == 2 || indexPath.row == 3)){
-        [self.formDetails[1] removeObjectAtIndex:3];
-        [tableView beginUpdates];
-        [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:3]] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [tableView endUpdates];
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    else if(indexPath.section == 1 && (indexPath.row == 2 || indexPath.row == 3)){
+        //It seems like the date/time pickers are handling any taps, so if the date picker is open, we can't get selections at index 2, which is why it's okay to run this code for either 2 or 3
+        if(!self.editingReminderTime){
+            [self collapseDatePickerInTableView:tableView];
+            [self expandTimePickerInTableView:tableView];
+        }
+        else{
+            [self collapseTimePickerInTableView:tableView];
+        }
     }
 }
 
