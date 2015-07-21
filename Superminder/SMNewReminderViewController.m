@@ -300,7 +300,6 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -308,7 +307,15 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
+- (IBAction)cancelAdding:(id)sender{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)saveNewReminder:(id)sender{
+    
+}
 
 #pragma mark - Value Changed handling
 
@@ -333,6 +340,7 @@
         UIDatePicker *picker = (UIDatePicker *)sender;
         if(self.reminder.reminderDate == nil){
             self.reminder.reminderDate = picker.date;
+            return;
         }
         NSDateComponents *currentComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:self.reminder.reminderDate];
         NSDateComponents *pickerComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:picker.date];

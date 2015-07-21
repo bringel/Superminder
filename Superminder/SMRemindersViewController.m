@@ -21,6 +21,8 @@
 @property (strong, nonatomic) NSDictionary *sectionReminderMap;
 @property (strong, nonatomic) SMTrelloClient *trelloClient;
 
+@property (weak, nonatomic) SMTrelloCard *selectedCard;
+
 @end
 
 static NSString *kNoDateCards = @"No Due Date";
@@ -70,11 +72,10 @@ static NSString * const reuseIdentifier = @"Cell";
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if([segue.identifier isEqualToString:@"addNewReminderFromCard"]){
-        NSIndexPath *selectedRow = [self.tableView indexPathForSelectedRow];
-        SMTrelloCard *selectedCard = [[self.sectionReminderMap objectForKey:[self tableView:nil titleForHeaderInSection:selectedRow.section]] objectAtIndex:selectedRow.row];
-        SMNewReminderViewController *newReminderController = (SMNewReminderViewController *)segue.destinationViewController;
-        newReminderController.card = selectedCard;
-        newReminderController.reminder = selectedCard.linkedReminder;
+        SMNewReminderViewController *newReminderController = (SMNewReminderViewController *)[segue.destinationViewController topViewController];
+        newReminderController.card = self.selectedCard;
+        newReminderController.reminder = self.selectedCard.linkedReminder;
+        self.tableView.editing = NO;
     }
 }
 
@@ -167,9 +168,20 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    [self performSegueWithIdentifier:@"addNewReminderFromCard" sender:self.tableView];
 }
 
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Add Reminder" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        self.selectedCard = [[self.sectionReminderMap objectForKey:[self tableView:nil titleForHeaderInSection:indexPath.section]] objectAtIndex:indexPath.row];
+        [self performSegueWithIdentifier:@"addNewReminderFromCard" sender:self];
+    }];
+    action.backgroundColor = [UIColor greenColor];
+    return @[action];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
 #pragma mark - 
 
 - (void)buildSectionReminderMap{

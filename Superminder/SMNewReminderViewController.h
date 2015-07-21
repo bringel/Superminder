@@ -20,4 +20,7 @@
 - (IBAction)switchValueChanged:(id)sender;
 - (IBAction)segmentedValueChanged:(id)sender;
 
+- (IBAction)cancelAdding:(id)sender;
+- (IBAction)saveNewReminder:(id)sender;
+
 @end

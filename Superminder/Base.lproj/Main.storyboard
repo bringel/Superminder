@@ -5,12 +5,12 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Reminders View Controller-->
+        <!--Cards-->
         <scene sceneID="5gj-fU-dsG">
             <objects>
                 <tableViewController id="FH0-ci-iQE" customClass="SMRemindersViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2eA-33-H0E">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -34,21 +34,21 @@
                             <outlet property="delegate" destination="FH0-ci-iQE" id="M7g-L3-oX6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="LnM-aV-eok"/>
+                    <navigationItem key="navigationItem" title="Cards" id="LnM-aV-eok"/>
                     <connections>
-                        <segue destination="5SB-Hn-j03" kind="push" identifier="addNewReminderFromCard" id="nOm-wP-5cj"/>
+                        <segue destination="AE1-n3-ngt" kind="modal" identifier="addNewReminderFromCard" id="nOm-wP-5cj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bhk-da-Yy9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="762" y="940"/>
         </scene>
-        <!--New Reminder View Controller-->
+        <!--New Reminder-->
         <scene sceneID="qJE-BR-Uqo">
             <objects>
                 <tableViewController id="5SB-Hn-j03" customClass="SMNewReminderViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="RIe-VV-yxz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -272,11 +272,22 @@
                             <outlet property="delegate" destination="5SB-Hn-j03" id="8wz-gZ-2rq"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="cJR-7e-MaO"/>
+                    <navigationItem key="navigationItem" title="New Reminder" id="cJR-7e-MaO">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ESS-Hr-iBa">
+                            <connections>
+                                <action selector="cancelAdding:" destination="5SB-Hn-j03" id="CCo-SK-Lrk"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="SsS-wr-7Wx">
+                            <connections>
+                                <action selector="saveNewReminder:" destination="5SB-Hn-j03" id="kgA-CV-7Qo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NCe-a9-4bz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1250" y="940"/>
+            <point key="canvasLocation" x="1782" y="940"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="s37-op-5Cm">
@@ -295,6 +306,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pQ-aC-5BX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="336" y="940.98666666666668"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9I2-3G-LIu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AE1-n3-ngt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gFg-8x-jjR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5SB-Hn-j03" kind="relationship" relationship="rootViewController" id="eOA-ZG-NVB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V6N-OA-teZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1250" y="940"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
