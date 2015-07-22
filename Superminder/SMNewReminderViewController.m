@@ -16,6 +16,8 @@
 
 @interface SMNewReminderViewController ()
 
+@property (strong, nonatomic) SMReminder *oldReminder;
+
 @property (strong, nonatomic) NSArray *formDetails;
 @property (nonatomic) BOOL editingReminderDate;
 @property (nonatomic) BOOL editingReminderTime;
@@ -38,12 +40,15 @@
                          ];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
+    self.oldReminder = [self.reminder copy]; //copy the reminder that was passed in so that we can set it back if the user hits cancel
+    
     if(self.reminder == nil){
         //there was no reminder linked to the card yet, create a new one now
         self.reminder = [[SMReminder alloc] init];
         self.reminder.trelloCardID = self.card.cardID;
         self.reminder.reminderDate = [NSDate date];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -310,11 +315,13 @@
 
 - (IBAction)cancelAdding:(id)sender{
     
+    self.card.linkedReminder = self.oldReminder;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)saveNewReminder:(id)sender{
-    
+    //TODO:Save the reminder to cloudkit!!
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Value Changed handling
