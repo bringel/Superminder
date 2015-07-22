@@ -29,6 +29,7 @@
 		2F9B87131AF45652006430D2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9B87121AF45652006430D2 /* CloudKit.framework */; };
 		2FA38C371AF1B16000237A1C /* Superminder-config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FA38C361AF1B16000237A1C /* Superminder-config.plist */; };
 		2FBE9E421AF43EE000405112 /* SMTrelloClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE9E411AF43EE000405112 /* SMTrelloClient.m */; };
+		2FCFD8521B5F383C00CCEC24 /* CKRecord+Superminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFD8511B5F383C00CCEC24 /* CKRecord+Superminder.m */; };
 		56A88CB0C3876197066449D1 /* libPods-Superminder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB73437A73B1B0F767DEEED /* libPods-Superminder.a */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,8 @@
 		2FA38C361AF1B16000237A1C /* Superminder-config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Superminder-config.plist"; sourceTree = SOURCE_ROOT; };
 		2FBE9E401AF43EE000405112 /* SMTrelloClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTrelloClient.h; sourceTree = "<group>"; };
 		2FBE9E411AF43EE000405112 /* SMTrelloClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTrelloClient.m; sourceTree = "<group>"; };
+		2FCFD8501B5F383C00CCEC24 /* CKRecord+Superminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKRecord+Superminder.h"; sourceTree = "<group>"; };
+		2FCFD8511B5F383C00CCEC24 /* CKRecord+Superminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKRecord+Superminder.m"; sourceTree = "<group>"; };
 		3FB73437A73B1B0F767DEEED /* libPods-Superminder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Superminder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8CFA0D78BAA686450FEF820 /* Pods-Superminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Superminder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Superminder/Pods-Superminder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +159,8 @@
 				2F32EA9A1AF58EF0003C5774 /* View Controllers */,
 				2F32EA9F1AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.h */,
 				2F32EAA01AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.m */,
+				2FCFD8501B5F383C00CCEC24 /* CKRecord+Superminder.h */,
+				2FCFD8511B5F383C00CCEC24 /* CKRecord+Superminder.m */,
 			);
 			path = Superminder;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 				2F2313A51B461FFB00CB8B36 /* SMReminder.m in Sources */,
 				2F32EAA41AFFDF0D003C5774 /* SMTrelloBoard.m in Sources */,
 				2F612F161B482A4500CD2292 /* SMDatePickerCell.m in Sources */,
+				2FCFD8521B5F383C00CCEC24 /* CKRecord+Superminder.m in Sources */,
 				2F612F101B482A1A00CD2292 /* SMNumberCell.m in Sources */,
 				2F612F1C1B482CA200CD2292 /* SMSwitchCell.m in Sources */,
 				2F612F191B482A5000CD2292 /* SMTimePickerCell.m in Sources */,
