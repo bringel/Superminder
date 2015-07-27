@@ -21,7 +21,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"SuperminderHasLaunched"];
     return YES;
 }
 
@@ -53,6 +52,13 @@
     if([fragmentPieces[0] isEqualToString:@"token"]){
         [Lockbox setString:fragmentPieces[1] forKey:kTrelloUserKey];
         [[SMTrelloClient sharedClient] setNeedsReauthentication:NO];
+        
+        UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+        UIViewController *topView = navController.topViewController;
+        if([topView.presentedViewController isKindOfClass:NSClassFromString(@"SFSafariViewController")]){
+            [topView dismissViewControllerAnimated:YES completion:nil];
+        }
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"SuperminderHasLaunched"];
     }
     return YES;
 }

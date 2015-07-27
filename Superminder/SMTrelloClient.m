@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Bradley Ringel. All rights reserved.
 //
 @import Foundation;
+@import SafariServices;
 #import "AppDelegate.h"
 #import "SMTrelloClient.h"
 #import "Lockbox.h"
@@ -59,7 +60,14 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
             [delegate showAuthenticationAlertWithCompletion:^{
                 NSString *key = self.apiKey;
                 NSString *trelloURL = [NSString stringWithFormat:@"https://trello.com/1/authorize?key=%@&name=Superminder&expiration=never&response_type=token&scope=read,write&callback_method=fragment&return_url=superminder://token", key];
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:trelloURL]];
+                if([SFSafariViewController class]){
+                    UINavigationController *baseNavigationController = (UINavigationController *)delegate.window.rootViewController;
+                    SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:trelloURL]];
+                    [baseNavigationController.topViewController presentViewController:safariViewController animated:YES completion:nil];
+                }
+                else{
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:trelloURL]];
+                }
             } client:self];
             return self;
         }
@@ -114,6 +122,7 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
             [self getCurrentUserInfo];
             return;
         }];
+        return;
     }
     
     NSURLRequest *urlRequest = [NSURLRequest buildRequestForPath:@"/1/members/me" withParameters:@{ @"key" : self.apiKey, @"token" : self.userToken} relativeToURL:self.trelloBaseURL usingMethod:@"GET"];
