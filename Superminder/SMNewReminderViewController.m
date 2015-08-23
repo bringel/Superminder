@@ -36,7 +36,6 @@
                          @[@{@"label" : @"Flexible Reminder", @"property" : @"reminder.flexibleReminder", @"cellIdentifier" : @"SMSwitchCell"},
                          @{@"label" : @"Reminder", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDualLabelCell"},
                          @{@"label" : @"Reminder Time", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDualLabelCell"}],
-                         @[@{@"label" : @"Recurring", @"property" : @"reminder.recurring", @"cellIdentifier" : @"SMSwitchCell"}]
                          ];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
@@ -154,18 +153,6 @@
                         datePickerCell.datePicker.date = [NSDate date];
                     }
                 }
-            default:
-                break;
-        }
-    }
-    else{
-        switch(indexPath.row){
-            //TODO: acutally implement the recurring rows and functionality.
-            case 0:
-                //recurring switch row
-                switchCell.label.text = rowInfo[@"label"];
-                switchCell.toggleSwitch.on = self.reminder.recurring;
-                break;
             default:
                 break;
         }
