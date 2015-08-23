@@ -54,7 +54,7 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
         
         self.userToken = [Lockbox stringForKey:kTrelloUserKey];
         BOOL hasLaunched = [[NSUserDefaults standardUserDefaults] boolForKey:@"SuperminderHasLaunched"];
-        if(!hasLaunched){
+        if(!hasLaunched || self.userToken == nil){
             self.needsReauthentication = YES;
             AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
             [delegate showAuthenticationAlertWithCompletion:^{

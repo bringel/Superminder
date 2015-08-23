@@ -13,6 +13,8 @@
 #import "SMSegmentedCell.h"
 #import "SMDatePickerCell.h"
 #import "SMTimePickerCell.h"
+#import "SMCloudKitClient.h"
+#import "CKRecord+Superminder.h"
 
 @interface SMNewReminderViewController ()
 
@@ -308,6 +310,9 @@
 
 - (IBAction)saveNewReminder:(id)sender{
     //TODO:Save the reminder to cloudkit!!
+    CKRecord *newReminder = [[CKRecord alloc] initWithReminder:self.reminder];
+    SMCloudKitClient *client = [[SMCloudKitClient alloc] init];
+    [client saveRecord:newReminder];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

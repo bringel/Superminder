@@ -13,6 +13,7 @@
 - (instancetype)initWithReminder:(SMReminder *)reminder{
     self = [self initWithRecordType:@"SMReminder"];
     if(self){
+        self[@"version"] = @1.0;
         self[@"trelloCardID"] = reminder.trelloCardID;
         self[@"reminderDate"] = reminder.reminderDate;
         self[@"completed"] = [NSNumber numberWithBool:reminder.completed];

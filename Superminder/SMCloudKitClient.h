@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+@import CloudKit;
 
 @interface SMCloudKitClient : NSObject
+
+- (void)saveRecord:(CKRecord *)record;
 
 @end
