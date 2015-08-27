@@ -10,14 +10,14 @@
 #import "SMReminder.h"
 #import "SMTrelloCard.h"
 
-@interface SMNewReminderViewController : UITableViewController
+@interface SMNewReminderViewController : UITableViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) SMReminder *reminder;
 @property (strong, nonatomic) SMTrelloCard *card;
 
 - (IBAction)datePickerValueChanged:(id)sender;
 - (IBAction)timePickerValueChanged:(id)sender;
-- (IBAction)switchValueChanged:(id)sender;
+- (IBAction)flexibleSwitchValueChanged:(id)sender;
 - (IBAction)segmentedValueChanged:(id)sender;
 
 - (IBAction)cancelAdding:(id)sender;

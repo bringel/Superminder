@@ -86,6 +86,8 @@
     SMDualLabelCell *dualCell;
     SMSwitchCell *switchCell;
     SMDatePickerCell *datePickerCell;
+    SMSegmentedCell *segmentedCell;
+    SMNumberCell *numberCell;
     if([identifier isEqualToString:@"SMDualLabelCell"]){
         dualCell = (SMDualLabelCell *)cell;
     }
@@ -94,6 +96,12 @@
     }
     else if([identifier isEqualToString:@"SMDatePickerCell"]){
         datePickerCell = (SMDatePickerCell *)cell;
+    }
+    else if([identifier isEqualToString:@"SMSegmentedCell"]){
+        segmentedCell = (SMSegmentedCell *)cell;
+    }
+    else if([identifier isEqualToString:@"SMNumberCell"]){
+        numberCell = (SMNumberCell *)cell;
     }
     if(indexPath.section == 0){
         switch(indexPath.row){
@@ -114,28 +122,39 @@
             case 0:
                 switchCell.label.text = rowInfo[@"label"];
                 switchCell.toggleSwitch.on = self.reminder.flexibleReminder;
+                [switchCell.toggleSwitch addTarget:self action:@selector(flexibleSwitchValueChanged:) forControlEvents:UIControlEventValueChanged];
                 break;
             case 1:
-                //reminder date row
-                dualCell.label.text = rowInfo[@"label"];
-                dualCell.valueLabel.text = [dateFormatter stringFromDate:self.reminder.reminderDate];
-                break;
-            case 2:
-                if(self.editingReminderDate){
-                    if(self.reminder.reminderDate != nil){
-                        datePickerCell.datePicker.date = self.reminder.reminderDate;
-                    }
-                    else if(self.card.dueDate != nil){
-                        datePickerCell.datePicker.date = self.card.dueDate;
-                    }
-                    else{
-                        datePickerCell.datePicker.date = [NSDate date];
-                    }
+                if(self.flexibleRemindersOn){
+                    numberCell.numberField.text = [NSString stringWithFormat:@"%d", self.reminder.flexibleValue];
                 }
                 else{
-                    //reminder time row
+                    //reminder date row
                     dualCell.label.text = rowInfo[@"label"];
-                    dualCell.valueLabel.text = [timeFormatter stringFromDate:self.reminder.reminderDate];
+                    dualCell.valueLabel.text = [dateFormatter stringFromDate:self.reminder.reminderDate];
+                }
+                break;
+            case 2:
+                if(self.flexibleRemindersOn){
+                    segmentedCell.options.selectedSegmentIndex = self.reminder.flexibleUnit;
+                }
+                else{
+                    if(self.editingReminderDate){
+                        if(self.reminder.reminderDate != nil){
+                            datePickerCell.datePicker.date = self.reminder.reminderDate;
+                        }
+                        else if(self.card.dueDate != nil){
+                            datePickerCell.datePicker.date = self.card.dueDate;
+                        }
+                        else{
+                            datePickerCell.datePicker.date = [NSDate date];
+                        }
+                    }
+                    else{
+                        //reminder time row
+                        dualCell.label.text = rowInfo[@"label"];
+                        dualCell.valueLabel.text = [timeFormatter stringFromDate:self.reminder.reminderDate];
+                    }
                 }
                 break;
             case 3:
@@ -239,6 +258,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
+    if(self.flexibleRemindersOn){
+        return; //don't need to do anything if users are ddoing flexible reminders
+    }
+    
     if(indexPath.section == 1 && indexPath.row == 1){
         if(!self.editingReminderDate){
             [self collapseTimePickerInTableView:tableView];
@@ -309,7 +332,9 @@
 }
 
 - (IBAction)saveNewReminder:(id)sender{
-    //TODO:Save the reminder to cloudkit!!
+    
+    [self.view endEditing:NO];
+    
     CKRecord *newReminder = [[CKRecord alloc] initWithReminder:self.reminder];
     SMCloudKitClient *client = [[SMCloudKitClient alloc] init];
     [client saveRecord:newReminder];
@@ -349,9 +374,48 @@
     }
 }
 
-- (IBAction)switchValueChanged:(id)sender {
+- (IBAction)flexibleSwitchValueChanged:(id)sender {
+    UISwitch *toggleSwitch = (UISwitch *)sender;
+    self.flexibleRemindersOn = toggleSwitch.on;
+    self.reminder.flexibleReminder = toggleSwitch.on;
+    
+    
+    if(toggleSwitch.on){
+        //swap in flexible reminder rows
+        NSMutableArray *mutableDetails = [self.formDetails mutableCopy];
+        NSMutableArray *mutableSection = [mutableDetails[1] mutableCopy];
+        [mutableSection removeObjectsInRange:NSMakeRange(mutableDetails.count - 2, 2)];
+        [mutableSection addObjectsFromArray:@[
+                                              @{@"label" : @"", @"property" : @"reminder.flexibleValue", @"cellIdentifier" : @"SMNumberCell"},
+                                              @{@"label" : @"", @"property" : @"reminder.flexibleUnit", @"cellIdentifier" : @"SMSegmentedCell"}]];
+        mutableDetails[1] = [mutableSection copy];
+        self.formDetails = [mutableDetails copy];
+        
+        [self.tableView beginUpdates];
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1], [NSIndexPath indexPathForRow:2 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1], [NSIndexPath indexPathForRow:2 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView endUpdates];
+    }
+    else{
+        //swap in regular reminder rows
+    }
 }
 
 - (IBAction)segmentedValueChanged:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
+    
+    self.reminder.flexibleUnit = (SMFlexibleUnit)segmentedControl.selectedSegmentIndex;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(nonnull UITextField *)textField{
+    if(textField.text.intValue == 0){
+        textField.text = @"";
+    }
+}
+
+- (void)textFieldDidEndEditing:(nonnull UITextField *)textField{
+    self.reminder.flexibleValue = textField.text.intValue;
 }
 @end
