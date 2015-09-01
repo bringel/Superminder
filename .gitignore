@@ -28,3 +28,7 @@ Pods/
 Superminder-config.plist
 
 *.entitlements
+
+*.mobileprovision
+
+fastlane/ #ignore the fastlane configs, comment this out if they should be committed
