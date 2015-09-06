@@ -1,5 +1,5 @@
 //
-//  SMSegmentedCell.h
+//  BRTimePickerCell.h
 //  Superminder
 //
 //  Created by Bradley Ringel on 7/4/15.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMSegmentedCell : UITableViewCell
+@interface BRTimePickerCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *options;
+@property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
 
 @end

@@ -12,6 +12,7 @@
 		2F080FB11AF060C5008EAB4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F080FAF1AF060C5008EAB4B /* Main.storyboard */; };
 		2F080FB31AF060C5008EAB4B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F080FB21AF060C5008EAB4B /* Images.xcassets */; };
 		2F080FC21AF060C5008EAB4B /* SuperminderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F080FC11AF060C5008EAB4B /* SuperminderTests.m */; };
+		2F110C701B9C8343005F1686 /* BRTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F110C6F1B9C8343005F1686 /* BRTextCell.m */; };
 		2F2313A21B46136F00CB8B36 /* SMNewReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2313A11B46136F00CB8B36 /* SMNewReminderViewController.m */; };
 		2F2313A51B461FFB00CB8B36 /* SMReminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2313A41B461FFB00CB8B36 /* SMReminder.m */; };
 		2F32EA991AF531E9003C5774 /* SMRemindersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EA981AF531E9003C5774 /* SMRemindersViewController.m */; };
@@ -20,12 +21,12 @@
 		2F32EAA41AFFDF0D003C5774 /* SMTrelloBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EAA31AFFDF0D003C5774 /* SMTrelloBoard.m */; };
 		2F32EAA71AFFDF19003C5774 /* SMTrelloList.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EAA61AFFDF19003C5774 /* SMTrelloList.m */; };
 		2F32EAAA1AFFDF20003C5774 /* SMTrelloCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F32EAA91AFFDF20003C5774 /* SMTrelloCard.m */; };
-		2F612F101B482A1A00CD2292 /* SMNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F0F1B482A1A00CD2292 /* SMNumberCell.m */; };
-		2F612F131B482A3200CD2292 /* SMDualLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F121B482A3200CD2292 /* SMDualLabelCell.m */; };
-		2F612F161B482A4500CD2292 /* SMDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F151B482A4500CD2292 /* SMDatePickerCell.m */; };
-		2F612F191B482A5000CD2292 /* SMTimePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F181B482A5000CD2292 /* SMTimePickerCell.m */; };
-		2F612F1C1B482CA200CD2292 /* SMSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F1B1B482CA200CD2292 /* SMSwitchCell.m */; };
-		2F612F1F1B482CAB00CD2292 /* SMSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F1E1B482CAB00CD2292 /* SMSegmentedCell.m */; };
+		2F612F101B482A1A00CD2292 /* BRNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F0F1B482A1A00CD2292 /* BRNumberCell.m */; };
+		2F612F131B482A3200CD2292 /* BRDualLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F121B482A3200CD2292 /* BRDualLabelCell.m */; };
+		2F612F161B482A4500CD2292 /* BRDatePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F151B482A4500CD2292 /* BRDatePickerCell.m */; };
+		2F612F191B482A5000CD2292 /* BRTimePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F181B482A5000CD2292 /* BRTimePickerCell.m */; };
+		2F612F1C1B482CA200CD2292 /* BRSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F1B1B482CA200CD2292 /* BRSwitchCell.m */; };
+		2F612F1F1B482CAB00CD2292 /* BRSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F1E1B482CAB00CD2292 /* BRSegmentedCell.m */; };
 		2F9B87131AF45652006430D2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9B87121AF45652006430D2 /* CloudKit.framework */; };
 		2FA38C371AF1B16000237A1C /* Superminder-config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FA38C361AF1B16000237A1C /* Superminder-config.plist */; };
 		2FBE9E421AF43EE000405112 /* SMTrelloClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE9E411AF43EE000405112 /* SMTrelloClient.m */; };
@@ -57,6 +58,8 @@
 		2F080FBB1AF060C5008EAB4B /* SuperminderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperminderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F080FC01AF060C5008EAB4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F080FC11AF060C5008EAB4B /* SuperminderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperminderTests.m; sourceTree = "<group>"; };
+		2F110C6E1B9C8343005F1686 /* BRTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTextCell.h; sourceTree = "<group>"; };
+		2F110C6F1B9C8343005F1686 /* BRTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRTextCell.m; sourceTree = "<group>"; };
 		2F2313A01B46136F00CB8B36 /* SMNewReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNewReminderViewController.h; sourceTree = "<group>"; };
 		2F2313A11B46136F00CB8B36 /* SMNewReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNewReminderViewController.m; sourceTree = "<group>"; };
 		2F2313A31B461FFB00CB8B36 /* SMReminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMReminder.h; sourceTree = "<group>"; };
@@ -73,18 +76,18 @@
 		2F32EAA61AFFDF19003C5774 /* SMTrelloList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTrelloList.m; sourceTree = "<group>"; };
 		2F32EAA81AFFDF20003C5774 /* SMTrelloCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTrelloCard.h; sourceTree = "<group>"; };
 		2F32EAA91AFFDF20003C5774 /* SMTrelloCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTrelloCard.m; sourceTree = "<group>"; };
-		2F612F0E1B482A1A00CD2292 /* SMNumberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNumberCell.h; sourceTree = "<group>"; };
-		2F612F0F1B482A1A00CD2292 /* SMNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNumberCell.m; sourceTree = "<group>"; };
-		2F612F111B482A3200CD2292 /* SMDualLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDualLabelCell.h; sourceTree = "<group>"; };
-		2F612F121B482A3200CD2292 /* SMDualLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDualLabelCell.m; sourceTree = "<group>"; };
-		2F612F141B482A4500CD2292 /* SMDatePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDatePickerCell.h; sourceTree = "<group>"; };
-		2F612F151B482A4500CD2292 /* SMDatePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDatePickerCell.m; sourceTree = "<group>"; };
-		2F612F171B482A5000CD2292 /* SMTimePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTimePickerCell.h; sourceTree = "<group>"; };
-		2F612F181B482A5000CD2292 /* SMTimePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTimePickerCell.m; sourceTree = "<group>"; };
-		2F612F1A1B482CA200CD2292 /* SMSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSwitchCell.h; sourceTree = "<group>"; };
-		2F612F1B1B482CA200CD2292 /* SMSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSwitchCell.m; sourceTree = "<group>"; };
-		2F612F1D1B482CAB00CD2292 /* SMSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSegmentedCell.h; sourceTree = "<group>"; };
-		2F612F1E1B482CAB00CD2292 /* SMSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSegmentedCell.m; sourceTree = "<group>"; };
+		2F612F0E1B482A1A00CD2292 /* BRNumberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRNumberCell.h; sourceTree = "<group>"; };
+		2F612F0F1B482A1A00CD2292 /* BRNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRNumberCell.m; sourceTree = "<group>"; };
+		2F612F111B482A3200CD2292 /* BRDualLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRDualLabelCell.h; sourceTree = "<group>"; };
+		2F612F121B482A3200CD2292 /* BRDualLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRDualLabelCell.m; sourceTree = "<group>"; };
+		2F612F141B482A4500CD2292 /* BRDatePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRDatePickerCell.h; sourceTree = "<group>"; };
+		2F612F151B482A4500CD2292 /* BRDatePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRDatePickerCell.m; sourceTree = "<group>"; };
+		2F612F171B482A5000CD2292 /* BRTimePickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRTimePickerCell.h; sourceTree = "<group>"; };
+		2F612F181B482A5000CD2292 /* BRTimePickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRTimePickerCell.m; sourceTree = "<group>"; };
+		2F612F1A1B482CA200CD2292 /* BRSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSwitchCell.h; sourceTree = "<group>"; };
+		2F612F1B1B482CA200CD2292 /* BRSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSwitchCell.m; sourceTree = "<group>"; };
+		2F612F1D1B482CAB00CD2292 /* BRSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSegmentedCell.h; sourceTree = "<group>"; };
+		2F612F1E1B482CAB00CD2292 /* BRSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSegmentedCell.m; sourceTree = "<group>"; };
 		2F9B87111AF45648006430D2 /* Superminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Superminder.entitlements; sourceTree = "<group>"; };
 		2F9B87121AF45652006430D2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2FA38C361AF1B16000237A1C /* Superminder-config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Superminder-config.plist"; sourceTree = SOURCE_ROOT; };
@@ -203,18 +206,20 @@
 		2F2929591B06E56B006423C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2F612F141B482A4500CD2292 /* SMDatePickerCell.h */,
-				2F612F151B482A4500CD2292 /* SMDatePickerCell.m */,
-				2F612F171B482A5000CD2292 /* SMTimePickerCell.h */,
-				2F612F181B482A5000CD2292 /* SMTimePickerCell.m */,
-				2F612F111B482A3200CD2292 /* SMDualLabelCell.h */,
-				2F612F121B482A3200CD2292 /* SMDualLabelCell.m */,
-				2F612F0E1B482A1A00CD2292 /* SMNumberCell.h */,
-				2F612F0F1B482A1A00CD2292 /* SMNumberCell.m */,
-				2F612F1A1B482CA200CD2292 /* SMSwitchCell.h */,
-				2F612F1B1B482CA200CD2292 /* SMSwitchCell.m */,
-				2F612F1D1B482CAB00CD2292 /* SMSegmentedCell.h */,
-				2F612F1E1B482CAB00CD2292 /* SMSegmentedCell.m */,
+				2F612F141B482A4500CD2292 /* BRDatePickerCell.h */,
+				2F612F151B482A4500CD2292 /* BRDatePickerCell.m */,
+				2F612F171B482A5000CD2292 /* BRTimePickerCell.h */,
+				2F612F181B482A5000CD2292 /* BRTimePickerCell.m */,
+				2F612F111B482A3200CD2292 /* BRDualLabelCell.h */,
+				2F612F121B482A3200CD2292 /* BRDualLabelCell.m */,
+				2F612F0E1B482A1A00CD2292 /* BRNumberCell.h */,
+				2F612F0F1B482A1A00CD2292 /* BRNumberCell.m */,
+				2F612F1A1B482CA200CD2292 /* BRSwitchCell.h */,
+				2F612F1B1B482CA200CD2292 /* BRSwitchCell.m */,
+				2F612F1D1B482CAB00CD2292 /* BRSegmentedCell.h */,
+				2F612F1E1B482CAB00CD2292 /* BRSegmentedCell.m */,
+				2F110C6E1B9C8343005F1686 /* BRTextCell.h */,
+				2F110C6F1B9C8343005F1686 /* BRTextCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -403,20 +408,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F32EAA11AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.m in Sources */,
-				2F612F131B482A3200CD2292 /* SMDualLabelCell.m in Sources */,
+				2F612F131B482A3200CD2292 /* BRDualLabelCell.m in Sources */,
 				2F32EAAA1AFFDF20003C5774 /* SMTrelloCard.m in Sources */,
 				2FCFD8551B5F3C9900CCEC24 /* SMCloudKitClient.m in Sources */,
 				2FEF3CDE1B9C7AE0003F0AB4 /* BRFormViewController.m in Sources */,
 				2F080FAB1AF060C5008EAB4B /* AppDelegate.m in Sources */,
 				2F080FA81AF060C5008EAB4B /* main.m in Sources */,
+				2F110C701B9C8343005F1686 /* BRTextCell.m in Sources */,
 				2F2313A51B461FFB00CB8B36 /* SMReminder.m in Sources */,
 				2F32EAA41AFFDF0D003C5774 /* SMTrelloBoard.m in Sources */,
-				2F612F161B482A4500CD2292 /* SMDatePickerCell.m in Sources */,
+				2F612F161B482A4500CD2292 /* BRDatePickerCell.m in Sources */,
 				2FCFD8521B5F383C00CCEC24 /* CKRecord+Superminder.m in Sources */,
-				2F612F101B482A1A00CD2292 /* SMNumberCell.m in Sources */,
-				2F612F1C1B482CA200CD2292 /* SMSwitchCell.m in Sources */,
-				2F612F191B482A5000CD2292 /* SMTimePickerCell.m in Sources */,
-				2F612F1F1B482CAB00CD2292 /* SMSegmentedCell.m in Sources */,
+				2F612F101B482A1A00CD2292 /* BRNumberCell.m in Sources */,
+				2F612F1C1B482CA200CD2292 /* BRSwitchCell.m in Sources */,
+				2F612F191B482A5000CD2292 /* BRTimePickerCell.m in Sources */,
+				2F612F1F1B482CAB00CD2292 /* BRSegmentedCell.m in Sources */,
 				2F32EAA71AFFDF19003C5774 /* SMTrelloList.m in Sources */,
 				2F2313A21B46136F00CB8B36 /* SMNewReminderViewController.m in Sources */,
 				2FBE9E421AF43EE000405112 /* SMTrelloClient.m in Sources */,

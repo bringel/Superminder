@@ -1,14 +1,14 @@
 //
-//  SMSegmentedCell.m
+//  BRNumberCell.m
 //  Superminder
 //
 //  Created by Bradley Ringel on 7/4/15.
 //  Copyright (c) 2015 Bradley Ringel. All rights reserved.
 //
 
-#import "SMSegmentedCell.h"
+#import "BRNumberCell.h"
 
-@implementation SMSegmentedCell
+@implementation BRNumberCell
 
 - (void)awakeFromNib {
     // Initialization code

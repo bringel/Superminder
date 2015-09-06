@@ -7,12 +7,12 @@
 //
 
 #import "SMNewReminderViewController.h"
-#import "SMDualLabelCell.h"
-#import "SMSwitchCell.h"
-#import "SMNumberCell.h"
-#import "SMSegmentedCell.h"
-#import "SMDatePickerCell.h"
-#import "SMTimePickerCell.h"
+#import "BRDualLabelCell.h"
+#import "BRSwitchCell.h"
+#import "BRNumberCell.h"
+#import "BRSegmentedCell.h"
+#import "BRDatePickerCell.h"
+#import "BRTimePickerCell.h"
 #import "SMCloudKitClient.h"
 #import "CKRecord+Superminder.h"
 
@@ -84,25 +84,25 @@
     timeFormatter.timeStyle = NSDateFormatterShortStyle;
     timeFormatter.dateStyle = NSDateFormatterNoStyle;
 
-    SMDualLabelCell *dualCell;
-    SMSwitchCell *switchCell;
-    SMDatePickerCell *datePickerCell;
-    SMSegmentedCell *segmentedCell;
-    SMNumberCell *numberCell;
+    BRDualLabelCell *dualCell;
+    BRSwitchCell *switchCell;
+    BRDatePickerCell *datePickerCell;
+    BRSegmentedCell *segmentedCell;
+    BRNumberCell *numberCell;
     if([identifier isEqualToString:@"SMDualLabelCell"]){
-        dualCell = (SMDualLabelCell *)cell;
+        dualCell = (BRDualLabelCell *)cell;
     }
     else if([identifier isEqualToString:@"SMSwitchCell"]){
-        switchCell = (SMSwitchCell *)cell;
+        switchCell = (BRSwitchCell *)cell;
     }
     else if([identifier isEqualToString:@"SMDatePickerCell"]){
-        datePickerCell = (SMDatePickerCell *)cell;
+        datePickerCell = (BRDatePickerCell *)cell;
     }
     else if([identifier isEqualToString:@"SMSegmentedCell"]){
-        segmentedCell = (SMSegmentedCell *)cell;
+        segmentedCell = (BRSegmentedCell *)cell;
     }
     else if([identifier isEqualToString:@"SMNumberCell"]){
-        numberCell = (SMNumberCell *)cell;
+        numberCell = (BRNumberCell *)cell;
     }
     if(indexPath.section == 0){
         switch(indexPath.row){

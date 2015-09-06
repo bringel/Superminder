@@ -1,14 +1,14 @@
 //
-//  SMNumberCell.m
+//  BRTextCell.m
 //  Superminder
 //
-//  Created by Bradley Ringel on 7/4/15.
-//  Copyright (c) 2015 Bradley Ringel. All rights reserved.
+//  Created by Bradley Ringel on 9/6/15.
+//  Copyright © 2015 Bradley Ringel. All rights reserved.
 //
 
-#import "SMNumberCell.h"
+#import "BRTextCell.h"
 
-@implementation SMNumberCell
+@implementation BRTextCell
 
 - (void)awakeFromNib {
     // Initialization code

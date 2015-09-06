@@ -8,6 +8,15 @@
 
 #import "BRFormViewController.h"
 
+static NSString * const basicCellIdentifier = @"BRBasicCell";
+static NSString * const textCellIdentifier = @"BRTextCell";
+static NSString * const dualLabelCellIdentifier = @"BRDualLabelCell";
+static NSString * const numberCellIdentifier = @"BRNumberCell";
+static NSString * const segmentedCellIdentifier = @"BRSegmentedCell";
+static NSString * const switchCellIdentifier = @"BRSwitchCell";
+static NSString * const dateCellIdentifier = @"BRDatePickerCell";
+static NSString * const timeCellIdentifier = @"BRTimePickerCell";
+
 @interface BRFormViewController ()
 
 @end
@@ -57,15 +66,21 @@
     }
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
+    UITableViewCell *cell;
+    NSDictionary *rowData;
+    if([self.formData[indexPath.section] isKindOfClass:[NSDictionary class]]){
+        rowData = self.formData[indexPath.row];
+    }
+    else{
+        rowData = self.formData[indexPath.section][indexPath.row];
+    }
     // Configure the cell...
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

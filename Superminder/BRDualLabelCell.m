@@ -1,14 +1,14 @@
 //
-//  SMDatePickerCell.m
+//  BRDualLabelCell.m
 //  Superminder
 //
 //  Created by Bradley Ringel on 7/4/15.
 //  Copyright (c) 2015 Bradley Ringel. All rights reserved.
 //
 
-#import "SMDatePickerCell.h"
+#import "BRDualLabelCell.h"
 
-@implementation SMDatePickerCell
+@implementation BRDualLabelCell
 
 - (void)awakeFromNib {
     // Initialization code

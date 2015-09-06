@@ -1,5 +1,5 @@
 //
-//  SMDatePickerCell.h
+//  BRDatePickerCell.h
 //  Superminder
 //
 //  Created by Bradley Ringel on 7/4/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMDatePickerCell : UITableViewCell
+@interface BRDatePickerCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 

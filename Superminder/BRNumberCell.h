@@ -1,5 +1,5 @@
 //
-//  SMDualLabelCell.h
+//  BRNumberCell.h
 //  Superminder
 //
 //  Created by Bradley Ringel on 7/4/15.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SMDualLabelCell : UITableViewCell
+@interface BRNumberCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
-@property (weak, nonatomic) IBOutlet UILabel *valueLabel;
+@property (weak, nonatomic) IBOutlet UITextField *numberField;
+
 @end

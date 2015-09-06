@@ -56,7 +56,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMBasicCell" textLabel="2sS-8F-A51" style="IBUITableViewCellStyleDefault" id="M9d-X3-k4n">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BRBasicCell" textLabel="2sS-8F-A51" style="IBUITableViewCellStyleDefault" id="M9d-X3-k4n">
                                 <rect key="frame" x="0.0" y="49.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M9d-X3-k4n" id="yIl-QL-TNv">
@@ -73,7 +73,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMNumberCell" id="ZUL-7T-lSy" customClass="SMNumberCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BRNumberCell" id="ZUL-7T-lSy" customClass="BRNumberCell">
                                 <rect key="frame" x="0.0" y="93.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZUL-7T-lSy" id="jkr-FO-eSc">
@@ -117,8 +117,52 @@
                                     <outlet property="numberField" destination="PVD-El-tfX" id="XM1-SX-XIX"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMDualLabelCell" id="7wg-p4-pkH" customClass="SMDualLabelCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BRTextCell" id="dlL-Ua-3L8" customClass="BRTextCell">
                                 <rect key="frame" x="0.0" y="137.5" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dlL-Ua-3L8" id="GD6-1n-9TI">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yg-rg-tzj">
+                                            <rect key="frame" x="15" y="0.0" width="40" height="43.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="MSG-YP-L4K"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rcn-Ie-APe">
+                                            <rect key="frame" x="63" y="0.0" width="249" height="43.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="2Nc-gx-vux"/>
+                                            </constraints>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="5SB-Hn-j03" id="SPF-Qy-Jty"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="rcn-Ie-APe" firstAttribute="top" secondItem="GD6-1n-9TI" secondAttribute="top" id="Cwh-nf-AWQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="rcn-Ie-APe" secondAttribute="bottom" id="Umo-jl-lK6"/>
+                                        <constraint firstItem="rcn-Ie-APe" firstAttribute="trailing" secondItem="GD6-1n-9TI" secondAttribute="trailingMargin" id="Uy7-4c-SYU"/>
+                                        <constraint firstItem="2yg-rg-tzj" firstAttribute="top" secondItem="GD6-1n-9TI" secondAttribute="top" id="akB-D4-dMp"/>
+                                        <constraint firstItem="rcn-Ie-APe" firstAttribute="leading" secondItem="2yg-rg-tzj" secondAttribute="trailing" constant="8" id="bcq-Aj-72O"/>
+                                        <constraint firstItem="2yg-rg-tzj" firstAttribute="leading" secondItem="GD6-1n-9TI" secondAttribute="leading" constant="15" id="kis-b4-nrs"/>
+                                        <constraint firstAttribute="bottom" secondItem="2yg-rg-tzj" secondAttribute="bottom" id="rn5-Yw-dsg"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="2yg-rg-tzj" id="Ozb-W4-edB"/>
+                                    <outlet property="textField" destination="rcn-Ie-APe" id="omB-8k-S0T"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BRDualLabelCell" id="7wg-p4-pkH" customClass="BRDualLabelCell">
+                                <rect key="frame" x="0.0" y="181.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7wg-p4-pkH" id="1y7-IE-djO">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -157,8 +201,8 @@
                                     <outlet property="valueLabel" destination="bn1-Kv-yu8" id="rvZ-c1-Kxg"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="700" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMSegmentedCell" id="x99-uq-eUu" customClass="SMSegmentedCell">
-                                <rect key="frame" x="0.0" y="181.5" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="700" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BRSegmentedCell" id="x99-uq-eUu" customClass="BRSegmentedCell">
+                                <rect key="frame" x="0.0" y="225.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x99-uq-eUu" id="G1g-1g-05G">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -185,8 +229,8 @@
                                     <outlet property="options" destination="48d-kB-aFN" id="nsA-QD-uFM"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="700" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMSwitchCell" id="NeO-de-mos" customClass="SMSwitchCell">
-                                <rect key="frame" x="0.0" y="225.5" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="700" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BRSwitchCell" id="NeO-de-mos" customClass="BRSwitchCell">
+                                <rect key="frame" x="0.0" y="269.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NeO-de-mos" id="SQ4-hD-J5M">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -221,8 +265,8 @@
                                     <outlet property="toggleSwitch" destination="Fo7-fp-cEJ" id="fwd-lr-eXy"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="700" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="162" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMDatePickerCell" rowHeight="162" id="cJT-9q-l24" customClass="SMDatePickerCell">
-                                <rect key="frame" x="0.0" y="269.5" width="320" height="162"/>
+                            <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="700" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="162" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BRDatePickerCell" rowHeight="162" id="cJT-9q-l24" customClass="BRDatePickerCell">
+                                <rect key="frame" x="0.0" y="313.5" width="320" height="162"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cJT-9q-l24" id="gpC-oK-TtX">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="161.5"/>
@@ -249,8 +293,8 @@
                                     <outlet property="datePicker" destination="p8p-0o-aFF" id="xE5-xf-PNk"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="700" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="162" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SMTimePickerCell" rowHeight="162" id="6Xl-1f-WMK" customClass="SMTimePickerCell">
-                                <rect key="frame" x="0.0" y="431.5" width="320" height="162"/>
+                            <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="700" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="162" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BRTimePickerCell" rowHeight="162" id="6Xl-1f-WMK" customClass="BRTimePickerCell">
+                                <rect key="frame" x="0.0" y="475.5" width="320" height="162"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Xl-1f-WMK" id="8yU-m9-FGn">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="161.5"/>
