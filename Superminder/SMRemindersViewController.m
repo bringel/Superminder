@@ -175,7 +175,6 @@ static NSString * const reuseIdentifier = @"Cell";
         self.selectedCard = [[self.sectionReminderMap objectForKey:[self tableView:nil titleForHeaderInSection:indexPath.section]] objectAtIndex:indexPath.row];
         [self performSegueWithIdentifier:@"addNewReminderFromCard" sender:self];
     }];
-    action.backgroundColor = [UIColor greenColor];
     return @[action];
 }
 

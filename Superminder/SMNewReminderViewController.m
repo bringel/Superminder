@@ -16,6 +16,7 @@
 #import "SMCloudKitClient.h"
 #import "CKRecord+Superminder.h"
 
+
 @interface SMNewReminderViewController ()
 
 @property (strong, nonatomic) SMReminder *oldReminder;
@@ -259,7 +260,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     if(self.flexibleRemindersOn){
-        return; //don't need to do anything if users are ddoing flexible reminders
+        return; //don't need to do anything if users are doing flexible reminders
     }
     
     if(indexPath.section == 1 && indexPath.row == 1){

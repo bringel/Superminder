@@ -2,9 +2,9 @@
 # platform :ios, '6.0'
 
 target 'Superminder' do
-  pod '1PasswordExtension', '~> 1.2'
   pod 'Lockbox', '~> 2.1'
   pod 'SVProgressHUD', '~> 1.1'
+  #pod 'FCUtilities', :git => 'https://github.com/marcoarment/FCUtilities.git' 
 end
 
 target 'SuperminderTests' do
