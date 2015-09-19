@@ -550,7 +550,7 @@
 				CODE_SIGN_ENTITLEMENTS = Superminder/Superminder.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bradley Ringel (2WB8P2K6SQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bradley Ringel (2WB8P2K6SQ)";
-				CURRENT_PROJECT_VERSION = "";
+				CURRENT_PROJECT_VERSION = a75efd9;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = Superminder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -570,7 +570,7 @@
 				CODE_SIGN_ENTITLEMENTS = Superminder/Superminder.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bradley Ringel (HK7854N4SL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bradley Ringel (HK7854N4SL)";
-				CURRENT_PROJECT_VERSION = "";
+				CURRENT_PROJECT_VERSION = a75efd9;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = Superminder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
