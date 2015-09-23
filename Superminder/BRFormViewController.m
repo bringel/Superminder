@@ -28,6 +28,9 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
 
 @property (strong, nonatomic) NSMutableArray *datePickerRows; //store rows that should expand a date picker cell when selected. Objects should be NSIndexPaths
 @property (strong, nonatomic) NSMutableArray *timePickerRows; //store rows that should expand a time picker cell when selected. Objects should be NSIndexPaths
+@property (strong, nonatomic) NSNumberFormatter *numberFormatter;
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
+@property (strong, nonatomic) NSDateFormatter *timeFormatter;
 
 @end
 
@@ -53,6 +56,24 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
         _formData = [[NSArray alloc] init];
     }
     return _formData;
+}
+
+- (NSDateFormatter *)dateFormatter{
+    if(_dateFormatter == nil){
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        _dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+        _dateFormatter.timeStyle = NSDateFormatterNoStyle;
+    }
+    return _dateFormatter;
+}
+
+- (NSDateFormatter *)timeFormatter{
+    if(_timeFormatter == nil){
+        _timeFormatter = [[NSDateFormatter alloc] init];
+        _timeFormatter.dateStyle = NSDateFormatterNoStyle;
+        _timeFormatter.timeStyle = NSDateFormatterShortStyle;
+    }
+    return _timeFormatter;
 }
 
 #pragma mark - Table view data source
@@ -96,6 +117,7 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
     BRFormCellType type = [[rowData objectForKey:@"cellType"] integerValue];
     id propertyVal = [self valueForKey:rowData[@"property"]];
     NSString *labelText = rowData[@"label"];
+    NSArray *segments;
     switch(type){
         case BRFormCellTypeBasic:
             cell = [tableView dequeueReusableCellWithIdentifier:basicCellIdentifier forIndexPath:indexPath];
@@ -105,24 +127,64 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
             break;
         case BRFormCellTypeText:
             textCell = [tableView dequeueReusableCellWithIdentifier:textCellIdentifier forIndexPath:indexPath];
+            cell = textCell;
             break;
         case BRFormCellTypeDualLabel:
             dualLabelCell = [tableView dequeueReusableCellWithIdentifier:dualLabelCellIdentifier forIndexPath:indexPath];
+            if([propertyVal isKindOfClass:[NSString class]]){
+                dualLabelCell.valueLabel.text = (NSString *)propertyVal;
+                dualLabelCell.label.text = labelText;
+             }
+            cell = dualLabelCell;
             break;
         case BRFormCellTypeNumber:
             numberCell = [tableView dequeueReusableCellWithIdentifier:numberCellIdentifier forIndexPath:indexPath];
+            if([propertyVal isKindOfClass:[NSNumber class]]){
+                numberCell.numberField.text = [NSString stringWithFormat:@"%d",((NSNumber *)propertyVal).intValue]; //maybe want to use NSNumberFormatter at some point
+            }
+            numberCell.label.text = labelText;
+            cell = numberCell;
             break;
         case BRFormCellTypeSegmented:
             segmentedCell = [tableView dequeueReusableCellWithIdentifier:segmentedCellIdentifier forIndexPath:indexPath];
+            segments = rowData[@"segments"];
+            for(int i = 0; i < segments.count; i++){
+                [segmentedCell.options insertSegmentWithTitle:segments[i] atIndex:i animated:NO];
+            }
+            if((NSInteger)propertyVal < segments.count){
+                segmentedCell.options.selectedSegmentIndex = (NSInteger)propertyVal;
+            }
+            cell = segmentedCell;
             break;
         case BRFormCellTypeSwitch:
             switchCell = [tableView dequeueReusableCellWithIdentifier:switchCellIdentifier forIndexPath:indexPath];
+            switchCell.toggleSwitch.on = (BOOL)propertyVal;
+            switchCell.label.text = labelText;
+            cell = switchCell;
             break;
         case BRFormCellTypeDate:
             dualLabelCell = [tableView dequeueReusableCellWithIdentifier:dualLabelCellIdentifier forIndexPath:indexPath]; //use a dual label cell since the date picker is not shown until the user taps on the row
+            if([propertyVal isKindOfClass:[NSDate class]]){
+                NSDate *date = (NSDate *)propertyVal;
+                if(date == nil){
+                    date = [NSDate date];
+                }
+                dualLabelCell.valueLabel.text = [self.dateFormatter stringFromDate:date];
+                dualLabelCell.label.text = labelText;
+            }
+            cell = dualLabelCell;
             break;
         case BRFormCellTypeTime:
             dualLabelCell = [tableView dequeueReusableCellWithIdentifier:dualLabelCellIdentifier forIndexPath:indexPath]; //use a dual label cell since the time picker is not shown until the user taps on the row
+            if([propertyVal isKindOfClass:[NSDate class]]){
+                NSDate *time = (NSDate *)propertyVal;
+                if(time == nil){
+                    time = [NSDate date];
+                }
+                dualLabelCell.valueLabel.text = [self.timeFormatter stringFromDate:time];
+                dualLabelCell.label.text = labelText;
+            }
+            cell = dualLabelCell;
             break;
         default:
             break;

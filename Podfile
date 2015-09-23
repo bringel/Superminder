@@ -5,6 +5,7 @@ target 'Superminder' do
   pod 'Lockbox', '~> 2.1'
   pod 'SVProgressHUD', '~> 1.1'
   #pod 'FCUtilities', :git => 'https://github.com/marcoarment/FCUtilities.git' 
+  pod 'DZNEmptyDataSet', '~> 1.7'
 end
 
 target 'SuperminderTests' do
