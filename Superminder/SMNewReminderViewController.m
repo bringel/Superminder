@@ -21,7 +21,6 @@
 
 @property (strong, nonatomic) SMReminder *oldReminder;
 
-@property (strong, nonatomic) NSArray *formDetails;
 @property (nonatomic) BOOL editingReminderDate;
 @property (nonatomic) BOOL editingReminderTime;
 @property (nonatomic) BOOL editingEndRecurrenceDate;
@@ -34,11 +33,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.formDetails = @[@[@{@"label" : @"", @"property" : @"card.name", @"cellIdentifier" : @"SMBasicCell"},
-                         @{@"label" : @"", @"property" : @"card.dueDate", @"cellIdentifier" : @"SMBasicCell"}],
-                         @[@{@"label" : @"Flexible Reminder", @"property" : @"reminder.flexibleReminder", @"cellIdentifier" : @"SMSwitchCell"},
-                         @{@"label" : @"Reminder", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDualLabelCell"},
-                         @{@"label" : @"Reminder Time", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDualLabelCell"}],
+    self.formData = @[@[@{@"label" : @"", @"property" : @"card.name", @"cellType" : @(BRFormCellTypeBasic)},
+                         @{@"label" : @"", @"property" : @"card.dueDate", @"cellType" : @(BRFormCellTypeBasic)}],
+                         @[@{@"label" : @"Flexible Reminder", @"property" : @"reminder.flexibleReminder", @"cellType" : @(BRFormCellTypeSwitch)},
+                         @{@"label" : @"Reminder", @"property" : @"reminder.reminderDate", @"cellType" : @(BRFormCellTypeDate)},
+                         @{@"label" : @"Reminder Time", @"property" : @"reminder.reminderDate", @"cellType" : @(BRFormCellTypeTime)}],
                          ];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
@@ -58,155 +57,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return self.formDetails.count;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return [self.formDetails[section] count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *rowInfo = self.formDetails[indexPath.section][indexPath.row];
-    NSString *identifier = rowInfo[@"cellIdentifier"];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateStyle = NSDateFormatterMediumStyle;
-    dateFormatter.timeStyle = NSDateFormatterNoStyle;
-    
-    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    timeFormatter.timeStyle = NSDateFormatterShortStyle;
-    timeFormatter.dateStyle = NSDateFormatterNoStyle;
-
-    BRDualLabelCell *dualCell;
-    BRSwitchCell *switchCell;
-    BRDatePickerCell *datePickerCell;
-    BRSegmentedCell *segmentedCell;
-    BRNumberCell *numberCell;
-    if([identifier isEqualToString:@"SMDualLabelCell"]){
-        dualCell = (BRDualLabelCell *)cell;
-    }
-    else if([identifier isEqualToString:@"SMSwitchCell"]){
-        switchCell = (BRSwitchCell *)cell;
-    }
-    else if([identifier isEqualToString:@"SMDatePickerCell"]){
-        datePickerCell = (BRDatePickerCell *)cell;
-    }
-    else if([identifier isEqualToString:@"SMSegmentedCell"]){
-        segmentedCell = (BRSegmentedCell *)cell;
-    }
-    else if([identifier isEqualToString:@"SMNumberCell"]){
-        numberCell = (BRNumberCell *)cell;
-    }
-    if(indexPath.section == 0){
-        switch(indexPath.row){
-            case 0:
-                //card name row
-                cell.textLabel.text = self.card.name;
-                break;
-            case 1:
-                //card due date row
-                cell.textLabel.text = [dateFormatter stringFromDate:self.card.dueDate];
-                break;
-            default:
-                break;
-        }
-    }
-    else if(indexPath.section == 1){
-        switch(indexPath.row){
-            case 0:
-                switchCell.label.text = rowInfo[@"label"];
-                switchCell.toggleSwitch.on = self.reminder.flexibleReminder;
-                [switchCell.toggleSwitch addTarget:self action:@selector(flexibleSwitchValueChanged:) forControlEvents:UIControlEventValueChanged];
-                break;
-            case 1:
-                if(self.flexibleRemindersOn){
-                    numberCell.numberField.text = [NSString stringWithFormat:@"%d", self.reminder.flexibleValue];
-                }
-                else{
-                    //reminder date row
-                    dualCell.label.text = rowInfo[@"label"];
-                    dualCell.valueLabel.text = [dateFormatter stringFromDate:self.reminder.reminderDate];
-                }
-                break;
-            case 2:
-                if(self.flexibleRemindersOn){
-                    segmentedCell.options.selectedSegmentIndex = self.reminder.flexibleUnit;
-                }
-                else{
-                    if(self.editingReminderDate){
-                        if(self.reminder.reminderDate != nil){
-                            datePickerCell.datePicker.date = self.reminder.reminderDate;
-                        }
-                        else if(self.card.dueDate != nil){
-                            datePickerCell.datePicker.date = self.card.dueDate;
-                        }
-                        else{
-                            datePickerCell.datePicker.date = [NSDate date];
-                        }
-                    }
-                    else{
-                        //reminder time row
-                        dualCell.label.text = rowInfo[@"label"];
-                        dualCell.valueLabel.text = [timeFormatter stringFromDate:self.reminder.reminderDate];
-                    }
-                }
-                break;
-            case 3:
-                if(self.editingReminderDate){
-                    //reminder time row
-                    dualCell.label.text = rowInfo[@"label"];
-                    dualCell.valueLabel.text = [timeFormatter stringFromDate:self.reminder.reminderDate];
-                }
-                else if(self.editingReminderTime){
-                    if(self.reminder.reminderDate != nil){
-                        datePickerCell.datePicker.date = self.reminder.reminderDate;
-                    }
-                    else if(self.card.dueDate != nil){
-                        datePickerCell.datePicker.date = self.card.dueDate;
-                    }
-                    else{
-                        datePickerCell.datePicker.date = [NSDate date];
-                    }
-                }
-            default:
-                break;
-        }
-    }
-    
-    return cell;
-}
-
-#pragma mark - UITableViewDelegate
-
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(self.editingReminderDate && indexPath.section == 1 && indexPath.row == 2){
-        return 162.0f;
-    }
-    else if(self.editingReminderTime && indexPath.section == 1 && indexPath.row == 3){
-        return 162.0f;
-    }
-    else{
-        return 44.0f;
-    }
-}
-
 - (void)expandDatePickerInTableView:(UITableView *)tableView {
     if(self.editingReminderDate){
         return;
     }
     self.editingReminderDate = YES;
-    NSMutableArray *mutableDetails = [self.formDetails mutableCopy];
-    NSMutableArray *mutableSectionDetails = [self.formDetails[1] mutableCopy];
+    NSMutableArray *mutableDetails = [self.formData mutableCopy];
+    NSMutableArray *mutableSectionDetails = [self.formData[1] mutableCopy];
     [mutableSectionDetails insertObject:@{@"label" : @"", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDatePickerCell"} atIndex:2];
     mutableDetails[1] = [mutableSectionDetails copy];
-    self.formDetails = [mutableDetails copy];
+    self.formData = [mutableDetails copy];
     [tableView beginUpdates];
     [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
     [tableView endUpdates];
@@ -217,11 +77,11 @@
         return;
     }
     self.editingReminderDate = NO;
-    NSMutableArray *mutableDetails = [self.formDetails mutableCopy];
-    NSMutableArray *mutableSectionDetails = [self.formDetails[1] mutableCopy];
+    NSMutableArray *mutableDetails = [self.formData mutableCopy];
+    NSMutableArray *mutableSectionDetails = [self.formData[1] mutableCopy];
     [mutableSectionDetails removeObjectAtIndex:2];
     mutableDetails[1] = [mutableSectionDetails copy];
-    self.formDetails = [mutableDetails copy];
+    self.formData = [mutableDetails copy];
     [tableView beginUpdates];
     [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
     [tableView endUpdates];
@@ -232,11 +92,11 @@
         return;
     }
     self.editingReminderTime = YES;
-    NSMutableArray *mutableDetails = [self.formDetails mutableCopy];
-    NSMutableArray *mutableSectionDetails = [self.formDetails[1] mutableCopy];
+    NSMutableArray *mutableDetails = [self.formData mutableCopy];
+    NSMutableArray *mutableSectionDetails = [self.formData[1] mutableCopy];
     [mutableSectionDetails insertObject:@{@"label" : @"", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMTimePickerCell"} atIndex:3];
     mutableDetails[1] = [mutableSectionDetails copy];
-    self.formDetails = [mutableDetails copy];
+    self.formData = [mutableDetails copy];
     [tableView beginUpdates];
     [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
     [tableView endUpdates];
@@ -247,11 +107,11 @@
         return;
     }
     self.editingReminderTime = NO;
-    NSMutableArray *mutableDetails = [self.formDetails mutableCopy];
-    NSMutableArray *mutableSectionDetails = [self.formDetails[1] mutableCopy];
+    NSMutableArray *mutableDetails = [self.formData mutableCopy];
+    NSMutableArray *mutableSectionDetails = [self.formData[1] mutableCopy];
     [mutableSectionDetails removeObjectAtIndex:3];
     mutableDetails[1] = [mutableSectionDetails copy];
-    self.formDetails = [mutableDetails copy];
+    self.formData = [mutableDetails copy];
     [tableView beginUpdates];
     [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
     [tableView endUpdates];
@@ -383,14 +243,14 @@
     
     if(toggleSwitch.on){
         //swap in flexible reminder rows
-        NSMutableArray *mutableDetails = [self.formDetails mutableCopy];
+        NSMutableArray *mutableDetails = [self.formData mutableCopy];
         NSMutableArray *mutableSection = [mutableDetails[1] mutableCopy];
         [mutableSection removeObjectsInRange:NSMakeRange(mutableDetails.count - 2, 2)];
         [mutableSection addObjectsFromArray:@[
                                               @{@"label" : @"", @"property" : @"reminder.flexibleValue", @"cellIdentifier" : @"SMNumberCell"},
                                               @{@"label" : @"", @"property" : @"reminder.flexibleUnit", @"cellIdentifier" : @"SMSegmentedCell"}]];
         mutableDetails[1] = [mutableSection copy];
-        self.formDetails = [mutableDetails copy];
+        self.formData = [mutableDetails copy];
         
         [self.tableView beginUpdates];
         [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:1], [NSIndexPath indexPathForRow:2 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];

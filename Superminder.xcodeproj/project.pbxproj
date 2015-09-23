@@ -33,6 +33,15 @@
 		2FCFD8521B5F383C00CCEC24 /* CKRecord+Superminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFD8511B5F383C00CCEC24 /* CKRecord+Superminder.m */; };
 		2FCFD8551B5F3C9900CCEC24 /* SMCloudKitClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFD8541B5F3C9900CCEC24 /* SMCloudKitClient.m */; };
 		2FEF3CDE1B9C7AE0003F0AB4 /* BRFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF3CDD1B9C7AE0003F0AB4 /* BRFormViewController.m */; };
+		2FF375551BB23C1F00191C84 /* BRDatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375541BB23C1F00191C84 /* BRDatePickerCell.xib */; settings = {ASSET_TAGS = (); }; };
+		2FF375571BB23C2900191C84 /* BRTimePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375561BB23C2900191C84 /* BRTimePickerCell.xib */; settings = {ASSET_TAGS = (); }; };
+		2FF375591BB23C3500191C84 /* BRDualLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375581BB23C3500191C84 /* BRDualLabelCell.xib */; settings = {ASSET_TAGS = (); }; };
+		2FF3755B1BB23C3C00191C84 /* BRNumberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF3755A1BB23C3C00191C84 /* BRNumberCell.xib */; settings = {ASSET_TAGS = (); }; };
+		2FF3755D1BB23C4400191C84 /* BRSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF3755C1BB23C4400191C84 /* BRSwitchCell.xib */; settings = {ASSET_TAGS = (); }; };
+		2FF3755F1BB23C4B00191C84 /* BRSegmentedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF3755E1BB23C4B00191C84 /* BRSegmentedCell.xib */; settings = {ASSET_TAGS = (); }; };
+		2FF375611BB23C5200191C84 /* BRTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375601BB23C5200191C84 /* BRTextCell.xib */; settings = {ASSET_TAGS = (); }; };
+		2FF375631BB23C5800191C84 /* BRBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375621BB23C5800191C84 /* BRBasicCell.xib */; settings = {ASSET_TAGS = (); }; };
+		2FF375661BB23CB600191C84 /* BRBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF375651BB23CB600191C84 /* BRBasicCell.m */; settings = {ASSET_TAGS = (); }; };
 		56A88CB0C3876197066449D1 /* libPods-Superminder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB73437A73B1B0F767DEEED /* libPods-Superminder.a */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +108,16 @@
 		2FCFD8541B5F3C9900CCEC24 /* SMCloudKitClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCloudKitClient.m; sourceTree = "<group>"; };
 		2FEF3CDC1B9C7AE0003F0AB4 /* BRFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRFormViewController.h; sourceTree = "<group>"; };
 		2FEF3CDD1B9C7AE0003F0AB4 /* BRFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRFormViewController.m; sourceTree = "<group>"; };
+		2FF375541BB23C1F00191C84 /* BRDatePickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BRDatePickerCell.xib; sourceTree = "<group>"; };
+		2FF375561BB23C2900191C84 /* BRTimePickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BRTimePickerCell.xib; sourceTree = "<group>"; };
+		2FF375581BB23C3500191C84 /* BRDualLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BRDualLabelCell.xib; sourceTree = "<group>"; };
+		2FF3755A1BB23C3C00191C84 /* BRNumberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BRNumberCell.xib; sourceTree = "<group>"; };
+		2FF3755C1BB23C4400191C84 /* BRSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BRSwitchCell.xib; sourceTree = "<group>"; };
+		2FF3755E1BB23C4B00191C84 /* BRSegmentedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BRSegmentedCell.xib; sourceTree = "<group>"; };
+		2FF375601BB23C5200191C84 /* BRTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BRTextCell.xib; sourceTree = "<group>"; };
+		2FF375621BB23C5800191C84 /* BRBasicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BRBasicCell.xib; sourceTree = "<group>"; };
+		2FF375641BB23CB600191C84 /* BRBasicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRBasicCell.h; sourceTree = "<group>"; };
+		2FF375651BB23CB600191C84 /* BRBasicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRBasicCell.m; sourceTree = "<group>"; };
 		3FB73437A73B1B0F767DEEED /* libPods-Superminder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Superminder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8CFA0D78BAA686450FEF820 /* Pods-Superminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Superminder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Superminder/Pods-Superminder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -207,6 +226,14 @@
 			isa = PBXGroup;
 			children = (
 				2F612F141B482A4500CD2292 /* BRDatePickerCell.h */,
+				2FF375541BB23C1F00191C84 /* BRDatePickerCell.xib */,
+				2FF375561BB23C2900191C84 /* BRTimePickerCell.xib */,
+				2FF375581BB23C3500191C84 /* BRDualLabelCell.xib */,
+				2FF3755A1BB23C3C00191C84 /* BRNumberCell.xib */,
+				2FF3755C1BB23C4400191C84 /* BRSwitchCell.xib */,
+				2FF3755E1BB23C4B00191C84 /* BRSegmentedCell.xib */,
+				2FF375601BB23C5200191C84 /* BRTextCell.xib */,
+				2FF375621BB23C5800191C84 /* BRBasicCell.xib */,
 				2F612F151B482A4500CD2292 /* BRDatePickerCell.m */,
 				2F612F171B482A5000CD2292 /* BRTimePickerCell.h */,
 				2F612F181B482A5000CD2292 /* BRTimePickerCell.m */,
@@ -220,6 +247,8 @@
 				2F612F1E1B482CAB00CD2292 /* BRSegmentedCell.m */,
 				2F110C6E1B9C8343005F1686 /* BRTextCell.h */,
 				2F110C6F1B9C8343005F1686 /* BRTextCell.m */,
+				2FF375641BB23CB600191C84 /* BRBasicCell.h */,
+				2FF375651BB23CB600191C84 /* BRBasicCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -355,8 +384,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FA38C371AF1B16000237A1C /* Superminder-config.plist in Resources */,
+				2FF375631BB23C5800191C84 /* BRBasicCell.xib in Resources */,
+				2FF375571BB23C2900191C84 /* BRTimePickerCell.xib in Resources */,
+				2FF3755B1BB23C3C00191C84 /* BRNumberCell.xib in Resources */,
+				2FF375591BB23C3500191C84 /* BRDualLabelCell.xib in Resources */,
+				2FF375611BB23C5200191C84 /* BRTextCell.xib in Resources */,
+				2FF375551BB23C1F00191C84 /* BRDatePickerCell.xib in Resources */,
 				2F080FB11AF060C5008EAB4B /* Main.storyboard in Resources */,
 				2F080FB31AF060C5008EAB4B /* Images.xcassets in Resources */,
+				2FF3755D1BB23C4400191C84 /* BRSwitchCell.xib in Resources */,
+				2FF3755F1BB23C4B00191C84 /* BRSegmentedCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +446,7 @@
 			files = (
 				2F32EAA11AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.m in Sources */,
 				2F612F131B482A3200CD2292 /* BRDualLabelCell.m in Sources */,
+				2FF375661BB23CB600191C84 /* BRBasicCell.m in Sources */,
 				2F32EAAA1AFFDF20003C5774 /* SMTrelloCard.m in Sources */,
 				2FCFD8551B5F3C9900CCEC24 /* SMCloudKitClient.m in Sources */,
 				2FEF3CDE1B9C7AE0003F0AB4 /* BRFormViewController.m in Sources */,

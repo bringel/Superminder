@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="QYJ-Y1-YNq" customClass="BRDualLabelCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QYJ-Y1-YNq" id="fqk-BH-atY">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZb-vJ-dAP">
+                        <rect key="frame" x="8" y="11" width="150" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="0TX-3G-bXT"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80a-VS-JlW">
+                        <rect key="frame" x="162" y="11" width="150" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="80a-VS-JlW" secondAttribute="bottom" constant="3.5" id="9Eb-Y9-u9Q"/>
+                    <constraint firstItem="80a-VS-JlW" firstAttribute="leading" secondItem="nZb-vJ-dAP" secondAttribute="trailing" constant="4" id="G11-yD-Qe7"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="nZb-vJ-dAP" secondAttribute="bottom" constant="3.5" id="P7O-NK-xzk"/>
+                    <constraint firstItem="80a-VS-JlW" firstAttribute="top" secondItem="fqk-BH-atY" secondAttribute="topMargin" constant="3" id="gqZ-ze-jkW"/>
+                    <constraint firstItem="nZb-vJ-dAP" firstAttribute="leading" secondItem="fqk-BH-atY" secondAttribute="leadingMargin" id="kcv-oR-GZi"/>
+                    <constraint firstItem="nZb-vJ-dAP" firstAttribute="top" secondItem="fqk-BH-atY" secondAttribute="topMargin" constant="3" id="sf0-1A-OZq"/>
+                    <constraint firstItem="80a-VS-JlW" firstAttribute="trailing" secondItem="fqk-BH-atY" secondAttribute="trailingMargin" id="tva-3t-URE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="label" destination="nZb-vJ-dAP" id="Gae-Df-zoO"/>
+                <outlet property="valueLabel" destination="80a-VS-JlW" id="fP9-Tt-AXO"/>
+            </connections>
+            <point key="canvasLocation" x="358" y="252"/>
+        </tableViewCell>
+    </objects>
+</document>

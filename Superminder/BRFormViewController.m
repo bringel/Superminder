@@ -44,6 +44,17 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    NSBundle *mainBundle = [NSBundle mainBundle];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BRBasicCell" bundle:mainBundle] forCellReuseIdentifier:basicCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BRBasicCell" bundle:mainBundle] forCellReuseIdentifier:basicCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BRTextCell" bundle:mainBundle] forCellReuseIdentifier:textCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BRDualLabelCell" bundle:mainBundle] forCellReuseIdentifier:dualLabelCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BRNumberCell" bundle:mainBundle] forCellReuseIdentifier:numberCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BRSegmentedCell" bundle:mainBundle] forCellReuseIdentifier:segmentedCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BRSwitchCell" bundle:mainBundle] forCellReuseIdentifier:switchCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BRDatePickerCell" bundle:mainBundle] forCellReuseIdentifier:dateCellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BRTimePickerCell" bundle:mainBundle] forCellReuseIdentifier:timeCellIdentifier];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,7 +126,7 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
     }
     
     BRFormCellType type = [[rowData objectForKey:@"cellType"] integerValue];
-    id propertyVal = [self valueForKey:rowData[@"property"]];
+    id propertyVal = [self valueForKeyPath:rowData[@"property"]];
     NSString *labelText = rowData[@"label"];
     NSArray *segments;
     switch(type){
@@ -123,6 +134,9 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
             cell = [tableView dequeueReusableCellWithIdentifier:basicCellIdentifier forIndexPath:indexPath];
             if([propertyVal isKindOfClass:[NSString class]]){
                 cell.textLabel.text = (NSString *)propertyVal;
+            }
+            else if ([propertyVal isKindOfClass:[NSDate class]]){
+                cell.textLabel.text = [self.dateFormatter stringFromDate:propertyVal];
             }
             break;
         case BRFormCellTypeText:
@@ -148,6 +162,7 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
         case BRFormCellTypeSegmented:
             segmentedCell = [tableView dequeueReusableCellWithIdentifier:segmentedCellIdentifier forIndexPath:indexPath];
             segments = rowData[@"segments"];
+            [segmentedCell.options removeAllSegments];
             for(int i = 0; i < segments.count; i++){
                 [segmentedCell.options insertSegmentWithTitle:segments[i] atIndex:i animated:NO];
             }
