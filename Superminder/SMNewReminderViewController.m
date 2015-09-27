@@ -116,33 +116,33 @@
     [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
     [tableView endUpdates];
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-    if(self.flexibleRemindersOn){
-        return; //don't need to do anything if users are doing flexible reminders
-    }
-    
-    if(indexPath.section == 1 && indexPath.row == 1){
-        if(!self.editingReminderDate){
-            [self collapseTimePickerInTableView:tableView];
-            [self expandDatePickerInTableView:tableView];
-        }
-        else{
-            [self collapseDatePickerInTableView:tableView];
-        }
-    }
-    else if(indexPath.section == 1 && (indexPath.row == 2 || indexPath.row == 3)){
-        //It seems like the date/time pickers are handling any taps, so if the date picker is open, we can't get selections at index 2, which is why it's okay to run this code for either 2 or 3
-        if(!self.editingReminderTime){
-            [self collapseDatePickerInTableView:tableView];
-            [self expandTimePickerInTableView:tableView];
-        }
-        else{
-            [self collapseTimePickerInTableView:tableView];
-        }
-    }
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+//    
+//    if(self.flexibleRemindersOn){
+//        return; //don't need to do anything if users are doing flexible reminders
+//    }
+//    
+//    if(indexPath.section == 1 && indexPath.row == 1){
+//        if(!self.editingReminderDate){
+//            [self collapseTimePickerInTableView:tableView];
+//            [self expandDatePickerInTableView:tableView];
+//        }
+//        else{
+//            [self collapseDatePickerInTableView:tableView];
+//        }
+//    }
+//    else if(indexPath.section == 1 && (indexPath.row == 2 || indexPath.row == 3)){
+//        //It seems like the date/time pickers are handling any taps, so if the date picker is open, we can't get selections at index 2, which is why it's okay to run this code for either 2 or 3
+//        if(!self.editingReminderTime){
+//            [self collapseDatePickerInTableView:tableView];
+//            [self expandTimePickerInTableView:tableView];
+//        }
+//        else{
+//            [self collapseTimePickerInTableView:tableView];
+//        }
+//    }
+//}
 
 /*
 // Override to support conditional editing of the table view.

@@ -32,6 +32,8 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) NSDateFormatter *timeFormatter;
 
+@property (strong, nonatomic) NSIndexPath *currentlyEditingIndex;
+
 @end
 
 @implementation BRFormViewController
@@ -55,6 +57,9 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"BRSwitchCell" bundle:mainBundle] forCellReuseIdentifier:switchCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"BRDatePickerCell" bundle:mainBundle] forCellReuseIdentifier:dateCellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"BRTimePickerCell" bundle:mainBundle] forCellReuseIdentifier:timeCellIdentifier];
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44.0f;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -116,14 +121,10 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
     BRSwitchCell *switchCell;
     BRSegmentedCell *segmentedCell;
     BRTextCell *textCell;
+    BRDatePickerCell *datePickerCell;
+    BRTimePickerCell *timePickerCell;
     
-    NSDictionary *rowData;
-    if([self.formData[indexPath.section] isKindOfClass:[NSDictionary class]]){
-        rowData = self.formData[indexPath.row];
-    }
-    else{
-        rowData = self.formData[indexPath.section][indexPath.row];
-    }
+    NSDictionary *rowData = [self rowDataForIndexPath:indexPath];
     
     BRFormCellType type = [[rowData objectForKey:@"cellType"] integerValue];
     id propertyVal = [self valueForKeyPath:rowData[@"property"]];
@@ -173,33 +174,59 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
             break;
         case BRFormCellTypeSwitch:
             switchCell = [tableView dequeueReusableCellWithIdentifier:switchCellIdentifier forIndexPath:indexPath];
-            switchCell.toggleSwitch.on = (BOOL)propertyVal;
+            switchCell.toggleSwitch.on = [propertyVal boolValue]; //property val will be an nsnumber in this case
             switchCell.label.text = labelText;
             cell = switchCell;
             break;
         case BRFormCellTypeDate:
-            dualLabelCell = [tableView dequeueReusableCellWithIdentifier:dualLabelCellIdentifier forIndexPath:indexPath]; //use a dual label cell since the date picker is not shown until the user taps on the row
-            if([propertyVal isKindOfClass:[NSDate class]]){
-                NSDate *date = (NSDate *)propertyVal;
-                if(date == nil){
-                    date = [NSDate date];
+            if(indexPath == [NSIndexPath indexPathForRow:self.currentlyEditingIndex.row+1 inSection:self.currentlyEditingIndex.section]){
+                datePickerCell = [tableView dequeueReusableCellWithIdentifier:dateCellIdentifier forIndexPath:indexPath];
+                if([propertyVal isKindOfClass:[NSDate class]]){
+                    NSDate *date = (NSDate *)propertyVal;
+                    if(date == nil){
+                        date = [NSDate date];
+                    }
+                    datePickerCell.datePicker.date = date;
                 }
-                dualLabelCell.valueLabel.text = [self.dateFormatter stringFromDate:date];
-                dualLabelCell.label.text = labelText;
+                cell = datePickerCell;
             }
-            cell = dualLabelCell;
+            else{
+                dualLabelCell = [tableView dequeueReusableCellWithIdentifier:dualLabelCellIdentifier forIndexPath:indexPath]; //use a dual label cell since the date picker is not shown until the user taps on the row
+                if([propertyVal isKindOfClass:[NSDate class]]){
+                    NSDate *date = (NSDate *)propertyVal;
+                    if(date == nil){
+                        date = [NSDate date];
+                    }
+                    dualLabelCell.valueLabel.text = [self.dateFormatter stringFromDate:date];
+                    dualLabelCell.label.text = labelText;
+                }
+                cell = dualLabelCell;
+            }
             break;
         case BRFormCellTypeTime:
-            dualLabelCell = [tableView dequeueReusableCellWithIdentifier:dualLabelCellIdentifier forIndexPath:indexPath]; //use a dual label cell since the time picker is not shown until the user taps on the row
-            if([propertyVal isKindOfClass:[NSDate class]]){
-                NSDate *time = (NSDate *)propertyVal;
-                if(time == nil){
-                    time = [NSDate date];
+            if(indexPath == [NSIndexPath indexPathForRow:self.currentlyEditingIndex.row+1 inSection:self.currentlyEditingIndex.section]){
+                timePickerCell = [tableView dequeueReusableCellWithIdentifier:timeCellIdentifier forIndexPath:indexPath];
+                if([propertyVal isKindOfClass:[NSDate class]]){
+                    NSDate *date = (NSDate *)propertyVal;
+                    if(date == nil){
+                        date = [NSDate date];
+                    }
+                    timePickerCell.timePicker.date = date;
                 }
-                dualLabelCell.valueLabel.text = [self.timeFormatter stringFromDate:time];
-                dualLabelCell.label.text = labelText;
+                cell = timePickerCell;
             }
-            cell = dualLabelCell;
+            else{
+                dualLabelCell = [tableView dequeueReusableCellWithIdentifier:dualLabelCellIdentifier forIndexPath:indexPath]; //use a dual label cell since the time picker is not shown until the user taps on the row
+                if([propertyVal isKindOfClass:[NSDate class]]){
+                    NSDate *time = (NSDate *)propertyVal;
+                    if(time == nil){
+                        time = [NSDate date];
+                    }
+                    dualLabelCell.valueLabel.text = [self.timeFormatter stringFromDate:time];
+                    dualLabelCell.label.text = labelText;
+                }
+                cell = dualLabelCell;
+            }
             break;
         default:
             break;
@@ -209,40 +236,84 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSDictionary *rowData = [self rowDataForIndexPath:indexPath];
+    BRFormCellType cellType = [rowData[@"cellType"] integerValue];
+    NSDictionary *newRowData = [[NSDictionary alloc] initWithDictionary:rowData copyItems:YES];
+    NSIndexPath *pickerIndex;
+    
+    //need to remove something if there is a picker and it is in this section
+    BOOL hasPickerToRemove = (self.currentlyEditingIndex != nil && self.currentlyEditingIndex.section == indexPath.section);
+    //only add a picker if the user tapped on a row that is not the currently editing row
+    BOOL needToInsertPicker = (self.currentlyEditingIndex != indexPath);
+    
+    if(cellType == BRFormCellTypeDate || cellType == BRFormCellTypeTime){
+        //edit formData to remove the current picker if there is one
+        NSMutableArray *mutableSection = [[self sectionDataForIndexPath:indexPath] mutableCopy];
+        if(hasPickerToRemove){
+            [mutableSection removeObjectAtIndex:self.currentlyEditingIndex.row+1];
+            if(indexPath.row > self.currentlyEditingIndex.row){ //if the selected row was below the picker, we need to decrement the indexpath by one
+                indexPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
+            }
+        }
+        else if(needToInsertPicker){
+            //insert row for new picker view
+            pickerIndex = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section];
+            [mutableSection insertObject:newRowData atIndex:pickerIndex.row];
+        }
+        
+        [self setSectionData:[mutableSection copy] forIndexPath:indexPath];
+        
+        //edit the tableview
+        [tableView beginUpdates];
+        if(hasPickerToRemove){
+            [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.currentlyEditingIndex.row+1 inSection:self.currentlyEditingIndex.section]] withRowAnimation:UITableViewRowAnimationFade];
+            self.currentlyEditingIndex = nil;
+        }
+        else if(needToInsertPicker){
+            self.currentlyEditingIndex = indexPath;
+            [tableView insertRowsAtIndexPaths:@[pickerIndex] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        [tableView endUpdates];
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+#pragma mark - Helpers
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (NSDictionary *)rowDataForIndexPath:(NSIndexPath *)indexPath{
+    if([self.formData[indexPath.section] isKindOfClass:[NSDictionary class]]){
+        return self.formData[indexPath.row];
+    }
+    else{
+        return self.formData[indexPath.section][indexPath.row];
+    }
 }
-*/
+
+- (NSArray *)sectionDataForIndexPath:(NSIndexPath *)indexPath{
+    if([self.formData[indexPath.section] isKindOfClass:[NSDictionary class]]){
+        return self.formData;
+    }
+    else{
+        return self.formData[indexPath.section];
+    }
+}
+
+- (void)setSectionData:(NSArray *)data forIndexPath:(NSIndexPath *)indexPath{
+    if([self.formData[indexPath.section] isKindOfClass:[NSDictionary class]]){
+        self.formData = [[NSArray alloc] initWithArray:data copyItems:YES];
+    }
+    else{
+        NSMutableArray *mutableFormData = [self.formData mutableCopy];
+        mutableFormData[indexPath.section] = data;
+        self.formData = [mutableFormData copy];
+    }
+}
 
 /*
 #pragma mark - Navigation
