@@ -92,6 +92,14 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
     return _timeFormatter;
 }
 
+- (BOOL)saveData{
+    return YES;
+}
+
+- (BOOL)cancelSave{
+    return YES;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -232,7 +240,7 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
             break;
         
     }
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -279,8 +287,6 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
         }
         [tableView endUpdates];
     }
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 
