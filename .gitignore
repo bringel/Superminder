@@ -31,4 +31,4 @@ Superminder-config.plist
 
 *.mobileprovision
 
-fastlane/ #ignore the fastlane configs, comment this out if they should be committed
+fastlane #ignore the fastlane configs, comment this out if they should be committed
