@@ -151,17 +151,20 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
         return;
     }
     
-    NSURLRequest *idRequest = [NSURLRequest buildRequestForPath:@"/1/members/me" withParameters:@{ @"fields" : @"idBoards", @"key" : self.apiKey, @"token" : self.userToken } relativeToURL:self.trelloBaseURL usingMethod:@"GET"];
+    NSURLRequest *idRequest = [NSURLRequest buildRequestForPath:@"/1/members/me/boards" withParameters:@{ @"filter": @"open", @"key" : self.apiKey, @"token" : self.userToken } relativeToURL:self.trelloBaseURL usingMethod:@"GET"];
     
     NSURLSessionDataTask *idTask = [self.session dataTaskWithRequest:idRequest completionHandler:
                                     ^(NSData *data, NSURLResponse *response, NSError *error) {
                                         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
                                         if(httpResponse.statusCode == 200){
                                             NSError *error;
-                                            NSDictionary *responseData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-                                            if(responseData[@"idBoards"] != nil){
-                                                [self getDataForBoardIDs:responseData[@"idBoards"]];
+                                            NSArray *responseData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+                                            for(NSDictionary *board in responseData){
+                                                [self getDataForBoard:board[@"id"]];
                                             }
+//                                            if(responseData[@"idBoards"] != nil){
+//                                                [self getDataForBoardIDs:responseData[@"idBoards"]];
+//                                            }
                                         }
                                     }];
     [idTask resume];
