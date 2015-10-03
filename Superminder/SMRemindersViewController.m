@@ -26,6 +26,7 @@
 @end
 
 static NSString *kNoDateCards = @"No Due Date";
+static NSString *kOverdueCards = @"Overdue";
 static NSString *kTodayCards = @"Today";
 static NSString *kTomorrowCards = @"Tomorrow";
 static NSString *kThisWeekCards = @"This Week";
@@ -93,18 +94,20 @@ static NSString * const reuseIdentifier = @"Cell";
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     switch (section) {
         case 0:
-            return kTodayCards;
+            return kOverdueCards;
         case 1:
-            return kTomorrowCards;
+            return kTodayCards;
         case 2:
-            return kThisWeekCards;
+            return kTomorrowCards;
         case 3:
-            return kNextWeekCards;
+            return kThisWeekCards;
         case 4:
-            return kThisMonthCards;
+            return kNextWeekCards;
         case 5:
-            return kLaterCards;
+            return kThisMonthCards;
         case 6:
+            return kLaterCards;
+        case 7:
             return kNoDateCards;
         default:
             return @"";
@@ -114,18 +117,20 @@ static NSString * const reuseIdentifier = @"Cell";
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     switch (section) {
         case 0:
-            return [[self.sectionReminderMap objectForKey:kTodayCards] count];
+            return [[self.sectionReminderMap objectForKey:kOverdueCards] count];
         case 1:
-            return [[self.sectionReminderMap objectForKey:kTomorrowCards] count];
+            return [[self.sectionReminderMap objectForKey:kTodayCards] count];
         case 2:
-            return [[self.sectionReminderMap objectForKey:kThisWeekCards] count];
+            return [[self.sectionReminderMap objectForKey:kTomorrowCards] count];
         case 3:
-            return [[self.sectionReminderMap objectForKey:kNextWeekCards] count];
+            return [[self.sectionReminderMap objectForKey:kThisWeekCards] count];
         case 4:
-            return [[self.sectionReminderMap objectForKey:kThisMonthCards] count];
+            return [[self.sectionReminderMap objectForKey:kNextWeekCards] count];
         case 5:
-            return [[self.sectionReminderMap objectForKey:kLaterCards] count];
+            return [[self.sectionReminderMap objectForKey:kThisMonthCards] count];
         case 6:
+            return [[self.sectionReminderMap objectForKey:kLaterCards] count];
+        case 7:
             return [[self.sectionReminderMap objectForKey:kNoDateCards] count];
         default:
             return 0;
@@ -138,24 +143,27 @@ static NSString * const reuseIdentifier = @"Cell";
     SMTrelloCard *currentCard;
     switch (indexPath.section) {
         case 0:
-            currentCard = [[self.sectionReminderMap objectForKey:kTodayCards] objectAtIndex:indexPath.row];
+            currentCard = [[self.sectionReminderMap objectForKey:kOverdueCards] objectAtIndex:indexPath.row];
             break;
         case 1:
-            currentCard = [[self.sectionReminderMap objectForKey:kTomorrowCards] objectAtIndex:indexPath.row];
+            currentCard = [[self.sectionReminderMap objectForKey:kTodayCards] objectAtIndex:indexPath.row];
             break;
         case 2:
-            currentCard = [[self.sectionReminderMap objectForKey:kThisWeekCards] objectAtIndex:indexPath.row];
+            currentCard = [[self.sectionReminderMap objectForKey:kTomorrowCards] objectAtIndex:indexPath.row];
             break;
         case 3:
-            currentCard = [[self.sectionReminderMap objectForKey:kNextWeekCards] objectAtIndex:indexPath.row];
+            currentCard = [[self.sectionReminderMap objectForKey:kThisWeekCards] objectAtIndex:indexPath.row];
             break;
         case 4:
-            currentCard = [[self.sectionReminderMap objectForKey:kThisMonthCards] objectAtIndex:indexPath.row];
+            currentCard = [[self.sectionReminderMap objectForKey:kNextWeekCards] objectAtIndex:indexPath.row];
             break;
         case 5:
-            currentCard = [[self.sectionReminderMap objectForKey:kLaterCards] objectAtIndex:indexPath.row];
+            currentCard = [[self.sectionReminderMap objectForKey:kThisMonthCards] objectAtIndex:indexPath.row];
             break;
         case 6:
+            currentCard = [[self.sectionReminderMap objectForKey:kLaterCards] objectAtIndex:indexPath.row];
+            break;
+        case 7:
             currentCard = [[self.sectionReminderMap objectForKey:kNoDateCards] objectAtIndex:indexPath.row];
             break;
         default:
@@ -185,6 +193,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)buildSectionReminderMap{
     NSMutableDictionary *mutableMap = [[NSMutableDictionary alloc] init];
+    [mutableMap setObject:[[NSMutableArray alloc] init] forKeyedSubscript:kOverdueCards];
     [mutableMap setObject:[[NSMutableArray alloc] init] forKey:kTodayCards];
     [mutableMap setObject:[[NSMutableArray alloc] init] forKey:kTomorrowCards];
     [mutableMap setObject:[[NSMutableArray alloc] init] forKey:kThisWeekCards];
@@ -211,8 +220,7 @@ static NSString * const reuseIdentifier = @"Cell";
                 }
                 pastResult = [cal compareDate:[NSDate date] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
                 if(pastResult == NSOrderedDescending){
-                    //TODO: in the board fetch request, switch to cards=open to get rid of archived cards, and then we can also have a "past due" section
-                    continue; //skip dates in the past for now.
+                    [[mutableMap objectForKey:kOverdueCards] addObject:card];
                 }
                 thisWeekResult = [cal compareDate:[cal dateFromComponents:thisWeekComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
                 nextWeekResult = [cal compareDate:[cal dateFromComponents:nextWeekComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
