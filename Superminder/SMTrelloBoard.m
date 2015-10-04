@@ -28,6 +28,11 @@
         self.name = data[@"name"];
         self.lists = @[];
         self.listIndex = [[NSMutableDictionary alloc] init];
+        NSDictionary *prefs = data[@"prefs"];
+        self.backgroundColor = [UIColor colorWithHexadecimalColor:prefs[@"backgroundColor"]];
+        self.backgroundImage = prefs[@"backgroundImage"];
+        self.labels = data[@"labelNames"];
+        self.boardDescription = data[@"desc"];
     }
     
     return self;

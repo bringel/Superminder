@@ -184,6 +184,7 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     cell.cardTitleLabel.text = currentCard.name;
     cell.listNameLabel.text = currentCard.list.name;
     cell.dueDateInfoLabel.text = [self.dateFormatter stringFromDate:currentCard.dueDate];
+    cell.boardColorView.backgroundColor = currentCard.list.board.backgroundColor;
     return cell;
 }
 #pragma mark - <UITableViewDelegate>
@@ -193,8 +194,8 @@ static NSString * const reuseIdentifier = @"SMCardCell";
 }
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Add Reminder" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        self.selectedCard = [[self.sectionReminderMap objectForKey:[self tableView:nil titleForHeaderInSection:indexPath.section]] objectAtIndex:indexPath.row];
+    UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Add\nReminder" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+        self.selectedCard = [[self.sectionReminderMap objectForKey:[self tableView:tableView titleForHeaderInSection:indexPath.section]] objectAtIndex:indexPath.row];
         [self performSegueWithIdentifier:@"addNewReminderFromCard" sender:self];
     }];
     return @[action];

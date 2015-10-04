@@ -27,6 +27,7 @@
 		2F612F191B482A5000CD2292 /* BRTimePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F181B482A5000CD2292 /* BRTimePickerCell.m */; };
 		2F612F1C1B482CA200CD2292 /* BRSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F1B1B482CA200CD2292 /* BRSwitchCell.m */; };
 		2F612F1F1B482CAB00CD2292 /* BRSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F1E1B482CAB00CD2292 /* BRSegmentedCell.m */; };
+		2F8A64601BC1D79F00128125 /* UIColor+Hexadecimal.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8A645F1BC1D79F00128125 /* UIColor+Hexadecimal.m */; settings = {ASSET_TAGS = (); }; };
 		2F9B87131AF45652006430D2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9B87121AF45652006430D2 /* CloudKit.framework */; };
 		2FA38C371AF1B16000237A1C /* Superminder-config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FA38C361AF1B16000237A1C /* Superminder-config.plist */; };
 		2FB42F701BC0DCDF00B5A428 /* SMCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB42F6E1BC0DCDF00B5A428 /* SMCardCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -98,6 +99,8 @@
 		2F612F1B1B482CA200CD2292 /* BRSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSwitchCell.m; sourceTree = "<group>"; };
 		2F612F1D1B482CAB00CD2292 /* BRSegmentedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSegmentedCell.h; sourceTree = "<group>"; };
 		2F612F1E1B482CAB00CD2292 /* BRSegmentedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSegmentedCell.m; sourceTree = "<group>"; };
+		2F8A645E1BC1D79F00128125 /* UIColor+Hexadecimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hexadecimal.h"; sourceTree = "<group>"; };
+		2F8A645F1BC1D79F00128125 /* UIColor+Hexadecimal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hexadecimal.m"; sourceTree = "<group>"; };
 		2F9B87111AF45648006430D2 /* Superminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Superminder.entitlements; sourceTree = "<group>"; };
 		2F9B87121AF45652006430D2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2FA38C361AF1B16000237A1C /* Superminder-config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Superminder-config.plist"; sourceTree = SOURCE_ROOT; };
@@ -190,10 +193,7 @@
 				2FCFD8541B5F3C9900CCEC24 /* SMCloudKitClient.m */,
 				2F32EA9B1AF58EFB003C5774 /* Model */,
 				2F32EA9A1AF58EF0003C5774 /* View Controllers */,
-				2F32EA9F1AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.h */,
-				2F32EAA01AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.m */,
-				2FCFD8501B5F383C00CCEC24 /* CKRecord+Superminder.h */,
-				2FCFD8511B5F383C00CCEC24 /* CKRecord+Superminder.m */,
+				2F8A645A1BC1D72A00128125 /* Fun Categories */,
 			);
 			path = Superminder;
 			sourceTree = "<group>";
@@ -286,6 +286,19 @@
 				2F2313A41B461FFB00CB8B36 /* SMReminder.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		2F8A645A1BC1D72A00128125 /* Fun Categories */ = {
+			isa = PBXGroup;
+			children = (
+				2F32EA9F1AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.h */,
+				2F32EAA01AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.m */,
+				2FCFD8501B5F383C00CCEC24 /* CKRecord+Superminder.h */,
+				2FCFD8511B5F383C00CCEC24 /* CKRecord+Superminder.m */,
+				2F8A645E1BC1D79F00128125 /* UIColor+Hexadecimal.h */,
+				2F8A645F1BC1D79F00128125 /* UIColor+Hexadecimal.m */,
+			);
+			name = "Fun Categories";
 			sourceTree = "<group>";
 		};
 		EB60CE04669C5C925895DA0E /* Frameworks */ = {
@@ -466,6 +479,7 @@
 				2F612F1C1B482CA200CD2292 /* BRSwitchCell.m in Sources */,
 				2FB42F701BC0DCDF00B5A428 /* SMCardCell.m in Sources */,
 				2F612F191B482A5000CD2292 /* BRTimePickerCell.m in Sources */,
+				2F8A64601BC1D79F00128125 /* UIColor+Hexadecimal.m in Sources */,
 				2F612F1F1B482CAB00CD2292 /* BRSegmentedCell.m in Sources */,
 				2F32EAA71AFFDF19003C5774 /* SMTrelloList.m in Sources */,
 				2F2313A21B46136F00CB8B36 /* SMNewReminderViewController.m in Sources */,
@@ -594,7 +608,7 @@
 				CODE_SIGN_ENTITLEMENTS = Superminder/Superminder.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bradley Ringel (2WB8P2K6SQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bradley Ringel (2WB8P2K6SQ)";
-				CURRENT_PROJECT_VERSION = 63;
+				CURRENT_PROJECT_VERSION = 65;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = Superminder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -614,7 +628,7 @@
 				CODE_SIGN_ENTITLEMENTS = Superminder/Superminder.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bradley Ringel (HK7854N4SL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bradley Ringel (HK7854N4SL)";
-				CURRENT_PROJECT_VERSION = 63;
+				CURRENT_PROJECT_VERSION = 65;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = Superminder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
