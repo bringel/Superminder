@@ -29,6 +29,7 @@
 		2F612F1F1B482CAB00CD2292 /* BRSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F1E1B482CAB00CD2292 /* BRSegmentedCell.m */; };
 		2F9B87131AF45652006430D2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9B87121AF45652006430D2 /* CloudKit.framework */; };
 		2FA38C371AF1B16000237A1C /* Superminder-config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FA38C361AF1B16000237A1C /* Superminder-config.plist */; };
+		2FB42F701BC0DCDF00B5A428 /* SMCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB42F6E1BC0DCDF00B5A428 /* SMCardCell.m */; settings = {ASSET_TAGS = (); }; };
 		2FBE9E421AF43EE000405112 /* SMTrelloClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE9E411AF43EE000405112 /* SMTrelloClient.m */; };
 		2FCFD8521B5F383C00CCEC24 /* CKRecord+Superminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFD8511B5F383C00CCEC24 /* CKRecord+Superminder.m */; };
 		2FCFD8551B5F3C9900CCEC24 /* SMCloudKitClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFD8541B5F3C9900CCEC24 /* SMCloudKitClient.m */; };
@@ -100,6 +101,8 @@
 		2F9B87111AF45648006430D2 /* Superminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Superminder.entitlements; sourceTree = "<group>"; };
 		2F9B87121AF45652006430D2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2FA38C361AF1B16000237A1C /* Superminder-config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Superminder-config.plist"; sourceTree = SOURCE_ROOT; };
+		2FB42F6D1BC0DCDF00B5A428 /* SMCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCardCell.h; sourceTree = "<group>"; };
+		2FB42F6E1BC0DCDF00B5A428 /* SMCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCardCell.m; sourceTree = "<group>"; };
 		2FBE9E401AF43EE000405112 /* SMTrelloClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTrelloClient.h; sourceTree = "<group>"; };
 		2FBE9E411AF43EE000405112 /* SMTrelloClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTrelloClient.m; sourceTree = "<group>"; };
 		2FCFD8501B5F383C00CCEC24 /* CKRecord+Superminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKRecord+Superminder.h"; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				2F110C6F1B9C8343005F1686 /* BRTextCell.m */,
 				2FF375641BB23CB600191C84 /* BRBasicCell.h */,
 				2FF375651BB23CB600191C84 /* BRBasicCell.m */,
+				2FB42F6D1BC0DCDF00B5A428 /* SMCardCell.h */,
+				2FB42F6E1BC0DCDF00B5A428 /* SMCardCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -459,6 +464,7 @@
 				2FCFD8521B5F383C00CCEC24 /* CKRecord+Superminder.m in Sources */,
 				2F612F101B482A1A00CD2292 /* BRNumberCell.m in Sources */,
 				2F612F1C1B482CA200CD2292 /* BRSwitchCell.m in Sources */,
+				2FB42F701BC0DCDF00B5A428 /* SMCardCell.m in Sources */,
 				2F612F191B482A5000CD2292 /* BRTimePickerCell.m in Sources */,
 				2F612F1F1B482CAB00CD2292 /* BRSegmentedCell.m in Sources */,
 				2F32EAA71AFFDF19003C5774 /* SMTrelloList.m in Sources */,
@@ -588,7 +594,7 @@
 				CODE_SIGN_ENTITLEMENTS = Superminder/Superminder.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bradley Ringel (2WB8P2K6SQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bradley Ringel (2WB8P2K6SQ)";
-				CURRENT_PROJECT_VERSION = a457b44;
+				CURRENT_PROJECT_VERSION = 63;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = Superminder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -608,7 +614,7 @@
 				CODE_SIGN_ENTITLEMENTS = Superminder/Superminder.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Bradley Ringel (HK7854N4SL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bradley Ringel (HK7854N4SL)";
-				CURRENT_PROJECT_VERSION = a457b44;
+				CURRENT_PROJECT_VERSION = 63;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = Superminder/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;

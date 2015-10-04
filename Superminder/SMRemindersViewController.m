@@ -14,13 +14,14 @@
 #import "SMTrelloCard.h"
 #import "SVProgressHUD.h"
 #import "SMNewReminderViewController.h"
+#import "SMCardCell.h"
 
 @interface SMRemindersViewController ()
 
 @property (strong, nonatomic) NSString *trelloKey;
 @property (strong, nonatomic) NSDictionary *sectionReminderMap;
 @property (strong, nonatomic) SMTrelloClient *trelloClient;
-
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @property (weak, nonatomic) SMTrelloCard *selectedCard;
 
 @end
@@ -36,7 +37,7 @@ static NSString *kLaterCards = @"Later";
 
 @implementation SMRemindersViewController
 
-static NSString * const reuseIdentifier = @"Cell";
+static NSString * const reuseIdentifier = @"SMCardCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,6 +46,9 @@ static NSString * const reuseIdentifier = @"Cell";
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 88;
+    
     self.trelloClient = [SMTrelloClient sharedClient];
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserverForName:kAllBoardsLoadFinished object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
@@ -64,6 +68,14 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSDateFormatter *)dateFormatter{
+    if(_dateFormatter == nil){
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        _dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+    }
+    return _dateFormatter;
 }
 
 #pragma mark - Navigation
@@ -138,7 +150,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    SMCardCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     SMTrelloCard *currentCard;
     switch (indexPath.section) {
@@ -169,7 +181,9 @@ static NSString * const reuseIdentifier = @"Cell";
         default:
             break;
     }
-    cell.textLabel.text = currentCard.name;
+    cell.cardTitleLabel.text = currentCard.name;
+    cell.listNameLabel.text = currentCard.list.name;
+    cell.dueDateInfoLabel.text = [self.dateFormatter stringFromDate:currentCard.dueDate];
     return cell;
 }
 #pragma mark - <UITableViewDelegate>
@@ -219,13 +233,13 @@ static NSString * const reuseIdentifier = @"Cell";
                     continue;
                 }
                 pastResult = [cal compareDate:[NSDate date] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
-                if(pastResult == NSOrderedDescending){
-                    [[mutableMap objectForKey:kOverdueCards] addObject:card];
-                }
                 thisWeekResult = [cal compareDate:[cal dateFromComponents:thisWeekComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
                 nextWeekResult = [cal compareDate:[cal dateFromComponents:nextWeekComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
                 thisMonthResult = [cal compareDate:[cal dateFromComponents:thisMonthComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
-                if([cal isDateInToday:card.dueDate]){
+                if(pastResult == NSOrderedDescending){
+                    [[mutableMap objectForKey:kOverdueCards] addObject:card];
+                }
+                else if([cal isDateInToday:card.dueDate]){
                     [[mutableMap objectForKey:kTodayCards] addObject:card];
                 }
                 else if([cal isDateInTomorrow:card.dueDate]){

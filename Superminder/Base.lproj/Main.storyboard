@@ -1,35 +1,82 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zN3-Ur-t1a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zN3-Ur-t1a">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--Cards-->
+        <!--Superminder-->
         <scene sceneID="5gj-fU-dsG">
             <objects>
                 <tableViewController id="FH0-ci-iQE" customClass="SMRemindersViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2eA-33-H0E">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="2eA-33-H0E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="geW-VE-Byx" style="IBUITableViewCellStyleDefault" id="Xfi-in-0GK">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SMCardCell" rowHeight="88" id="Xfi-in-0GK" customClass="SMCardCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xfi-in-0GK" id="CIw-3z-E6I">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="87.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="geW-VE-Byx">
-                                            <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gg7-0n-Xwd">
+                                            <rect key="frame" x="0.0" y="0.0" width="20" height="88"/>
+                                            <animations/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="Rmr-HT-TXn"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7F-g6-0a2">
+                                            <rect key="frame" x="28" y="8" width="284" height="20.5"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="284" id="fy7-ZQ-OXc"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLM-4x-9BS">
+                                            <rect key="frame" x="28" y="32.5" width="42" height="20.5"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Za-kD-yFi">
+                                            <rect key="frame" x="28" y="57" width="42" height="22"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstItem="8Za-kD-yFi" firstAttribute="top" secondItem="zLM-4x-9BS" secondAttribute="bottom" constant="4" id="8ez-Rl-Uqy"/>
+                                        <constraint firstItem="Gg7-0n-Xwd" firstAttribute="top" secondItem="CIw-3z-E6I" secondAttribute="top" id="DKP-Qv-eyt"/>
+                                        <constraint firstItem="Gg7-0n-Xwd" firstAttribute="leading" secondItem="CIw-3z-E6I" secondAttribute="leading" id="DgA-bR-2eq"/>
+                                        <constraint firstAttribute="bottom" secondItem="Gg7-0n-Xwd" secondAttribute="bottom" id="V2h-Ez-gwU"/>
+                                        <constraint firstAttribute="bottom" secondItem="8Za-kD-yFi" secondAttribute="bottom" constant="8.5" id="VoW-VW-Inz"/>
+                                        <constraint firstItem="Z7F-g6-0a2" firstAttribute="leading" secondItem="Gg7-0n-Xwd" secondAttribute="trailing" constant="8" id="bT3-vw-flS"/>
+                                        <constraint firstItem="zLM-4x-9BS" firstAttribute="top" secondItem="Z7F-g6-0a2" secondAttribute="bottom" constant="4" id="fZb-ty-bh2"/>
+                                        <constraint firstItem="zLM-4x-9BS" firstAttribute="leading" secondItem="Z7F-g6-0a2" secondAttribute="leading" id="hHQ-gA-pyl"/>
+                                        <constraint firstItem="Z7F-g6-0a2" firstAttribute="top" secondItem="CIw-3z-E6I" secondAttribute="top" constant="8" id="jTk-0W-CAi"/>
+                                        <constraint firstAttribute="trailing" secondItem="Z7F-g6-0a2" secondAttribute="trailing" constant="8" id="nWX-1q-Yj2"/>
+                                        <constraint firstItem="8Za-kD-yFi" firstAttribute="leading" secondItem="Z7F-g6-0a2" secondAttribute="leading" id="o27-b6-5XN"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="boardColorView" destination="Gg7-0n-Xwd" id="MKz-tG-bN8"/>
+                                    <outlet property="cardTitleLabel" destination="Z7F-g6-0a2" id="WhE-j1-35s"/>
+                                    <outlet property="dueDateInfoLabel" destination="8Za-kD-yFi" id="9wt-yQ-YNj"/>
+                                    <outlet property="listNameLabel" destination="zLM-4x-9BS" id="BSK-UX-2Tq"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -37,7 +84,10 @@
                             <outlet property="delegate" destination="FH0-ci-iQE" id="M7g-L3-oX6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Cards" id="LnM-aV-eok"/>
+                    <navigationItem key="navigationItem" title="Superminder" id="LnM-aV-eok">
+                        <barButtonItem key="leftBarButtonItem" image="gear-outline" style="plain" id="wkx-Jg-Qxm"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="VHG-Yg-Vuy"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="AE1-n3-ngt" kind="modal" identifier="addNewReminderFromCard" id="nOm-wP-5cj"/>
                     </connections>
@@ -54,6 +104,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kc3-oY-VVH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -72,6 +123,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gFg-8x-jjR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -89,6 +141,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="9lr-gQ-csB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="3GX-kd-oY4" id="7a5-cu-XYx"/>
@@ -102,4 +155,7 @@
             <point key="canvasLocation" x="1668" y="410"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="gear-outline" width="22" height="22"/>
+    </resources>
 </document>
