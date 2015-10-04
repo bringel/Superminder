@@ -36,6 +36,7 @@
     [mutableCards addObject:card];
     self.cardsIndex[card.cardID] = @(mutableCards.count - 1);
     self.cards = [mutableCards copy];
+    card.list = self;
 }
 
 @end

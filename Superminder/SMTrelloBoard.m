@@ -38,6 +38,7 @@
     [mutableLists addObject:list];
     self.listIndex[list.listID] = @(mutableLists.count -1);
     self.lists = [mutableLists copy];
+    list.board = self;
 }
 
 - (SMTrelloList *)listWithID:(NSString *)listID{
