@@ -17,10 +17,11 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *lists;
 @property (strong, nonatomic) UIColor *backgroundColor;
-@property (strong, nonatomic) NSString *backgroundImage;
+@property (strong, nonatomic) NSURL *backgroundImageURL;
 @property (strong, nonatomic) NSDictionary *labels;
 @property (strong, nonatomic) NSString *boardDescription;
 
++ (NSCache *)boardBackgroundsCache;
 
 - (instancetype)initWithJSONData:(NSDictionary *)data;
 - (void)addList:(SMTrelloList *)list;

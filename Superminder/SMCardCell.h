@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *cardTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *listNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dueDateInfoLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *boardBackgroundImageView;
 
 @end

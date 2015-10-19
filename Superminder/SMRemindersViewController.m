@@ -15,6 +15,7 @@
 #import "SVProgressHUD.h"
 #import "SMNewReminderViewController.h"
 #import "SMCardCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface SMRemindersViewController ()
 
@@ -183,8 +184,25 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     }
     cell.cardTitleLabel.text = currentCard.name;
     cell.listNameLabel.text = currentCard.list.name;
-    cell.dueDateInfoLabel.text = [self.dateFormatter stringFromDate:currentCard.dueDate];
-    cell.boardColorView.backgroundColor = currentCard.list.board.backgroundColor;
+    if(currentCard.dueDate != nil){
+        cell.dueDateInfoLabel.text = [self.dateFormatter stringFromDate:currentCard.dueDate];
+    }
+    else{
+        cell.dueDateInfoLabel.text = @"No Due Date";
+    }
+    if(currentCard.list.board.backgroundColor != nil){
+        cell.boardBackgroundImageView.hidden = YES;
+        cell.boardColorView.hidden = NO;
+        cell.boardColorView.backgroundColor = currentCard.list.board.backgroundColor;
+    }
+    else{
+        cell.boardBackgroundImageView.hidden = NO;
+        cell.boardColorView.hidden = YES;
+        [cell.boardBackgroundImageView sd_setImageWithURL:currentCard.list.board.backgroundImageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            NSLog(@"Image downloaded: %@",imageURL);
+        }];
+    }
+    
     return cell;
 }
 #pragma mark - <UITableViewDelegate>

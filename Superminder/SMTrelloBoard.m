@@ -8,6 +8,7 @@
 
 #import "SMTrelloBoard.h"
 #import "SMTrelloList.h"
+@import UIKit;
 
 @interface SMTrelloBoard()
 
@@ -30,12 +31,24 @@
         self.listIndex = [[NSMutableDictionary alloc] init];
         NSDictionary *prefs = data[@"prefs"];
         self.backgroundColor = [UIColor colorWithHexadecimalColor:prefs[@"backgroundColor"]];
-        self.backgroundImage = prefs[@"backgroundImage"];
+        if(prefs[@"backgroundImage"] != [NSNull null]){
+            self.backgroundImageURL = [NSURL URLWithString:prefs[@"backgroundImage"]];
+        }
         self.labels = data[@"labelNames"];
         self.boardDescription = data[@"desc"];
     }
     
     return self;
+}
+
++ (NSCache *)boardBackgroundsCache{
+    static NSCache *backgroundsCache;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        backgroundsCache = [[NSCache alloc] init];
+        backgroundsCache.name = @"Board Backgrounds Cache";
+    });
+    return backgroundsCache;
 }
 
 - (void)addList:(SMTrelloList *)list{

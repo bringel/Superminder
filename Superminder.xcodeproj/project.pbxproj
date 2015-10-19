@@ -322,6 +322,7 @@
 				2F080F9F1AF060C5008EAB4B /* Frameworks */,
 				2F080FA01AF060C5008EAB4B /* Resources */,
 				88872A323A383913940BA845 /* Copy Pods Resources */,
+				E9C530C8EDBABA164EAC5816 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -453,6 +454,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Superminder/Pods-Superminder-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9C530C8EDBABA164EAC5816 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Superminder/Pods-Superminder-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

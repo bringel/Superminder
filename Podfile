@@ -6,6 +6,8 @@ target 'Superminder' do
   pod 'SVProgressHUD', '~> 1.1'
   #pod 'FCUtilities', :git => 'https://github.com/marcoarment/FCUtilities.git' 
   pod 'DZNEmptyDataSet', '~> 1.7'
+  pod 'KSReachability', '~> 1.4'
+  pod 'SDWebImage', '~> 3.7'
 end
 
 target 'SuperminderTests' do
