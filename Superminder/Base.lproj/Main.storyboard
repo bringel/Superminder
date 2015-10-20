@@ -53,8 +53,8 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLM-4x-9BS">
                                             <rect key="frame" x="28" y="32" width="42" height="20.5"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Za-kD-yFi">
@@ -163,7 +163,18 @@
                             <outlet property="delegate" destination="3GX-kd-oY4" id="87y-lL-bT0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="2IC-xd-W4b"/>
+                    <navigationItem key="navigationItem" id="2IC-xd-W4b">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Aa5-kS-LCO">
+                            <connections>
+                                <action selector="cancelAdding:" destination="3GX-kd-oY4" id="oAc-aL-rOw"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="v6n-PI-pgY">
+                            <connections>
+                                <action selector="saveNewReminder:" destination="3GX-kd-oY4" id="Gyg-XG-Osw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UXF-hc-WBY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

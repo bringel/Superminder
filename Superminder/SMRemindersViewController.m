@@ -16,6 +16,7 @@
 #import "SMNewReminderViewController.h"
 #import "SMCardCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "SMCloudKitClient.h"
 
 @interface SMRemindersViewController ()
 
@@ -62,6 +63,7 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     [self.trelloClient getCurrentUserInfo];
     [self.trelloClient getAllBoardDataForUser:self.trelloClient.currentUser];
     
+    [[[SMCloudKitClient alloc] init] fetchAllReminders];
 //    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:(56/256.0f) green:(167/256.0f) blue:(114/256.0f) alpha:1]];
 //    [SVProgressHUD showWithStatus:@"Loading Reminders..."];
 }
@@ -184,8 +186,11 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     }
     cell.cardTitleLabel.text = currentCard.name;
     cell.listNameLabel.text = currentCard.list.name;
+    if(currentCard.linkedReminder.reminderDate != nil){
+        cell.dueDateInfoLabel.text = [NSString stringWithFormat:@"Reminder: %@", [self.dateFormatter stringFromDate:currentCard.linkedReminder.reminderDate]];
+    }
     if(currentCard.dueDate != nil){
-        cell.dueDateInfoLabel.text = [self.dateFormatter stringFromDate:currentCard.dueDate];
+        cell.dueDateInfoLabel.text = [NSString stringWithFormat:@"Due: %@", [self.dateFormatter stringFromDate:currentCard.dueDate]];
     }
     else{
         cell.dueDateInfoLabel.text = @"No Due Date";
@@ -199,7 +204,6 @@ static NSString * const reuseIdentifier = @"SMCardCell";
         cell.boardBackgroundImageView.hidden = NO;
         cell.boardColorView.hidden = YES;
         [cell.boardBackgroundImageView sd_setImageWithURL:currentCard.list.board.backgroundImageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            NSLog(@"Image downloaded: %@",imageURL);
         }];
     }
     

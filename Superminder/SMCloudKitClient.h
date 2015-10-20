@@ -10,7 +10,10 @@
 @import CloudKit;
 
 @interface SMCloudKitClient : NSObject
+@property (strong, nonatomic) NSDictionary *remindersCardIDIndex;
 
 - (void)saveRecord:(CKRecord *)record;
+- (void)fetchAllReminders;
 
++ (instancetype)sharedClient;
 @end

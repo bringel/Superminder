@@ -25,4 +25,25 @@
     
     return copy;
 }
+
++ (instancetype)reminderWithRecord:(id)rec{
+    return [[SMReminder alloc] initWithRecord:rec];
+}
+
+- (instancetype)initWithRecord:(id)rec{
+    self = [super init];
+    if(self){
+//        self.version = rec[@"version"];
+        self.cloudKitID = rec[@"recordID"];
+        self.trelloCardID = rec[@"trelloCardID"];
+        self.reminderDate = rec[@"reminderDate"];
+        self.completed = [rec[@"completed"] boolValue];
+        self.flexibleReminder = [rec[@"flexibleReminder"] boolValue];
+        self.recurring = [rec[@"flexibleReminder"] boolValue];
+        self.recurringValue =[rec[@"reucrringValue"] intValue];
+        self.recurringUnit = [rec[@"recurringUnit"] unsignedIntegerValue];
+        self.endRecurranceDate = rec[@"endRecurranceDate"];
+    }
+    return self;
+}
 @end

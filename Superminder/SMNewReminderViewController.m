@@ -199,6 +199,7 @@
     CKRecord *newReminder = [[CKRecord alloc] initWithReminder:self.reminder];
     SMCloudKitClient *client = [[SMCloudKitClient alloc] init];
     [client saveRecord:newReminder];
+    self.card.linkedReminder = self.reminder;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

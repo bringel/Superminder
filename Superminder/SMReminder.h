@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@import CloudKit;
 
 typedef NS_ENUM(NSUInteger, SMRecurringUnit) {
     SMRecurringUnitDays,
@@ -21,7 +22,7 @@ typedef NS_ENUM(NSUInteger, SMFlexibleUnit) {
 };
 @interface SMReminder : NSObject
 
-@property (strong, nonatomic) NSString *cloudKitID;
+@property (strong, nonatomic) CKRecordID *cloudKitID;
 @property (strong, nonatomic) NSString *trelloCardID;
 @property (strong, nonatomic) NSDate *reminderDate;
 @property (nonatomic, getter=isCompleted) BOOL completed;
@@ -33,4 +34,7 @@ typedef NS_ENUM(NSUInteger, SMFlexibleUnit) {
 @property (nonatomic) SMRecurringUnit recurringUnit;
 @property (strong, nonatomic) NSDate *endRecurranceDate;
 
++ (instancetype)reminderWithRecord:(CKRecord *)rec;
+
+- (instancetype)initWithRecord:(CKRecord *)rec;
 @end
