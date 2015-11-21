@@ -27,23 +27,23 @@
 		2F612F191B482A5000CD2292 /* BRTimePickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F181B482A5000CD2292 /* BRTimePickerCell.m */; };
 		2F612F1C1B482CA200CD2292 /* BRSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F1B1B482CA200CD2292 /* BRSwitchCell.m */; };
 		2F612F1F1B482CAB00CD2292 /* BRSegmentedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F612F1E1B482CAB00CD2292 /* BRSegmentedCell.m */; };
-		2F8A64601BC1D79F00128125 /* UIColor+Hexadecimal.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8A645F1BC1D79F00128125 /* UIColor+Hexadecimal.m */; settings = {ASSET_TAGS = (); }; };
+		2F8A64601BC1D79F00128125 /* UIColor+Hexadecimal.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8A645F1BC1D79F00128125 /* UIColor+Hexadecimal.m */; };
 		2F9B87131AF45652006430D2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9B87121AF45652006430D2 /* CloudKit.framework */; };
 		2FA38C371AF1B16000237A1C /* Superminder-config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2FA38C361AF1B16000237A1C /* Superminder-config.plist */; };
-		2FB42F701BC0DCDF00B5A428 /* SMCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB42F6E1BC0DCDF00B5A428 /* SMCardCell.m */; settings = {ASSET_TAGS = (); }; };
+		2FB42F701BC0DCDF00B5A428 /* SMCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FB42F6E1BC0DCDF00B5A428 /* SMCardCell.m */; };
 		2FBE9E421AF43EE000405112 /* SMTrelloClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE9E411AF43EE000405112 /* SMTrelloClient.m */; };
 		2FCFD8521B5F383C00CCEC24 /* CKRecord+Superminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFD8511B5F383C00CCEC24 /* CKRecord+Superminder.m */; };
 		2FCFD8551B5F3C9900CCEC24 /* SMCloudKitClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFD8541B5F3C9900CCEC24 /* SMCloudKitClient.m */; };
 		2FEF3CDE1B9C7AE0003F0AB4 /* BRFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF3CDD1B9C7AE0003F0AB4 /* BRFormViewController.m */; };
-		2FF375551BB23C1F00191C84 /* BRDatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375541BB23C1F00191C84 /* BRDatePickerCell.xib */; settings = {ASSET_TAGS = (); }; };
-		2FF375571BB23C2900191C84 /* BRTimePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375561BB23C2900191C84 /* BRTimePickerCell.xib */; settings = {ASSET_TAGS = (); }; };
-		2FF375591BB23C3500191C84 /* BRDualLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375581BB23C3500191C84 /* BRDualLabelCell.xib */; settings = {ASSET_TAGS = (); }; };
-		2FF3755B1BB23C3C00191C84 /* BRNumberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF3755A1BB23C3C00191C84 /* BRNumberCell.xib */; settings = {ASSET_TAGS = (); }; };
-		2FF3755D1BB23C4400191C84 /* BRSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF3755C1BB23C4400191C84 /* BRSwitchCell.xib */; settings = {ASSET_TAGS = (); }; };
-		2FF3755F1BB23C4B00191C84 /* BRSegmentedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF3755E1BB23C4B00191C84 /* BRSegmentedCell.xib */; settings = {ASSET_TAGS = (); }; };
-		2FF375611BB23C5200191C84 /* BRTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375601BB23C5200191C84 /* BRTextCell.xib */; settings = {ASSET_TAGS = (); }; };
-		2FF375631BB23C5800191C84 /* BRBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375621BB23C5800191C84 /* BRBasicCell.xib */; settings = {ASSET_TAGS = (); }; };
-		2FF375661BB23CB600191C84 /* BRBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF375651BB23CB600191C84 /* BRBasicCell.m */; settings = {ASSET_TAGS = (); }; };
+		2FF375551BB23C1F00191C84 /* BRDatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375541BB23C1F00191C84 /* BRDatePickerCell.xib */; };
+		2FF375571BB23C2900191C84 /* BRTimePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375561BB23C2900191C84 /* BRTimePickerCell.xib */; };
+		2FF375591BB23C3500191C84 /* BRDualLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375581BB23C3500191C84 /* BRDualLabelCell.xib */; };
+		2FF3755B1BB23C3C00191C84 /* BRNumberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF3755A1BB23C3C00191C84 /* BRNumberCell.xib */; };
+		2FF3755D1BB23C4400191C84 /* BRSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF3755C1BB23C4400191C84 /* BRSwitchCell.xib */; };
+		2FF3755F1BB23C4B00191C84 /* BRSegmentedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF3755E1BB23C4B00191C84 /* BRSegmentedCell.xib */; };
+		2FF375611BB23C5200191C84 /* BRTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375601BB23C5200191C84 /* BRTextCell.xib */; };
+		2FF375631BB23C5800191C84 /* BRBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375621BB23C5800191C84 /* BRBasicCell.xib */; };
+		2FF375661BB23CB600191C84 /* BRBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF375651BB23CB600191C84 /* BRBasicCell.m */; };
 		56A88CB0C3876197066449D1 /* libPods-Superminder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB73437A73B1B0F767DEEED /* libPods-Superminder.a */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +103,7 @@
 		2F8A645F1BC1D79F00128125 /* UIColor+Hexadecimal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hexadecimal.m"; sourceTree = "<group>"; };
 		2F9B87111AF45648006430D2 /* Superminder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Superminder.entitlements; sourceTree = "<group>"; };
 		2F9B87121AF45652006430D2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		2FA38C361AF1B16000237A1C /* Superminder-config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Superminder-config.plist"; sourceTree = SOURCE_ROOT; };
+		2FA38C361AF1B16000237A1C /* Superminder-config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Superminder-config.plist"; sourceTree = "<group>"; };
 		2FB42F6D1BC0DCDF00B5A428 /* SMCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCardCell.h; sourceTree = "<group>"; };
 		2FB42F6E1BC0DCDF00B5A428 /* SMCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCardCell.m; sourceTree = "<group>"; };
 		2FBE9E401AF43EE000405112 /* SMTrelloClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTrelloClient.h; sourceTree = "<group>"; };
@@ -160,11 +160,11 @@
 		2F080F991AF060C5008EAB4B = {
 			isa = PBXGroup;
 			children = (
+				EB60CE04669C5C925895DA0E /* Frameworks */,
+				10A2BD89BC113507F047B9C8 /* Pods */,
+				2F080FA31AF060C5008EAB4B /* Products */,
 				2F080FA41AF060C5008EAB4B /* Superminder */,
 				2F080FBE1AF060C5008EAB4B /* SuperminderTests */,
-				2F080FA31AF060C5008EAB4B /* Products */,
-				10A2BD89BC113507F047B9C8 /* Pods */,
-				EB60CE04669C5C925895DA0E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -180,20 +180,20 @@
 		2F080FA41AF060C5008EAB4B /* Superminder */ = {
 			isa = PBXGroup;
 			children = (
-				2F9B87111AF45648006430D2 /* Superminder.entitlements */,
+				2F8A645A1BC1D72A00128125 /* Fun Categories */,
+				2F32EA9B1AF58EFB003C5774 /* Model */,
+				2F080FA51AF060C5008EAB4B /* Supporting Files */,
+				2F2929591B06E56B006423C1 /* View */,
+				2F32EA9A1AF58EF0003C5774 /* View Controllers */,
 				2F080FA91AF060C5008EAB4B /* AppDelegate.h */,
 				2F080FAA1AF060C5008EAB4B /* AppDelegate.m */,
-				2F080FAF1AF060C5008EAB4B /* Main.storyboard */,
-				2F2929591B06E56B006423C1 /* View */,
 				2F080FB21AF060C5008EAB4B /* Images.xcassets */,
-				2F080FA51AF060C5008EAB4B /* Supporting Files */,
-				2FBE9E401AF43EE000405112 /* SMTrelloClient.h */,
-				2FBE9E411AF43EE000405112 /* SMTrelloClient.m */,
+				2F080FAF1AF060C5008EAB4B /* Main.storyboard */,
 				2FCFD8531B5F3C9900CCEC24 /* SMCloudKitClient.h */,
 				2FCFD8541B5F3C9900CCEC24 /* SMCloudKitClient.m */,
-				2F32EA9B1AF58EFB003C5774 /* Model */,
-				2F32EA9A1AF58EF0003C5774 /* View Controllers */,
-				2F8A645A1BC1D72A00128125 /* Fun Categories */,
+				2FBE9E401AF43EE000405112 /* SMTrelloClient.h */,
+				2FBE9E411AF43EE000405112 /* SMTrelloClient.m */,
+				2F9B87111AF45648006430D2 /* Superminder.entitlements */,
 			);
 			path = Superminder;
 			sourceTree = "<group>";
@@ -202,17 +202,17 @@
 			isa = PBXGroup;
 			children = (
 				2F080FA61AF060C5008EAB4B /* Info.plist */,
-				2F080FA71AF060C5008EAB4B /* main.m */,
 				2FA38C361AF1B16000237A1C /* Superminder-config.plist */,
+				2F080FA71AF060C5008EAB4B /* main.m */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		2F080FBE1AF060C5008EAB4B /* SuperminderTests */ = {
 			isa = PBXGroup;
 			children = (
-				2F080FC11AF060C5008EAB4B /* SuperminderTests.m */,
 				2F080FBF1AF060C5008EAB4B /* Supporting Files */,
+				2F080FC11AF060C5008EAB4B /* SuperminderTests.m */,
 			);
 			path = SuperminderTests;
 			sourceTree = "<group>";
@@ -222,83 +222,83 @@
 			children = (
 				2F080FC01AF060C5008EAB4B /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		2F2929591B06E56B006423C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2F612F141B482A4500CD2292 /* BRDatePickerCell.h */,
-				2FF375541BB23C1F00191C84 /* BRDatePickerCell.xib */,
-				2FF375561BB23C2900191C84 /* BRTimePickerCell.xib */,
-				2FF375581BB23C3500191C84 /* BRDualLabelCell.xib */,
-				2FF3755A1BB23C3C00191C84 /* BRNumberCell.xib */,
-				2FF3755C1BB23C4400191C84 /* BRSwitchCell.xib */,
-				2FF3755E1BB23C4B00191C84 /* BRSegmentedCell.xib */,
-				2FF375601BB23C5200191C84 /* BRTextCell.xib */,
-				2FF375621BB23C5800191C84 /* BRBasicCell.xib */,
-				2F612F151B482A4500CD2292 /* BRDatePickerCell.m */,
-				2F612F171B482A5000CD2292 /* BRTimePickerCell.h */,
-				2F612F181B482A5000CD2292 /* BRTimePickerCell.m */,
-				2F612F111B482A3200CD2292 /* BRDualLabelCell.h */,
-				2F612F121B482A3200CD2292 /* BRDualLabelCell.m */,
-				2F612F0E1B482A1A00CD2292 /* BRNumberCell.h */,
-				2F612F0F1B482A1A00CD2292 /* BRNumberCell.m */,
-				2F612F1A1B482CA200CD2292 /* BRSwitchCell.h */,
-				2F612F1B1B482CA200CD2292 /* BRSwitchCell.m */,
-				2F612F1D1B482CAB00CD2292 /* BRSegmentedCell.h */,
-				2F612F1E1B482CAB00CD2292 /* BRSegmentedCell.m */,
-				2F110C6E1B9C8343005F1686 /* BRTextCell.h */,
-				2F110C6F1B9C8343005F1686 /* BRTextCell.m */,
 				2FF375641BB23CB600191C84 /* BRBasicCell.h */,
 				2FF375651BB23CB600191C84 /* BRBasicCell.m */,
+				2FF375621BB23C5800191C84 /* BRBasicCell.xib */,
+				2F612F141B482A4500CD2292 /* BRDatePickerCell.h */,
+				2F612F151B482A4500CD2292 /* BRDatePickerCell.m */,
+				2FF375541BB23C1F00191C84 /* BRDatePickerCell.xib */,
+				2F612F111B482A3200CD2292 /* BRDualLabelCell.h */,
+				2F612F121B482A3200CD2292 /* BRDualLabelCell.m */,
+				2FF375581BB23C3500191C84 /* BRDualLabelCell.xib */,
+				2F612F0E1B482A1A00CD2292 /* BRNumberCell.h */,
+				2F612F0F1B482A1A00CD2292 /* BRNumberCell.m */,
+				2FF3755A1BB23C3C00191C84 /* BRNumberCell.xib */,
+				2F612F1D1B482CAB00CD2292 /* BRSegmentedCell.h */,
+				2F612F1E1B482CAB00CD2292 /* BRSegmentedCell.m */,
+				2FF3755E1BB23C4B00191C84 /* BRSegmentedCell.xib */,
+				2F612F1A1B482CA200CD2292 /* BRSwitchCell.h */,
+				2F612F1B1B482CA200CD2292 /* BRSwitchCell.m */,
+				2FF3755C1BB23C4400191C84 /* BRSwitchCell.xib */,
+				2F110C6E1B9C8343005F1686 /* BRTextCell.h */,
+				2F110C6F1B9C8343005F1686 /* BRTextCell.m */,
+				2FF375601BB23C5200191C84 /* BRTextCell.xib */,
+				2F612F171B482A5000CD2292 /* BRTimePickerCell.h */,
+				2F612F181B482A5000CD2292 /* BRTimePickerCell.m */,
+				2FF375561BB23C2900191C84 /* BRTimePickerCell.xib */,
 				2FB42F6D1BC0DCDF00B5A428 /* SMCardCell.h */,
 				2FB42F6E1BC0DCDF00B5A428 /* SMCardCell.m */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		2F32EA9A1AF58EF0003C5774 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2F32EA971AF531E9003C5774 /* SMRemindersViewController.h */,
-				2F32EA981AF531E9003C5774 /* SMRemindersViewController.m */,
-				2F2313A01B46136F00CB8B36 /* SMNewReminderViewController.h */,
-				2F2313A11B46136F00CB8B36 /* SMNewReminderViewController.m */,
 				2FEF3CDC1B9C7AE0003F0AB4 /* BRFormViewController.h */,
 				2FEF3CDD1B9C7AE0003F0AB4 /* BRFormViewController.m */,
+				2F2313A01B46136F00CB8B36 /* SMNewReminderViewController.h */,
+				2F2313A11B46136F00CB8B36 /* SMNewReminderViewController.m */,
+				2F32EA971AF531E9003C5774 /* SMRemindersViewController.h */,
+				2F32EA981AF531E9003C5774 /* SMRemindersViewController.m */,
 			);
-			name = "View Controllers";
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		2F32EA9B1AF58EFB003C5774 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2F32EA9C1AF58F0C003C5774 /* SMTrelloUser.h */,
-				2F32EA9D1AF58F0C003C5774 /* SMTrelloUser.m */,
-				2F32EAA21AFFDF0D003C5774 /* SMTrelloBoard.h */,
-				2F32EAA31AFFDF0D003C5774 /* SMTrelloBoard.m */,
-				2F32EAA51AFFDF19003C5774 /* SMTrelloList.h */,
-				2F32EAA61AFFDF19003C5774 /* SMTrelloList.m */,
-				2F32EAA81AFFDF20003C5774 /* SMTrelloCard.h */,
-				2F32EAA91AFFDF20003C5774 /* SMTrelloCard.m */,
 				2F2313A31B461FFB00CB8B36 /* SMReminder.h */,
 				2F2313A41B461FFB00CB8B36 /* SMReminder.m */,
+				2F32EAA21AFFDF0D003C5774 /* SMTrelloBoard.h */,
+				2F32EAA31AFFDF0D003C5774 /* SMTrelloBoard.m */,
+				2F32EAA81AFFDF20003C5774 /* SMTrelloCard.h */,
+				2F32EAA91AFFDF20003C5774 /* SMTrelloCard.m */,
+				2F32EAA51AFFDF19003C5774 /* SMTrelloList.h */,
+				2F32EAA61AFFDF19003C5774 /* SMTrelloList.m */,
+				2F32EA9C1AF58F0C003C5774 /* SMTrelloUser.h */,
+				2F32EA9D1AF58F0C003C5774 /* SMTrelloUser.m */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		2F8A645A1BC1D72A00128125 /* Fun Categories */ = {
 			isa = PBXGroup;
 			children = (
-				2F32EA9F1AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.h */,
-				2F32EAA01AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.m */,
 				2FCFD8501B5F383C00CCEC24 /* CKRecord+Superminder.h */,
 				2FCFD8511B5F383C00CCEC24 /* CKRecord+Superminder.m */,
+				2F32EA9F1AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.h */,
+				2F32EAA01AF5A9C0003C5774 /* NSURLRequest+SMRequestBuilding.m */,
 				2F8A645E1BC1D79F00128125 /* UIColor+Hexadecimal.h */,
 				2F8A645F1BC1D79F00128125 /* UIColor+Hexadecimal.m */,
 			);
-			name = "Fun Categories";
+			path = "Fun Categories";
 			sourceTree = "<group>";
 		};
 		EB60CE04669C5C925895DA0E /* Frameworks */ = {
@@ -530,6 +530,7 @@
 				2F080FB01AF060C5008EAB4B /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -626,7 +627,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bradley Ringel (2WB8P2K6SQ)";
 				CURRENT_PROJECT_VERSION = 65;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				INFOPLIST_FILE = Superminder/Info.plist;
+				INFOPLIST_FILE = "Superminder/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -646,7 +647,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Bradley Ringel (HK7854N4SL)";
 				CURRENT_PROJECT_VERSION = 65;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				INFOPLIST_FILE = Superminder/Info.plist;
+				INFOPLIST_FILE = "Superminder/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -667,7 +668,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SuperminderTests/Info.plist;
+				INFOPLIST_FILE = "SuperminderTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Superminder.app/Superminder";
@@ -682,7 +683,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SuperminderTests/Info.plist;
+				INFOPLIST_FILE = "SuperminderTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Superminder.app/Superminder";
