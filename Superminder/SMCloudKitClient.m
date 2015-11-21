@@ -9,6 +9,12 @@
 #import "SMCloudKitClient.h"
 #import "SMReminder.h"
 
+@interface SMCloudKitClient()
+
+@property(strong,nonatomic) NSDictionary *remindersCardIDIndex;
+
+@end
+
 @implementation SMCloudKitClient
 
 + (instancetype)sharedClient{
@@ -25,6 +31,10 @@
         _remindersCardIDIndex = [[NSDictionary alloc] init];
     }
     return _remindersCardIDIndex;
+}
+
+- (SMReminder *)reminderForCardID:(NSString *)cardID{
+    return self.remindersCardIDIndex[cardID];
 }
 
 - (void)saveRecord:(CKRecord *)record{

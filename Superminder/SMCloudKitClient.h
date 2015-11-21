@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 @import CloudKit;
+@class SMReminder;
 
 @interface SMCloudKitClient : NSObject
-@property (strong, nonatomic) NSDictionary *remindersCardIDIndex;
 
 - (void)saveRecord:(CKRecord *)record;
 - (void)fetchAllReminders;
+- (SMReminder *)reminderForCardID:(NSString *)cardID;
 
 + (instancetype)sharedClient;
 @end
