@@ -32,7 +32,7 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) NSDateFormatter *timeFormatter;
 
-@property (strong, nonatomic) NSIndexPath *currentlyEditingIndex;
+@property (strong, nonatomic) NSIndexPath *currentlyEditingIndex; //The index path for the row that is being edited with a date picker or time picker, not the indexpath of the picker itself.
 
 @end
 
@@ -166,6 +166,7 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
                 numberCell.numberField.text = [NSString stringWithFormat:@"%d",((NSNumber *)propertyVal).intValue]; //maybe want to use NSNumberFormatter at some point
             }
             numberCell.label.text = labelText;
+            [numberCell.numberField addTarget:self action:@selector(numberValueChanged:) forControlEvents:UIControlEventValueChanged];
             cell = numberCell;
             break;
         case BRFormCellTypeSegmented:
@@ -178,12 +179,14 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
             if((NSInteger)propertyVal < segments.count){
                 segmentedCell.options.selectedSegmentIndex = (NSInteger)propertyVal;
             }
+            [segmentedCell.options addTarget:self action:@selector(segmentedValueChanged:) forControlEvents:UIControlEventValueChanged];
             cell = segmentedCell;
             break;
         case BRFormCellTypeSwitch:
             switchCell = [tableView dequeueReusableCellWithIdentifier:switchCellIdentifier forIndexPath:indexPath];
             switchCell.toggleSwitch.on = [propertyVal boolValue]; //property val will be an nsnumber in this case
             switchCell.label.text = labelText;
+            [switchCell.toggleSwitch addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
             cell = switchCell;
             break;
         case BRFormCellTypeDate:
@@ -195,6 +198,7 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
                         date = [NSDate date];
                     }
                     datePickerCell.datePicker.date = date;
+                    [datePickerCell.datePicker addTarget:self action:@selector(dateValueChanged:) forControlEvents:UIControlEventValueChanged];
                 }
                 cell = datePickerCell;
             }
@@ -220,6 +224,7 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
                         date = [NSDate date];
                     }
                     timePickerCell.timePicker.date = date;
+                    [timePickerCell.timePicker addTarget:self action:@selector(timeValueChanged:) forControlEvents:UIControlEventValueChanged];
                 }
                 cell = timePickerCell;
             }
@@ -289,7 +294,53 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
     }
 }
 
+#pragma mark - Value Changed Handling
 
+- (void)dateValueChanged:(UIDatePicker *)picker{
+    
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear) fromDate:picker.date];
+    NSDictionary *rowData = [self rowDataForIndexPath:self.currentlyEditingIndex];
+    NSDate *oldDate = [self valueForKeyPath:rowData[@"property"]];
+    NSDateComponents *timeComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitSecond | NSCalendarUnitMinute | NSCalendarUnitHour) fromDate:oldDate];
+    //sync up the time from the old date with the new date
+    components.second = timeComponents.second;
+    components.minute = timeComponents.minute;
+    components.hour = timeComponents.hour;
+    NSDate *newDate = [[NSCalendar currentCalendar] dateFromComponents:components];
+    
+    [self setValue:newDate forKeyPath:rowData[@"property"]];
+    
+    [self.tableView reloadRowsAtIndexPaths:@[self.currentlyEditingIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)timeValueChanged:(UIDatePicker *)picker{
+    
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitSecond | NSCalendarUnitMinute | NSCalendarUnitHour) fromDate:picker.date];
+    NSDictionary *rowData = [self rowDataForIndexPath:self.currentlyEditingIndex];
+    NSDate *oldTime = [self valueForKeyPath:rowData[@"property"]];
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:(NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear) fromDate:oldTime];
+    //sync up the date from the old date with the new date
+    components.day = dateComponents.day;
+    components.month = dateComponents.month;
+    components.year = dateComponents.year;
+    NSDate *newTime = [[NSCalendar currentCalendar] dateFromComponents:components];
+    
+    [self setValue:newTime forKeyPath:rowData[@"property"]];
+    
+    [self.tableView reloadRowsAtIndexPaths:@[self.currentlyEditingIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)numberValueChanged:(UITextField *)textField{
+    
+}
+
+- (void)switchValueChanged:(UISwitch *)toggle{
+    
+}
+
+- (void)segmentedValueChanged:(UISegmentedControl *)segments{
+    
+}
 #pragma mark - Helpers
 
 - (NSDictionary *)rowDataForIndexPath:(NSIndexPath *)indexPath{
@@ -318,6 +369,15 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
         NSMutableArray *mutableFormData = [self.formData mutableCopy];
         mutableFormData[indexPath.section] = data;
         self.formData = [mutableFormData copy];
+    }
+}
+
+- (NSIndexPath *)cellIndexPathForView:(UIView *)view{
+    if([view isKindOfClass:[UITableViewCell class]]){
+        return [self.tableView indexPathForCell:(UITableViewCell *)view];
+    }
+    else{
+        return [self cellIndexPathForView:view.superview];
     }
 }
 

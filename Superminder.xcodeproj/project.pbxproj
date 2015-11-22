@@ -160,10 +160,10 @@
 		2F080F991AF060C5008EAB4B = {
 			isa = PBXGroup;
 			children = (
+				2F080FA41AF060C5008EAB4B /* Superminder */,
 				EB60CE04669C5C925895DA0E /* Frameworks */,
 				10A2BD89BC113507F047B9C8 /* Pods */,
 				2F080FA31AF060C5008EAB4B /* Products */,
-				2F080FA41AF060C5008EAB4B /* Superminder */,
 				2F080FBE1AF060C5008EAB4B /* SuperminderTests */,
 			);
 			sourceTree = "<group>";
