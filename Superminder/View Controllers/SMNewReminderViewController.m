@@ -33,9 +33,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    BRSwitchCellToggleAction flexibleToggleAction = ^void(BOOL on){
+        [self removeRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]];
+        [self removeRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+        
+        if(on){
+            [self insertRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1] withData:@{@"label" : @"", @"property" : @"reminder.flexibleValue", @"cellType" : @(BRFormCellTypeNumber)}];
+            [self insertRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1] withData:@{@"label" : @"", @"property" : @"reminder.flexibleUnit", @"cellType": @(BRFormCellTypeSegmented), @"segments" : @[@"Days", @"Weeks", @"Months"]}];
+        }
+        else{
+            [self insertRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1] withData:@{@"label" : @"Reminder", @"property" : @"reminder.reminderDate", @"cellType" : @(BRFormCellTypeDate)}];
+            [self insertRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1] withData:@{@"label" : @"Reminder Time", @"property" : @"reminder.reminderDate", @"cellType" : @(BRFormCellTypeTime)}];
+        }
+    };
+    
     self.formData = @[@[@{@"label" : @"", @"property" : @"card.name", @"cellType" : @(BRFormCellTypeBasic)},
                          @{@"label" : @"", @"property" : @"card.dueDate", @"cellType" : @(BRFormCellTypeBasic)}],
-                         @[@{@"label" : @"Flexible Reminder", @"property" : @"reminder.flexibleReminder", @"cellType" : @(BRFormCellTypeSwitch)},
+                      @[@{@"label" : @"Flexible Reminder", @"property" : @"reminder.flexibleReminder", @"cellType" : @(BRFormCellTypeSwitch), @"toggleAction" : flexibleToggleAction},
                          @{@"label" : @"Reminder", @"property" : @"reminder.reminderDate", @"cellType" : @(BRFormCellTypeDate)},
                          @{@"label" : @"Reminder Time", @"property" : @"reminder.reminderDate", @"cellType" : @(BRFormCellTypeTime)}],
                          ];

@@ -25,4 +25,7 @@ typedef NS_ENUM(NSUInteger, BRFormCellType) {
 
 - (BOOL)saveData;
 - (BOOL)cancelSave;
+
+- (void)insertRowAtIndexPath:(NSIndexPath *)index withData:(NSDictionary *)rowData;
+- (void)removeRowAtIndexPath:(NSIndexPath *)index;
 @end

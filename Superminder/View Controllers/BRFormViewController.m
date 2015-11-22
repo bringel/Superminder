@@ -179,7 +179,7 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
             if((NSInteger)propertyVal < segments.count){
                 segmentedCell.options.selectedSegmentIndex = (NSInteger)propertyVal;
             }
-            [segmentedCell.options addTarget:self action:@selector(segmentedValueChanged:) forControlEvents:UIControlEventValueChanged];
+            [segmentedCell.options addTarget:self action:@selector(segmentedValueChanged:) forControlEvents:UIControlEventAllEvents];
             cell = segmentedCell;
             break;
         case BRFormCellTypeSwitch:
@@ -331,15 +331,25 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
 }
 
 - (void)numberValueChanged:(UITextField *)textField{
-    
+    NSIndexPath *cellPath = [self cellIndexPathForView:textField];
+    NSDictionary *rowData = [self rowDataForIndexPath:cellPath];
+    NSNumber *val = @(textField.text.intValue);
+    [self setValue:val forKey:rowData[@"property"]];
 }
 
 - (void)switchValueChanged:(UISwitch *)toggle{
-    
+    NSIndexPath *cellPath = [self cellIndexPathForView:toggle];
+    NSDictionary *rowData = [self rowDataForIndexPath:cellPath];
+    //[self setValue:@(toggle.on) forKey:rowData[@"property"]];
+    BRSwitchCellToggleAction toggleAction = rowData[@"toggleAction"];
+    toggleAction(toggle.on);
 }
 
 - (void)segmentedValueChanged:(UISegmentedControl *)segments{
-    
+    NSIndexPath *cellPath = [self cellIndexPathForView:segments];
+    NSDictionary *rowData = [self rowDataForIndexPath:cellPath];
+    NSNumber *val = @(segments.selectedSegmentIndex);
+    [self setValue:val forKey:rowData[@"property"]];
 }
 #pragma mark - Helpers
 
@@ -376,11 +386,33 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
     if([view isKindOfClass:[UITableViewCell class]]){
         return [self.tableView indexPathForCell:(UITableViewCell *)view];
     }
+    else if(view.superview == nil){
+        return [self.tableView indexPathForCell:(UITableViewCell *)view];
+    }
     else{
         return [self cellIndexPathForView:view.superview];
     }
 }
 
+#pragma mark - Row Operations
+
+- (void)insertRowAtIndexPath:(NSIndexPath *)index withData:(NSDictionary *)rowData{
+    NSMutableArray *mutableSection = [[self sectionDataForIndexPath:index] mutableCopy];
+    [mutableSection insertObject:rowData atIndex:index.row];
+    
+    [self setSectionData:[mutableSection copy] forIndexPath:index];
+    
+    [self.tableView insertRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)removeRowAtIndexPath:(NSIndexPath *)index{
+    NSMutableArray *mutableSection = [[self sectionDataForIndexPath:index] mutableCopy];
+    [mutableSection removeObjectAtIndex:index.row];
+    
+    [self setSectionData:[mutableSection copy] forIndexPath:index];
+    
+    [self.tableView deleteRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 /*
 #pragma mark - Navigation
 

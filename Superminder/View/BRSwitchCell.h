@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^BRSwitchCellToggleAction)(BOOL);
+
 @interface BRSwitchCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
