@@ -179,7 +179,8 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
             if((NSInteger)propertyVal < segments.count){
                 segmentedCell.options.selectedSegmentIndex = (NSInteger)propertyVal;
             }
-            [segmentedCell.options addTarget:self action:@selector(segmentedValueChanged:) forControlEvents:UIControlEventAllEvents];
+            [segmentedCell.options addTarget:self action:@selector(segmentedValueChanged:) forControlEvents:UIControlEventValueChanged];
+            
             cell = segmentedCell;
             break;
         case BRFormCellTypeSwitch:
@@ -340,7 +341,7 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
 - (void)switchValueChanged:(UISwitch *)toggle{
     NSIndexPath *cellPath = [self cellIndexPathForView:toggle];
     NSDictionary *rowData = [self rowDataForIndexPath:cellPath];
-    //[self setValue:@(toggle.on) forKey:rowData[@"property"]];
+    [self setValue:@(toggle.on) forKeyPath:rowData[@"property"]];
     BRSwitchCellToggleAction toggleAction = rowData[@"toggleAction"];
     toggleAction(toggle.on);
 }
