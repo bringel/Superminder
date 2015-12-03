@@ -8,6 +8,8 @@ target 'Superminder' do
   pod 'DZNEmptyDataSet', '~> 1.7'
   pod 'KSReachability', '~> 1.4'
   pod 'SDWebImage', '~> 3.7'
+  use_frameworks!
+  pod 'PermissionScope', '~> 1.0'
 end
 
 target 'SuperminderTests' do

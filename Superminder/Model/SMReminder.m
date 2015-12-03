@@ -11,7 +11,7 @@
 @implementation SMReminder
 
 - (id)copyWithZone:(NSZone *)zone{
-    SMReminder *copy = [super copy];
+    SMReminder *copy = [[SMReminder allocWithZone:zone] init];
     
     copy.cloudKitID = [self.cloudKitID copy];
     copy.trelloCardID = [self.trelloCardID copy];
@@ -22,6 +22,7 @@
     copy.recurringValue = self.recurringValue;
     copy.recurringUnit = self.recurringUnit;
     copy.endRecurranceDate = [self.endRecurranceDate copy];
+    copy.notificationScheduled = self.notificationScheduled;
     
     return copy;
 }
@@ -43,6 +44,7 @@
         self.recurringValue =[rec[@"reucrringValue"] intValue];
         self.recurringUnit = [rec[@"recurringUnit"] unsignedIntegerValue];
         self.endRecurranceDate = rec[@"endRecurranceDate"];
+        self.notificationScheduled = [rec[@"notificationScheduled"] boolValue];
     }
     return self;
 }

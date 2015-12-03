@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, SMFlexibleUnit) {
     SMFlexibleUnitWeeks,
     SMFlexibleUnitMonths
 };
-@interface SMReminder : NSObject
+@interface SMReminder : NSObject <NSCopying>
 
 @property (strong, nonatomic) CKRecordID *cloudKitID;
 @property (strong, nonatomic) NSString *trelloCardID;
@@ -33,6 +33,7 @@ typedef NS_ENUM(NSUInteger, SMFlexibleUnit) {
 @property (nonatomic) int recurringValue;
 @property (nonatomic) SMRecurringUnit recurringUnit;
 @property (strong, nonatomic) NSDate *endRecurranceDate;
+@property (nonatomic) BOOL notificationScheduled;
 
 + (instancetype)reminderWithRecord:(CKRecord *)rec;
 

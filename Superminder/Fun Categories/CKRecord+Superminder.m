@@ -22,6 +22,7 @@
         self[@"recurringValue"] = [NSNumber numberWithInt:reminder.recurringValue];
         self[@"recurringUnit"] = [NSNumber numberWithUnsignedInteger:reminder.recurringUnit];
         self[@"endRecurranceDate"] = reminder.endRecurranceDate;
+        self[@"notificationScheduled"] = [NSNumber numberWithBool:reminder.notificationScheduled];
     }
     
     return self;
