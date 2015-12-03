@@ -210,6 +210,16 @@
     
     [self.view endEditing:NO];
     
+    
+    UILocalNotification *reminderNotification = [[UILocalNotification alloc] init];
+    reminderNotification.alertTitle = @"Reminder due";
+    reminderNotification.alertBody = self.card.name;
+    reminderNotification.timeZone = [[NSCalendar currentCalendar] timeZone];
+    reminderNotification.fireDate = self.reminder.reminderDate;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:reminderNotification];
+    self.reminder.notificationScheduled = YES;
+    
     CKRecord *newReminder = [[CKRecord alloc] initWithReminder:self.reminder];
     SMCloudKitClient *client = [[SMCloudKitClient alloc] init];
     [client saveRecord:newReminder];

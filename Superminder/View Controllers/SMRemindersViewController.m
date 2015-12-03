@@ -216,11 +216,20 @@ static NSString * const reuseIdentifier = @"SMCardCell";
 }
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Add\nReminder" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         self.selectedCard = [[self.sectionReminderMap objectForKey:[self tableView:tableView titleForHeaderInSection:indexPath.section]] objectAtIndex:indexPath.row];
+    UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Add\nReminder" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         [self performSegueWithIdentifier:@"addNewReminderFromCard" sender:self];
     }];
-    return @[action];
+    
+    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Edit\nReminder" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        [self performSegueWithIdentifier:@"addNewReminderFromCard" sender:self];
+    }];
+    if(self.selectedCard.linkedReminder == nil){
+        return @[action];
+    }
+    else{
+        return @[editAction];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{

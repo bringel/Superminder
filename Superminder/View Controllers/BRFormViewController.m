@@ -166,7 +166,7 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
                 numberCell.numberField.text = [NSString stringWithFormat:@"%d",((NSNumber *)propertyVal).intValue]; //maybe want to use NSNumberFormatter at some point
             }
             numberCell.label.text = labelText;
-            [numberCell.numberField addTarget:self action:@selector(numberValueChanged:) forControlEvents:UIControlEventValueChanged];
+            [numberCell.numberField addTarget:self action:@selector(numberValueChanged:) forControlEvents:UIControlEventEditingChanged];
             cell = numberCell;
             break;
         case BRFormCellTypeSegmented:
@@ -335,7 +335,7 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
     NSIndexPath *cellPath = [self cellIndexPathForView:textField];
     NSDictionary *rowData = [self rowDataForIndexPath:cellPath];
     NSNumber *val = @(textField.text.intValue);
-    [self setValue:val forKey:rowData[@"property"]];
+    [self setValue:val forKeyPath:rowData[@"property"]];
 }
 
 - (void)switchValueChanged:(UISwitch *)toggle{

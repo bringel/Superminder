@@ -44,7 +44,7 @@
 		2FF375611BB23C5200191C84 /* BRTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375601BB23C5200191C84 /* BRTextCell.xib */; };
 		2FF375631BB23C5800191C84 /* BRBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375621BB23C5800191C84 /* BRBasicCell.xib */; };
 		2FF375661BB23CB600191C84 /* BRBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF375651BB23CB600191C84 /* BRBasicCell.m */; };
-		56A88CB0C3876197066449D1 /* libPods-Superminder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB73437A73B1B0F767DEEED /* libPods-Superminder.a */; };
+		BC5C5024A7C57118DB4A27DE /* libPods-Superminder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 944770509B62379173AE7343 /* libPods-Superminder.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,7 +124,7 @@
 		2FF375621BB23C5800191C84 /* BRBasicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BRBasicCell.xib; sourceTree = "<group>"; };
 		2FF375641BB23CB600191C84 /* BRBasicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRBasicCell.h; sourceTree = "<group>"; };
 		2FF375651BB23CB600191C84 /* BRBasicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRBasicCell.m; sourceTree = "<group>"; };
-		3FB73437A73B1B0F767DEEED /* libPods-Superminder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Superminder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		944770509B62379173AE7343 /* libPods-Superminder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Superminder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8CFA0D78BAA686450FEF820 /* Pods-Superminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Superminder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Superminder/Pods-Superminder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,8 +133,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56A88CB0C3876197066449D1 /* libPods-Superminder.a in Frameworks */,
 				2F9B87131AF45652006430D2 /* CloudKit.framework in Frameworks */,
+				BC5C5024A7C57118DB4A27DE /* libPods-Superminder.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,7 +182,6 @@
 			children = (
 				2F8A645A1BC1D72A00128125 /* Fun Categories */,
 				2F32EA9B1AF58EFB003C5774 /* Model */,
-				2F080FA51AF060C5008EAB4B /* Supporting Files */,
 				2F2929591B06E56B006423C1 /* View */,
 				2F32EA9A1AF58EF0003C5774 /* View Controllers */,
 				2F080FA91AF060C5008EAB4B /* AppDelegate.h */,
@@ -194,6 +193,7 @@
 				2FBE9E401AF43EE000405112 /* SMTrelloClient.h */,
 				2FBE9E411AF43EE000405112 /* SMTrelloClient.m */,
 				2F9B87111AF45648006430D2 /* Superminder.entitlements */,
+				2F080FA51AF060C5008EAB4B /* Supporting Files */,
 			);
 			path = Superminder;
 			sourceTree = "<group>";
@@ -305,7 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				2F9B87121AF45652006430D2 /* CloudKit.framework */,
-				3FB73437A73B1B0F767DEEED /* libPods-Superminder.a */,
+				944770509B62379173AE7343 /* libPods-Superminder.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

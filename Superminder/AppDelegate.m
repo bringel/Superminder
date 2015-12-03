@@ -24,6 +24,8 @@
     [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:(0.0/255.0) green:(194.0/255.0) blue:(224.0/255.0) alpha:1.0];
     [UINavigationBar appearance].tintColor = [UIColor blackColor];
     
+    [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert | UIUserNotificationTypeSound) categories:nil]];
+    
     return YES;
 }
 
