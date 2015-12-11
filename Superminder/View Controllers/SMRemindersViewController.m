@@ -8,7 +8,6 @@
 
 #import "SMRemindersViewController.h"
 #import "Lockbox.h"
-#import "SMTrelloClient.h"
 #import "SMTrelloBoard.h"
 #import "SMTrelloList.h"
 #import "SMTrelloCard.h"
@@ -51,19 +50,16 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 88;
     
-    self.trelloClient = [SMTrelloClient sharedClient];
-    // Do any additional setup after loading the view.
-    [[NSNotificationCenter defaultCenter] addObserverForName:kAllBoardsLoadFinished object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-        __weak typeof(self) weakSelf = self;
-        [weakSelf buildSectionReminderMap];
-        [weakSelf.tableView reloadData];
-        [SVProgressHUD showSuccessWithStatus:@"Loaded"];
+    [[[SMCloudKitClient alloc] init] fetchAllRemindersWithCompletion:^{
+        [self.tableView reloadData];
     }];
+    self.trelloClient = [SMTrelloClient sharedClient];
+    self.trelloClient.delegate = self;
+    // Do any additional setup after loading the view.
     
     [self.trelloClient getCurrentUserInfo];
     [self.trelloClient getAllBoardDataForUser:self.trelloClient.currentUser];
     
-    [[[SMCloudKitClient alloc] init] fetchAllReminders];
 //    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:(56/256.0f) green:(167/256.0f) blue:(114/256.0f) alpha:1]];
 //    [SVProgressHUD showWithStatus:@"Loading Reminders..."];
 }
@@ -79,6 +75,20 @@ static NSString * const reuseIdentifier = @"SMCardCell";
         _dateFormatter.dateStyle = NSDateFormatterMediumStyle;
     }
     return _dateFormatter;
+}
+
+#pragma mark - SMTrelloClientDelegate
+
+- (void)allBoardsLoadedForUser:(SMTrelloUser *)user{
+    [self buildSectionReminderMap];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+    [SVProgressHUD showSuccessWithStatus:@"Loaded"];
+}
+
+- (void)boardLoaded:(SMTrelloBoard *)board{
+    
 }
 
 #pragma mark - Navigation
@@ -184,6 +194,9 @@ static NSString * const reuseIdentifier = @"SMCardCell";
         default:
             break;
     }
+    
+    currentCard.linkedReminder = [[SMCloudKitClient sharedClient] reminderForCardID:currentCard.cardID];
+    
     cell.cardTitleLabel.text = currentCard.name;
     cell.listNameLabel.text = currentCard.list.name;
     if(currentCard.linkedReminder.reminderDate != nil){

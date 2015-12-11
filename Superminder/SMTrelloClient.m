@@ -16,8 +16,6 @@
 #import "SMTrelloCard.h"
 
 NSString * const kTrelloUserKey  = @"trello-user-key";
-NSString * const kNeedsReauthentication  = @"SuperminderNeedsReauthentication";
-NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
 
 @interface SMTrelloClient ()
 
@@ -56,12 +54,12 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
         BOOL hasLaunched = [[NSUserDefaults standardUserDefaults] boolForKey:@"SuperminderHasLaunched"];
         if(!hasLaunched || self.userToken == nil){
             self.needsReauthentication = YES;
-            AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-            [delegate showAuthenticationAlertWithCompletion:^{
+            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            [appDelegate showAuthenticationAlertWithCompletion:^{
                 NSString *key = self.apiKey;
                 NSString *trelloURL = [NSString stringWithFormat:@"https://trello.com/1/authorize?key=%@&name=Superminder&expiration=never&response_type=token&scope=read,write&callback_method=fragment&return_url=superminder://token", key];
                 if([SFSafariViewController class]){
-                    UINavigationController *baseNavigationController = (UINavigationController *)delegate.window.rootViewController;
+                    UINavigationController *baseNavigationController = (UINavigationController *)appDelegate.window.rootViewController;
                     SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:trelloURL]];
                     [baseNavigationController.topViewController presentViewController:safariViewController animated:YES completion:nil];
                 }
@@ -202,6 +200,7 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
                                                    SMTrelloList *cardList = [newBoard listWithID:cardData[@"idList"]];
                                                    [cardList addCard:newCard];
                                                }
+                                               [self.delegate boardLoaded:newBoard];
                                                [self boardTaskFinished:boardID];
                                            }
                                        }];
@@ -215,12 +214,13 @@ NSString * const kAllBoardsLoadFinished = @"SuperminderAllBoardsLoadFinished";
 }
 
 - (void)boardTaskFinished:(NSString *)boardID{
+    
     NSMutableArray *dataTasks = [self.currentDataTasks mutableCopy];
     NSString *taskDescription = [NSString stringWithFormat:@"Fetch board - %@", boardID];
     NSPredicate *descriptionPredicate = [NSPredicate predicateWithFormat:@"%K != %@",@"taskDescription", taskDescription];
     [dataTasks filterUsingPredicate:descriptionPredicate];
     if(dataTasks.count == 0){
-        [[NSNotificationCenter defaultCenter] postNotificationName:kAllBoardsLoadFinished object:nil];
+        [self.delegate allBoardsLoadedForUser:self.currentUser];
     }
     self.currentDataTasks = [dataTasks mutableCopy];
 }

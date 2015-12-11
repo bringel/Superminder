@@ -13,7 +13,7 @@
 @interface SMCloudKitClient : NSObject
 
 - (void)saveRecord:(CKRecord *)record;
-- (void)fetchAllReminders;
+- (void)fetchAllRemindersWithCompletion:(void (^)())completionHandler;
 - (SMReminder *)reminderForCardID:(NSString *)cardID;
 
 + (instancetype)sharedClient;

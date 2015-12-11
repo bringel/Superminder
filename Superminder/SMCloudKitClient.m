@@ -50,7 +50,7 @@
     }];
 }
 
-- (void)fetchAllReminders{
+- (void)fetchAllRemindersWithCompletion:(void (^)())completionHandler{
     NSMutableDictionary *mutableIndex = [self.remindersCardIDIndex mutableCopy];
     
     CKDatabase *database = [[CKContainer defaultContainer] privateCloudDatabase];
@@ -67,6 +67,7 @@
             }
             self.remindersCardIDIndex = [mutableIndex copy];
         }
+        completionHandler();
     }];
 }
 @end

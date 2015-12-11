@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zN3-Ur-t1a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zN3-Ur-t1a">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Superminder-->
+        <!--Reminders View Controller-->
         <scene sceneID="5gj-fU-dsG">
             <objects>
                 <tableViewController id="FH0-ci-iQE" customClass="SMRemindersViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="2eA-33-H0E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <progressView key="tableHeaderView" hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="mAe-eb-oro">
+                        <progressView key="tableHeaderView" hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="iJO-3c-U7O">
                             <rect key="frame" x="0.0" y="64" width="320" height="2"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <animations/>
+                            <color key="progressTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="trackTintColor" red="0.0" green="0.75899225473403931" blue="0.88559836149215698" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </progressView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SMCardCell" rowHeight="88" id="Xfi-in-0GK" customClass="SMCardCell">
@@ -29,11 +29,9 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mLg-YP-8o0">
                                             <rect key="frame" x="0.0" y="0.0" width="20" height="88"/>
-                                            <animations/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gg7-0n-Xwd">
                                             <rect key="frame" x="0.0" y="0.0" width="20" height="88"/>
-                                            <animations/>
                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="20" id="Rmr-HT-TXn"/>
@@ -42,7 +40,6 @@
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7F-g6-0a2">
                                             <rect key="frame" x="28" y="8" width="284" height="20.5"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="284" id="fy7-ZQ-OXc"/>
                                             </constraints>
@@ -52,20 +49,17 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLM-4x-9BS">
                                             <rect key="frame" x="28" y="32" width="42" height="20.5"/>
-                                            <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Za-kD-yFi">
                                             <rect key="frame" x="28" y="57" width="42" height="22"/>
-                                            <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <animations/>
                                     <constraints>
                                         <constraint firstItem="mLg-YP-8o0" firstAttribute="height" secondItem="Gg7-0n-Xwd" secondAttribute="height" id="4Gc-rb-4DQ"/>
                                         <constraint firstItem="8Za-kD-yFi" firstAttribute="top" secondItem="zLM-4x-9BS" secondAttribute="bottom" constant="4" id="8ez-Rl-Uqy"/>
@@ -84,7 +78,6 @@
                                         <constraint firstItem="8Za-kD-yFi" firstAttribute="leading" secondItem="Z7F-g6-0a2" secondAttribute="leading" id="o27-b6-5XN"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <animations/>
                                 <connections>
                                     <outlet property="boardBackgroundImageView" destination="mLg-YP-8o0" id="Yec-yY-79A"/>
                                     <outlet property="boardColorView" destination="Gg7-0n-Xwd" id="MKz-tG-bN8"/>
@@ -99,15 +92,21 @@
                             <outlet property="delegate" destination="FH0-ci-iQE" id="M7g-L3-oX6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Superminder" id="LnM-aV-eok">
+                    <navigationItem key="navigationItem" id="LnM-aV-eok">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="settings-sliders" style="plain" id="wkx-Jg-Qxm"/>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="VHG-Yg-Vuy"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="progressBar" destination="iJO-3c-U7O" id="Q7a-0P-Q72"/>
                         <segue destination="AE1-n3-ngt" kind="modal" identifier="addNewReminderFromCard" id="nOm-wP-5cj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bhk-da-Yy9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" id="4qr-Bh-wPL">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="2.5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </progressView>
             </objects>
             <point key="canvasLocation" x="762" y="940"/>
         </scene>
@@ -119,7 +118,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kc3-oY-VVH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -138,7 +136,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gFg-8x-jjR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -156,7 +153,6 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="9lr-gQ-csB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="3GX-kd-oY4" id="7a5-cu-XYx"/>

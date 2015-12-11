@@ -10,14 +10,23 @@
 #import "SMTrelloUser.h"
 
 extern NSString * const kTrelloUserKey;
-extern NSString * const kNeedsReauthentication;
-extern NSString * const kAllBoardsLoadFinished;
+
+@protocol SMTrelloClientDelegate
+
+@optional
+
+- (void)boardLoaded:(SMTrelloBoard *)board;
+- (void)allBoardsLoadedForUser:(SMTrelloUser *)user;
+
+@end
 
 @interface SMTrelloClient : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
 
 @property (strong, nonatomic) NSString *apiKey;
 @property (strong, nonatomic) SMTrelloUser *currentUser;
 @property (nonatomic) BOOL needsReauthentication;
+
+@property (weak, nonatomic) id<SMTrelloClientDelegate> delegate;
 
 + (instancetype)sharedClient;
 
