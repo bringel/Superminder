@@ -30,3 +30,4 @@ Superminder-config.plist
 *.entitlements
 
 *.mobileprovision
+fastlane
