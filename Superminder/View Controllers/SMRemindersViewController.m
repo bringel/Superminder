@@ -50,12 +50,13 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 88;
     
+    self.sectionReminderMap = [self setupSectionReminderMap];
+    
     [[[SMCloudKitClient alloc] init] fetchAllRemindersWithCompletion:^{
         [self.tableView reloadData];
     }];
     self.trelloClient = [SMTrelloClient sharedClient];
     self.trelloClient.delegate = self;
-    // Do any additional setup after loading the view.
     
     [self.trelloClient getCurrentUserInfo];
     [self.trelloClient getAllBoardDataForUser:self.trelloClient.currentUser];
@@ -80,15 +81,21 @@ static NSString * const reuseIdentifier = @"SMCardCell";
 #pragma mark - SMTrelloClientDelegate
 
 - (void)allBoardsLoadedForUser:(SMTrelloUser *)user{
-    [self buildSectionReminderMap];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
+//    [self buildSectionReminderMap];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self.tableView reloadData];
+//    });
     [SVProgressHUD showSuccessWithStatus:@"Loaded"];
 }
 
 - (void)boardLoaded:(SMTrelloBoard *)board{
+    NSMutableDictionary *mutableMap = [self.sectionReminderMap mutableCopy];
+    [self insertBoard:board intoSectionReminderMap:mutableMap];
     
+    self.sectionReminderMap = [mutableMap copy];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 #pragma mark - Navigation
@@ -250,7 +257,7 @@ static NSString * const reuseIdentifier = @"SMCardCell";
 }
 #pragma mark - 
 
-- (void)buildSectionReminderMap{
+- (NSDictionary *)setupSectionReminderMap {
     NSMutableDictionary *mutableMap = [[NSMutableDictionary alloc] init];
     [mutableMap setObject:[[NSMutableArray alloc] init] forKeyedSubscript:kOverdueCards];
     [mutableMap setObject:[[NSMutableArray alloc] init] forKey:kTodayCards];
@@ -260,7 +267,12 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     [mutableMap setObject:[[NSMutableArray alloc] init] forKey:kThisMonthCards];
     [mutableMap setObject:[[NSMutableArray alloc] init] forKey:kLaterCards];
     [mutableMap setObject:[[NSMutableArray alloc] init] forKey:kNoDateCards];
+    return [mutableMap copy];
+}
+
+- (void)insertBoard:(SMTrelloBoard *)board intoSectionReminderMap:(NSMutableDictionary *)mutableMap {
     
+    NSComparisonResult thisWeekResult, nextWeekResult, thisMonthResult, pastResult;
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *thisWeekComponents = [cal components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
     thisWeekComponents.day += 7;
@@ -268,42 +280,47 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     nextWeekComponents.day += 14;
     NSDateComponents *thisMonthComponents = [cal components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:[NSDate date]];
     thisMonthComponents.month += 1;
-    
-    NSComparisonResult thisWeekResult, nextWeekResult, thisMonthResult, pastResult;
-    for(SMTrelloBoard *board in self.trelloClient.currentUser.boards){
-        for(SMTrelloList *list in board.lists){
-            for(SMTrelloCard *card in list.cards){
-                if(card.dueDate == nil || card.dueDate == [NSNull null]){
-                    [[mutableMap objectForKey:kNoDateCards] addObject:card];
-                    continue;
-                }
-                pastResult = [cal compareDate:[NSDate date] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
-                thisWeekResult = [cal compareDate:[cal dateFromComponents:thisWeekComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
-                nextWeekResult = [cal compareDate:[cal dateFromComponents:nextWeekComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
-                thisMonthResult = [cal compareDate:[cal dateFromComponents:thisMonthComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
-                if(pastResult == NSOrderedDescending){
-                    [[mutableMap objectForKey:kOverdueCards] addObject:card];
-                }
-                else if([cal isDateInToday:card.dueDate]){
-                    [[mutableMap objectForKey:kTodayCards] addObject:card];
-                }
-                else if([cal isDateInTomorrow:card.dueDate]){
-                    [[mutableMap objectForKey:kTomorrowCards] addObject:card];
-                }
-                else if(thisWeekResult == NSOrderedSame || thisWeekResult == NSOrderedDescending){
-                    [[mutableMap objectForKey:kThisWeekCards] addObject:card];
-                }
-                else if(nextWeekResult == NSOrderedSame || nextWeekResult == NSOrderedDescending){
-                    [[mutableMap objectForKey:kNextWeekCards] addObject:card];
-                }
-                else if(thisMonthResult == NSOrderedSame || thisMonthResult == NSOrderedDescending){
-                    [[mutableMap objectForKey:kThisMonthCards] addObject:card];
-                }
-                else{
-                    [[mutableMap objectForKey:kLaterCards] addObject:card];
-                }
+    for(SMTrelloList *list in board.lists){
+        for(SMTrelloCard *card in list.cards){
+            if(card.dueDate == nil || card.dueDate == (NSDate *)[NSNull null]){
+                [[mutableMap objectForKey:kNoDateCards] addObject:card];
+                continue;
+            }
+            pastResult = [cal compareDate:[NSDate date] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
+            thisWeekResult = [cal compareDate:[cal dateFromComponents:thisWeekComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
+            nextWeekResult = [cal compareDate:[cal dateFromComponents:nextWeekComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
+            thisMonthResult = [cal compareDate:[cal dateFromComponents:thisMonthComponents] toDate:card.dueDate toUnitGranularity:NSCalendarUnitDay];
+            if(pastResult == NSOrderedDescending){
+                [[mutableMap objectForKey:kOverdueCards] addObject:card];
+            }
+            else if([cal isDateInToday:card.dueDate]){
+                [[mutableMap objectForKey:kTodayCards] addObject:card];
+            }
+            else if([cal isDateInTomorrow:card.dueDate]){
+                [[mutableMap objectForKey:kTomorrowCards] addObject:card];
+            }
+            else if(thisWeekResult == NSOrderedSame || thisWeekResult == NSOrderedDescending){
+                [[mutableMap objectForKey:kThisWeekCards] addObject:card];
+            }
+            else if(nextWeekResult == NSOrderedSame || nextWeekResult == NSOrderedDescending){
+                [[mutableMap objectForKey:kNextWeekCards] addObject:card];
+            }
+            else if(thisMonthResult == NSOrderedSame || thisMonthResult == NSOrderedDescending){
+                [[mutableMap objectForKey:kThisMonthCards] addObject:card];
+            }
+            else{
+                [[mutableMap objectForKey:kLaterCards] addObject:card];
             }
         }
+    }
+}
+
+- (void)buildSectionReminderMap{
+    
+    NSMutableDictionary *mutableMap = [self.sectionReminderMap mutableCopy];
+    
+    for(SMTrelloBoard *board in self.trelloClient.currentUser.boards){
+        [self insertBoard:board intoSectionReminderMap:mutableMap];
     }
     
     self.sectionReminderMap = [mutableMap copy];
