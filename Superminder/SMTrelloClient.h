@@ -17,6 +17,7 @@ extern NSString * const kTrelloUserKey;
 
 - (void)boardLoaded:(SMTrelloBoard *)board;
 - (void)allBoardsLoadedForUser:(SMTrelloUser *)user;
+- (void)updateProgressValue:(float)percentage;
 
 @end
 

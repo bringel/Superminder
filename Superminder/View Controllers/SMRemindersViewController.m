@@ -59,6 +59,8 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     self.trelloClient.delegate = self;
     
     [self.trelloClient getCurrentUserInfo];
+    [self.progressBar setProgress:0 animated:NO];
+    self.progressBar.hidden = NO;
     [self.trelloClient getAllBoardDataForUser:self.trelloClient.currentUser];
     
 //    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:(56/256.0f) green:(167/256.0f) blue:(114/256.0f) alpha:1]];
@@ -81,11 +83,11 @@ static NSString * const reuseIdentifier = @"SMCardCell";
 #pragma mark - SMTrelloClientDelegate
 
 - (void)allBoardsLoadedForUser:(SMTrelloUser *)user{
-//    [self buildSectionReminderMap];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self.tableView reloadData];
-//    });
-    [SVProgressHUD showSuccessWithStatus:@"Loaded"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [SVProgressHUD showSuccessWithStatus:@"Loaded"];
+        self.progressBar.hidden = YES;
+        [self.progressBar setProgress:0 animated:NO];
+    });
 }
 
 - (void)boardLoaded:(SMTrelloBoard *)board{
@@ -95,6 +97,13 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     self.sectionReminderMap = [mutableMap copy];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
+    });
+}
+
+- (void)updateProgressValue:(float)percentage{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.progressBar setProgress:percentage animated:YES];
     });
 }
 

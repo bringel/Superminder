@@ -103,7 +103,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bhk-da-Yy9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" id="4qr-Bh-wPL">
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" id="4qr-Bh-wPL">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="2.5"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </progressView>
