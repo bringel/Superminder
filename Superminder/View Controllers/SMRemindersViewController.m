@@ -52,8 +52,10 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     
     self.sectionReminderMap = [self setupSectionReminderMap];
     
-    [[[SMCloudKitClient alloc] init] fetchAllRemindersWithCompletion:^{
-        [self.tableView reloadData];
+    [[SMCloudKitClient sharedClient] fetchAllRemindersWithCompletion:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }];
     self.trelloClient = [SMTrelloClient sharedClient];
     self.trelloClient.delegate = self;
@@ -218,7 +220,7 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     if(currentCard.linkedReminder.reminderDate != nil){
         cell.dueDateInfoLabel.text = [NSString stringWithFormat:@"Reminder: %@", [self.dateFormatter stringFromDate:currentCard.linkedReminder.reminderDate]];
     }
-    if(currentCard.dueDate != nil){
+    else if(currentCard.dueDate != nil){
         cell.dueDateInfoLabel.text = [NSString stringWithFormat:@"Due: %@", [self.dateFormatter stringFromDate:currentCard.dueDate]];
     }
     else{
@@ -250,7 +252,7 @@ static NSString * const reuseIdentifier = @"SMCardCell";
         [self performSegueWithIdentifier:@"addNewReminderFromCard" sender:self];
     }];
     
-    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Edit\nReminder" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Edit\nReminder" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         [self performSegueWithIdentifier:@"addNewReminderFromCard" sender:self];
     }];
     if(self.selectedCard.linkedReminder == nil){
