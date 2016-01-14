@@ -259,6 +259,8 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
     NSDictionary *newRowData = [[NSDictionary alloc] initWithDictionary:rowData copyItems:YES];
     NSIndexPath *pickerIndex;
     
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES]; //there was (and probably still is) a bug where the separators between the cells wouldn't appear unless you deselect the row with the animation set to YES. Oh well
+    
     //need to remove something if there is a picker and it is in this section
     BOOL hasPickerToRemove = (self.currentlyEditingIndex != nil && self.currentlyEditingIndex.section == indexPath.section);
     //only add a picker if the user tapped on a row that is not the currently editing row
@@ -273,7 +275,7 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
                 indexPath = [NSIndexPath indexPathForRow:indexPath.row-1 inSection:indexPath.section];
             }
         }
-        else if(needToInsertPicker){
+        if(needToInsertPicker){
             //insert row for new picker view
             pickerIndex = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section];
             [mutableSection insertObject:newRowData atIndex:pickerIndex.row];
@@ -287,12 +289,13 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
             [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.currentlyEditingIndex.row+1 inSection:self.currentlyEditingIndex.section]] withRowAnimation:UITableViewRowAnimationFade];
             self.currentlyEditingIndex = nil;
         }
-        else if(needToInsertPicker){
+        if(needToInsertPicker){
             self.currentlyEditingIndex = indexPath;
             [tableView insertRowsAtIndexPaths:@[pickerIndex] withRowAnimation:UITableViewRowAnimationFade];
         }
         [tableView endUpdates];
     }
+    
 }
 
 #pragma mark - Value Changed Handling
