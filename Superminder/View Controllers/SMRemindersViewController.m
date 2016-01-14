@@ -16,14 +16,16 @@
 #import "SMCardCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "SMCloudKitClient.h"
+#import "UIScrollView+EmptyDataSet.h"
 
-@interface SMRemindersViewController ()
+@interface SMRemindersViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (strong, nonatomic) NSString *trelloKey;
 @property (strong, nonatomic) NSDictionary *sectionReminderMap;
 @property (strong, nonatomic) SMTrelloClient *trelloClient;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @property (weak, nonatomic) SMTrelloCard *selectedCard;
+@property (nonatomic, readonly) BOOL anyCardsLoaded;
 
 @end
 
@@ -49,6 +51,10 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     // Register cell classes
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 88;
+    self.tableView.emptyDataSetDelegate = self;
+    self.tableView.emptyDataSetSource = self;
+    
+    self.tableView.tableFooterView = [UIView new]; //trick to hide the empty table view rows
     
     self.sectionReminderMap = [self setupSectionReminderMap];
     
@@ -80,6 +86,19 @@ static NSString * const reuseIdentifier = @"SMCardCell";
         _dateFormatter.dateStyle = NSDateFormatterMediumStyle;
     }
     return _dateFormatter;
+}
+
+- (BOOL)anyCardsLoaded{
+    BOOL anyCards = ([self.sectionReminderMap[kOverdueCards] count] != 0) ||
+    ([self.sectionReminderMap[kTodayCards] count] != 0) ||
+    ([self.sectionReminderMap[kTomorrowCards] count] != 0) ||
+    ([self.sectionReminderMap[kThisWeekCards] count] != 0) ||
+    ([self.sectionReminderMap[kNextWeekCards] count] != 0) ||
+    ([self.sectionReminderMap[kThisMonthCards] count] != 0) ||
+    ([self.sectionReminderMap[kLaterCards] count] != 0) ||
+    ([self.sectionReminderMap[kNoDateCards] count] != 0);
+    
+    return anyCards;
 }
 
 #pragma mark - SMTrelloClientDelegate
@@ -127,7 +146,12 @@ static NSString * const reuseIdentifier = @"SMCardCell";
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return self.sectionReminderMap.count;
+    if(self.anyCardsLoaded){
+        return self.sectionReminderMap.count;
+    }
+    else{
+        return 0;
+    }
 }
 
 //- (NSArray *) sectionIndexTitlesForTableView:(UITableView *)tableView{
@@ -266,7 +290,28 @@ static NSString * const reuseIdentifier = @"SMCardCell";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
-#pragma mark - 
+
+#pragma mark - DZNEmptyDataSetSource
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
+    NSString *text = @"Loading Reminders";
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0f],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView{
+    return [UIColor colorWithRed:0.8144 green:0.8144 blue:0.8144 alpha:1.0];
+}
+
+#pragma mark - DZNEmptyDataSetDelegate
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView{
+    return !self.anyCardsLoaded;
+}
+
+#pragma mark -
 
 - (NSDictionary *)setupSectionReminderMap {
     NSMutableDictionary *mutableMap = [[NSMutableDictionary alloc] init];
