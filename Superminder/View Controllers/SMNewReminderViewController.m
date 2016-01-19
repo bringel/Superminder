@@ -61,9 +61,23 @@
         //there was no reminder linked to the card yet, create a new one now
         self.reminder = [[SMReminder alloc] init];
         self.reminder.trelloCardID = self.card.cardID;
-        self.reminder.reminderDate = [NSDate date];
+        self.reminder.reminderDate = [self dateRoundedToNearestFifteenMinutes:[NSDate date]];
     }
     
+}
+
+- (NSDate *)dateRoundedToNearestFifteenMinutes:(NSDate *)date{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    
+    NSDateComponents *components = [cal components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:date];
+    
+    NSInteger rounded = components.minute;
+    if(components.minute % 15 != 0){
+        rounded = ((components.minute / 15) + 1) * 15;
+    }
+    components.minute = rounded;
+    
+    return [cal dateFromComponents:components];
 }
 
 - (void)didReceiveMemoryWarning {
