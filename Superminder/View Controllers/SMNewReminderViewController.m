@@ -85,93 +85,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)expandDatePickerInTableView:(UITableView *)tableView {
-    if(self.editingReminderDate){
-        return;
-    }
-    self.editingReminderDate = YES;
-    NSMutableArray *mutableDetails = [self.formData mutableCopy];
-    NSMutableArray *mutableSectionDetails = [self.formData[1] mutableCopy];
-    [mutableSectionDetails insertObject:@{@"label" : @"", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMDatePickerCell"} atIndex:2];
-    mutableDetails[1] = [mutableSectionDetails copy];
-    self.formData = [mutableDetails copy];
-    [tableView beginUpdates];
-    [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [tableView endUpdates];
-}
-
-- (void)collapseDatePickerInTableView:(UITableView *)tableView{
-    if(!self.editingReminderDate){
-        return;
-    }
-    self.editingReminderDate = NO;
-    NSMutableArray *mutableDetails = [self.formData mutableCopy];
-    NSMutableArray *mutableSectionDetails = [self.formData[1] mutableCopy];
-    [mutableSectionDetails removeObjectAtIndex:2];
-    mutableDetails[1] = [mutableSectionDetails copy];
-    self.formData = [mutableDetails copy];
-    [tableView beginUpdates];
-    [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
-    [tableView endUpdates];
-}
-
-- (void)expandTimePickerInTableView:(UITableView *)tableView {
-    if(self.editingReminderTime){
-        return;
-    }
-    self.editingReminderTime = YES;
-    NSMutableArray *mutableDetails = [self.formData mutableCopy];
-    NSMutableArray *mutableSectionDetails = [self.formData[1] mutableCopy];
-    [mutableSectionDetails insertObject:@{@"label" : @"", @"property" : @"reminder.reminderDate", @"cellIdentifier" : @"SMTimePickerCell"} atIndex:3];
-    mutableDetails[1] = [mutableSectionDetails copy];
-    self.formData = [mutableDetails copy];
-    [tableView beginUpdates];
-    [tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:1]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [tableView endUpdates];
-}
-
-- (void)collapseTimePickerInTableView:(UITableView *)tableView{
-    if(!self.editingReminderTime){
-        return;
-    }
-    self.editingReminderTime = NO;
-    NSMutableArray *mutableDetails = [self.formData mutableCopy];
-    NSMutableArray *mutableSectionDetails = [self.formData[1] mutableCopy];
-    [mutableSectionDetails removeObjectAtIndex:3];
-    mutableDetails[1] = [mutableSectionDetails copy];
-    self.formData = [mutableDetails copy];
-    [tableView beginUpdates];
-    [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:1]] withRowAnimation:UITableViewRowAnimationFade];
-    [tableView endUpdates];
-}
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-//    
-//    if(self.flexibleRemindersOn){
-//        return; //don't need to do anything if users are doing flexible reminders
-//    }
-//    
-//    if(indexPath.section == 1 && indexPath.row == 1){
-//        if(!self.editingReminderDate){
-//            [self collapseTimePickerInTableView:tableView];
-//            [self expandDatePickerInTableView:tableView];
-//        }
-//        else{
-//            [self collapseDatePickerInTableView:tableView];
-//        }
-//    }
-//    else if(indexPath.section == 1 && (indexPath.row == 2 || indexPath.row == 3)){
-//        //It seems like the date/time pickers are handling any taps, so if the date picker is open, we can't get selections at index 2, which is why it's okay to run this code for either 2 or 3
-//        if(!self.editingReminderTime){
-//            [self collapseDatePickerInTableView:tableView];
-//            [self expandTimePickerInTableView:tableView];
-//        }
-//        else{
-//            [self collapseTimePickerInTableView:tableView];
-//        }
-//    }
-//}
-
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -215,8 +128,7 @@
 }
 
 - (IBAction)cancelAdding:(id)sender{
-    
-    self.card.linkedReminder = self.oldReminder;
+    self.reminder = [self.oldReminder copy];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -237,7 +149,6 @@
     CKRecord *newReminder = [[CKRecord alloc] initWithReminder:self.reminder];
     SMCloudKitClient *client = [[SMCloudKitClient alloc] init];
     [client saveRecord:newReminder];
-    self.card.linkedReminder = self.reminder;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

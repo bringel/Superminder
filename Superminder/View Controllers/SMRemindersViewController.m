@@ -136,8 +136,9 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     // Pass the selected object to the new view controller.
     if([segue.identifier isEqualToString:@"addNewReminderFromCard"]){
         SMNewReminderViewController *newReminderController = (SMNewReminderViewController *)[segue.destinationViewController topViewController];
+        SMReminder *reminder = [[SMCloudKitClient sharedClient] reminderForCardID:self.selectedCard.cardID];
         newReminderController.card = self.selectedCard;
-        newReminderController.reminder = self.selectedCard.linkedReminder;
+        newReminderController.reminder = reminder;
         self.tableView.editing = NO;
     }
 }
@@ -237,12 +238,12 @@ static NSString * const reuseIdentifier = @"SMCardCell";
             break;
     }
     
-    currentCard.linkedReminder = [[SMCloudKitClient sharedClient] reminderForCardID:currentCard.cardID];
-    
     cell.cardTitleLabel.text = currentCard.name;
     cell.listNameLabel.text = currentCard.list.name;
-    if(currentCard.linkedReminder.reminderDate != nil){
-        cell.dueDateInfoLabel.text = [NSString stringWithFormat:@"Reminder: %@", [self.dateFormatter stringFromDate:currentCard.linkedReminder.reminderDate]];
+    SMReminder *cardReminder = [[SMCloudKitClient sharedClient] reminderForCardID:currentCard.cardID];
+    
+    if(cardReminder != nil && cardReminder.reminderDate != nil){
+        cell.dueDateInfoLabel.text = [NSString stringWithFormat:@"Reminder: %@", [self.dateFormatter stringFromDate:cardReminder.reminderDate]];
     }
     else if(currentCard.dueDate != nil){
         cell.dueDateInfoLabel.text = [NSString stringWithFormat:@"Due: %@", [self.dateFormatter stringFromDate:currentCard.dueDate]];
@@ -279,7 +280,8 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Edit\nReminder" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         [self performSegueWithIdentifier:@"addNewReminderFromCard" sender:self];
     }];
-    if(self.selectedCard.linkedReminder == nil){
+    SMReminder *reminder = [[SMCloudKitClient sharedClient] reminderForCardID:self.selectedCard.cardID];
+    if(reminder == nil){
         return @[action];
     }
     else{
