@@ -353,7 +353,7 @@ static NSString * const timeCellIdentifier = @"BRTimePickerCell";
     NSIndexPath *cellPath = [self cellIndexPathForView:segments];
     NSDictionary *rowData = [self rowDataForIndexPath:cellPath];
     NSNumber *val = @(segments.selectedSegmentIndex);
-    [self setValue:val forKey:rowData[@"property"]];
+    [self setValue:val forKeyPath:rowData[@"property"]];
 }
 #pragma mark - Helpers
 
