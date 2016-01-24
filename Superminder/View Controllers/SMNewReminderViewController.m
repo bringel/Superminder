@@ -45,6 +45,7 @@
             [self insertRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1] withData:@{@"label" : @"Reminder", @"property" : @"reminder.reminderDate", @"cellType" : @(BRFormCellTypeDate)}];
             [self insertRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1] withData:@{@"label" : @"Reminder Time", @"property" : @"reminder.reminderDate", @"cellType" : @(BRFormCellTypeTime)}];
         }
+        self.flexibleRemindersOn = on;
     };
     
     self.formData = @[@[@{@"label" : @"", @"property" : @"card.name", @"cellType" : @(BRFormCellTypeBasic)},
@@ -136,12 +137,26 @@
     
     [self.view endEditing:NO];
     
+    NSDate *alertDate = self.reminder.reminderDate;
+    if(self.flexibleRemindersOn){
+        //should we also be setting the time? probably
+        
+        if(self.reminder.flexibleUnit == SMFlexibleUnitDays){
+            alertDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:(-1 * self.reminder.flexibleValue) toDate:alertDate options:0];
+        }
+        else if(self.reminder.flexibleUnit == SMFlexibleUnitWeeks){
+            alertDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:(-7 * self.reminder.flexibleValue) toDate:alertDate options:0];
+        }
+        else if(self.reminder.flexibleUnit == SMFlexibleUnitMonths){
+            alertDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitMonth value:(-1 * self.reminder.flexibleValue) toDate:alertDate options:0];
+        }
+    }
     
     UILocalNotification *reminderNotification = [[UILocalNotification alloc] init];
     reminderNotification.alertTitle = @"Reminder due";
     reminderNotification.alertBody = self.card.name;
     reminderNotification.timeZone = [[NSCalendar currentCalendar] timeZone];
-    reminderNotification.fireDate = self.reminder.reminderDate;
+    reminderNotification.fireDate = alertDate;
     
     [[UIApplication sharedApplication] scheduleLocalNotification:reminderNotification];
     self.reminder.notificationScheduled = YES;
