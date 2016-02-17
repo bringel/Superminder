@@ -8,6 +8,7 @@ target 'Superminder' do
   pod 'DZNEmptyDataSet', '~> 1.7'
   pod 'KSReachability', '~> 1.4'
   pod 'SDWebImage', '~> 3.7'
+  pod 'MMNumberKeyboard'
 end
 
 target 'SuperminderTests' do

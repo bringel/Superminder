@@ -272,7 +272,7 @@ static NSString * const reuseIdentifier = @"SMCardCell";
 }
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
-        self.selectedCard = [[self.sectionReminderMap objectForKey:[self tableView:tableView titleForHeaderInSection:indexPath.section]] objectAtIndex:indexPath.row];
+    self.selectedCard = [[self.sectionReminderMap objectForKey:[self tableView:tableView titleForHeaderInSection:indexPath.section]] objectAtIndex:indexPath.row];
     UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Add\nReminder" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
         [self performSegueWithIdentifier:@"addNewReminderFromCard" sender:self];
     }];
@@ -280,12 +280,16 @@ static NSString * const reuseIdentifier = @"SMCardCell";
     UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Edit\nReminder" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         [self performSegueWithIdentifier:@"addNewReminderFromCard" sender:self];
     }];
+    
+    UITableViewRowAction *deleteReminderAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Remove\nReminder" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        //do something here
+    }];
     SMReminder *reminder = [[SMCloudKitClient sharedClient] reminderForCardID:self.selectedCard.cardID];
     if(reminder == nil){
         return @[action];
     }
     else{
-        return @[editAction];
+        return @[deleteReminderAction, editAction];
     }
 }
 
