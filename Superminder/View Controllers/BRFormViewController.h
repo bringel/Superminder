@@ -19,6 +19,15 @@ typedef NS_ENUM(NSUInteger, BRFormCellType) {
     BRFormCellTypeTime,
 };
 
+@protocol BRFormViewControllerDataSource
+
+- (NSDictionary *)rowDataForIndexPath:(NSIndexPath *)indexPath;
+- (NSInteger)numberOfSections;
+- (NSInteger)numberOfRowsInSection:(NSInteger)sectionIndex;
+- (NSString *)footerTextForSection:(NSInteger)sectionIndex;
+
+@end
+
 @interface BRFormViewController : UITableViewController
 
 @property (nonatomic, strong) NSArray *formData;

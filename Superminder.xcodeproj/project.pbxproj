@@ -44,6 +44,7 @@
 		2FF375611BB23C5200191C84 /* BRTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375601BB23C5200191C84 /* BRTextCell.xib */; };
 		2FF375631BB23C5800191C84 /* BRBasicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FF375621BB23C5800191C84 /* BRBasicCell.xib */; };
 		2FF375661BB23CB600191C84 /* BRBasicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF375651BB23CB600191C84 /* BRBasicCell.m */; };
+		2FFF3EED1C741E9A001341AF /* SMRemindersViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF3EEC1C741E9A001341AF /* SMRemindersViewDataSource.m */; };
 		BC5C5024A7C57118DB4A27DE /* libPods-Superminder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 944770509B62379173AE7343 /* libPods-Superminder.a */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,8 @@
 		2FF375621BB23C5800191C84 /* BRBasicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BRBasicCell.xib; sourceTree = "<group>"; };
 		2FF375641BB23CB600191C84 /* BRBasicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRBasicCell.h; sourceTree = "<group>"; };
 		2FF375651BB23CB600191C84 /* BRBasicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRBasicCell.m; sourceTree = "<group>"; };
+		2FFF3EEB1C741E9A001341AF /* SMRemindersViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRemindersViewDataSource.h; sourceTree = "<group>"; };
+		2FFF3EEC1C741E9A001341AF /* SMRemindersViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRemindersViewDataSource.m; sourceTree = "<group>"; };
 		944770509B62379173AE7343 /* libPods-Superminder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Superminder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8CFA0D78BAA686450FEF820 /* Pods-Superminder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Superminder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Superminder/Pods-Superminder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -194,6 +197,8 @@
 				2FBE9E411AF43EE000405112 /* SMTrelloClient.m */,
 				2F9B87111AF45648006430D2 /* Superminder.entitlements */,
 				2F080FA51AF060C5008EAB4B /* Supporting Files */,
+				2FFF3EEB1C741E9A001341AF /* SMRemindersViewDataSource.h */,
+				2FFF3EEC1C741E9A001341AF /* SMRemindersViewDataSource.m */,
 			);
 			path = Superminder;
 			sourceTree = "<group>";
@@ -487,6 +492,7 @@
 				2FEF3CDE1B9C7AE0003F0AB4 /* BRFormViewController.m in Sources */,
 				2F080FAB1AF060C5008EAB4B /* AppDelegate.m in Sources */,
 				2F080FA81AF060C5008EAB4B /* main.m in Sources */,
+				2FFF3EED1C741E9A001341AF /* SMRemindersViewDataSource.m in Sources */,
 				2F110C701B9C8343005F1686 /* BRTextCell.m in Sources */,
 				2F2313A51B461FFB00CB8B36 /* SMReminder.m in Sources */,
 				2F32EAA41AFFDF0D003C5774 /* SMTrelloBoard.m in Sources */,
