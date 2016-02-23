@@ -64,7 +64,8 @@ static NSString * const reuseIdentifier = @"SMCardCell";
         });
     }];
     self.trelloClient = [SMTrelloClient sharedClient];
-    self.trelloClient.delegate = self;
+    self.trelloClient.dataDelegate = self;
+    self.trelloClient.progressDelegate = self;
     
     [self.trelloClient getCurrentUserInfo];
     [self.progressBar setProgress:0 animated:NO];

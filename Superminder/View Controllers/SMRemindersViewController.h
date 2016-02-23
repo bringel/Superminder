@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SMTrelloClient.h"
 
-@interface SMRemindersViewController : UITableViewController <SMTrelloClientDelegate>
+@interface SMRemindersViewController : UITableViewController <SMTrelloClientDataDelegate, SMTrelloClientProgressDelegate>
 
 @property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 @end

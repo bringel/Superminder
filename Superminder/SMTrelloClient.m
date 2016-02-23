@@ -202,7 +202,7 @@ NSString * const kTrelloUserKey  = @"trello-user-key";
                                                    SMTrelloList *cardList = [newBoard listWithID:cardData[@"idList"]];
                                                    [cardList addCard:newCard];
                                                }
-                                               [self.delegate boardLoaded:newBoard];
+                                               [self.dataDelegate boardLoaded:newBoard];
                                                [self boardTaskFinished:boardID];
                                            }
                                        }];
@@ -221,9 +221,9 @@ NSString * const kTrelloUserKey  = @"trello-user-key";
     NSString *taskDescription = [NSString stringWithFormat:@"Fetch board - %@", boardID];
     NSPredicate *descriptionPredicate = [NSPredicate predicateWithFormat:@"%K != %@",@"taskDescription", taskDescription];
     [dataTasks filterUsingPredicate:descriptionPredicate];
-    [self.delegate updateProgressValue:((float)(self.boardCount - dataTasks.count) / (float)self.boardCount)];
+    [self.progressDelegate updateProgressValue:((float)(self.boardCount - dataTasks.count) / (float)self.boardCount)];
     if(dataTasks.count == 0){
-        [self.delegate allBoardsLoadedForUser:self.currentUser];
+        [self.dataDelegate allBoardsLoadedForUser:self.currentUser];
     }
     self.currentDataTasks = [dataTasks mutableCopy];
 }

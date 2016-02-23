@@ -11,12 +11,17 @@
 
 extern NSString * const kTrelloUserKey;
 
-@protocol SMTrelloClientDelegate
+@protocol SMTrelloClientDataDelegate
 
 @optional
 
 - (void)boardLoaded:(SMTrelloBoard *)board;
 - (void)allBoardsLoadedForUser:(SMTrelloUser *)user;
+
+@end
+
+@protocol SMTrelloClientProgressDelegate
+
 - (void)updateProgressValue:(float)percentage;
 
 @end
@@ -27,7 +32,8 @@ extern NSString * const kTrelloUserKey;
 @property (strong, nonatomic) SMTrelloUser *currentUser;
 @property (nonatomic) BOOL needsReauthentication;
 
-@property (weak, nonatomic) id<SMTrelloClientDelegate> delegate;
+@property (weak, nonatomic) id<SMTrelloClientDataDelegate> dataDelegate;
+@property (weak, nonatomic) id<SMTrelloClientProgressDelegate> progressDelegate;
 
 + (instancetype)sharedClient;
 
